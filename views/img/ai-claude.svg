@@ -1,3 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
-  <path d="M12 3v18M4.5 7.5l15 9M4.5 16.5l15-9"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+  <path fill="#D4824C" d="M13.5 2.4 12 6.6 10.5 2.4H8.7L12 12l3.3-9.6zM21.6 8.7 17.4 10.2l4.2 1.5V13.5L13.2 10.5 21.6 8.7zM21.6 15.3l-8.4-2.8 8.4-1.8v1.8zM13.5 21.6 12 17.4l-1.5 4.2H8.7L12 12l3.3 9.6zM2.4 8.7l4.2 1.5-4.2 1.5v1.8l8.4-3L2.4 8.7zM2.4 15.3 10.8 12.5 2.4 14.3v1z"/>
+  <path fill="#D4824C" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" opacity="0"/>
+  <path fill="#CF7040" d="M5.46 18.54A8.93 8.93 0 0 0 12 21a8.93 8.93 0 0 0 6.54-2.46L12 12zM18.54 5.46A8.93 8.93 0 0 0 12 3a8.93 8.93 0 0 0-6.54 2.46L12 12z" opacity="0"/>
+  <g fill="#D4824C">
+    <rect x="11" y="2"  width="2" height="5" rx="1"/>
+    <rect x="11" y="17" width="2" height="5" rx="1"/>
+    <rect x="2"  y="11" width="5" height="2" rx="1"/>
+    <rect x="17" y="11" width="5" height="2" rx="1"/>
+    <rect x="4.93" y="4.93" width="2" height="5" rx="1" transform="rotate(45 5.93 7.43)"/>
+    <rect x="16.07" y="14.07" width="2" height="5" rx="1" transform="rotate(45 17.07 16.57)"/>
+    <rect x="14.07" y="4.93" width="2" height="5" rx="1" transform="rotate(-45 15.07 7.43)"/>
+    <rect x="4.93"  y="14.07" width="2" height="5" rx="1" transform="rotate(-45 5.93 16.57)"/>
+  </g>
 </svg>
