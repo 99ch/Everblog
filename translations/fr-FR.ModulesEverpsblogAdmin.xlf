@@ -1,0 +1,1046 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en-US" target-language="fr-FR" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="everpsblog" tool-name="everpsblog" tool-version="1.0"/>
+    </header>
+    <body>
+      <trans-unit id="1" resname="%count% orphan post(s) were reassigned to the default author.">
+        <source>%count% orphan post(s) were reassigned to the default author.</source>
+        <target>%count% article(s) orphelin(s) réassigné(s) à l'auteur par défaut.</target>
+      </trans-unit>
+      <trans-unit id="2" resname="%count% post(s) deleted.">
+        <source>%count% post(s) deleted.</source>
+        <target>%count% article(s) supprimé(s).</target>
+      </trans-unit>
+      <trans-unit id="3" resname="%count% post(s) duplicated.">
+        <source>%count% post(s) duplicated.</source>
+        <target>%count% article(s) dupliqué(s).</target>
+      </trans-unit>
+      <trans-unit id="4" resname="%count% post(s) published.">
+        <source>%count% post(s) published.</source>
+        <target>%count% article(s) publié(s).</target>
+      </trans-unit>
+      <trans-unit id="5" resname="%s (#%d)">
+        <source>%s (#%d)</source>
+        <target>%s (#%d)</target>
+      </trans-unit>
+      <trans-unit id="6" resname="(%s)">
+        <source>(%s)</source>
+        <target>(%s)</target>
+      </trans-unit>
+      <trans-unit id="7" resname="(language #%d)">
+        <source>(language #%d)</source>
+        <target>(langue #%d)</target>
+      </trans-unit>
+      <trans-unit id="8" resname="A category cannot be its own parent.">
+        <source>A category cannot be its own parent.</source>
+        <target>Une catégorie ne peut pas être son propre parent.</target>
+      </trans-unit>
+      <trans-unit id="9" resname="Active">
+        <source>Active</source>
+        <target>Actif</target>
+      </trans-unit>
+      <trans-unit id="10" resname="Adds RSS feed links on blog, category, tag and author pages.">
+        <source>Adds RSS feed links on blog, category, tag and author pages.</source>
+        <target>Ajoute des liens de flux RSS sur les pages blog, catégorie, tag et auteur.</target>
+      </trans-unit>
+      <trans-unit id="11" resname="Adjust the blog behavior and save to apply changes.">
+        <source>Adjust the blog behavior and save to apply changes.</source>
+        <target>Ajustez le comportement du blog et enregistrez pour appliquer les changements.</target>
+      </trans-unit>
+      <trans-unit id="12" resname="All XML sitemaps have been generated">
+        <source>All XML sitemaps have been generated</source>
+        <target>Tous les plans du site XML ont été générés</target>
+      </trans-unit>
+      <trans-unit id="13" resname="Allow comments">
+        <source>Allow comments</source>
+        <target>Autoriser les commentaires</target>
+      </trans-unit>
+      <trans-unit id="14" resname="Allowed groups">
+        <source>Allowed groups</source>
+        <target>Groupes autorisés</target>
+      </trans-unit>
+      <trans-unit id="15" resname="An error has occured while importing WordPress file">
+        <source>An error has occured while importing WordPress file</source>
+        <target>Une erreur s'est produite lors de l'importation du fichier WordPress</target>
+      </trans-unit>
+      <trans-unit id="16" resname="An error occured while importing WooCommerce posts">
+        <source>An error occured while importing WooCommerce posts</source>
+        <target>Une erreur s'est produite lors de l'importation des articles WooCommerce</target>
+      </trans-unit>
+      <trans-unit id="17" resname="An error occured while importing WordPress posts">
+        <source>An error occured while importing WordPress posts</source>
+        <target>Une erreur s'est produite lors de l'importation des articles WordPress</target>
+      </trans-unit>
+      <trans-unit id="18" resname="An upgrade is available for Ever Blog. Please check">
+        <source>An upgrade is available for Ever Blog. Please check</source>
+        <target>Une mise à jour est disponible pour Ever Blog. Veuillez vérifier</target>
+      </trans-unit>
+      <trans-unit id="19" resname="Approve selected">
+        <source>Approve selected</source>
+        <target>Approuver la sélection</target>
+      </trans-unit>
+      <trans-unit id="20" resname="Author">
+        <source>Author</source>
+        <target>Auteur</target>
+      </trans-unit>
+      <trans-unit id="21" resname="Author created.">
+        <source>Author created.</source>
+        <target>Auteur créé.</target>
+      </trans-unit>
+      <trans-unit id="22" resname="Author image">
+        <source>Author image</source>
+        <target>Image de l'auteur</target>
+      </trans-unit>
+      <trans-unit id="23" resname="Author not found (id: %id%).">
+        <source>Author not found (id: %id%).</source>
+        <target>Auteur introuvable (id : %id%).</target>
+      </trans-unit>
+      <trans-unit id="24" resname="Author updated.">
+        <source>Author updated.</source>
+        <target>Auteur mis à jour.</target>
+      </trans-unit>
+      <trans-unit id="25" resname="Authors">
+        <source>Authors</source>
+        <target>Auteurs</target>
+      </trans-unit>
+      <trans-unit id="26" resname="Automatic maintenance tasks could not be executed: %error%">
+        <source>Automatic maintenance tasks could not be executed: %error%</source>
+        <target>Les tâches de maintenance automatique n'ont pas pu être exécutées : %error%</target>
+      </trans-unit>
+      <trans-unit id="27" resname="Automatic module translation">
+        <source>Automatic module translation</source>
+        <target>Traduction automatique du module</target>
+      </trans-unit>
+      <trans-unit id="28" resname="Back office only">
+        <source>Back office only</source>
+        <target>Back office uniquement</target>
+      </trans-unit>
+      <trans-unit id="29" resname="Banner image">
+        <source>Banner image</source>
+        <target>Image de bannière</target>
+      </trans-unit>
+      <trans-unit id="30" resname="Blog">
+        <source>Blog</source>
+        <target>Blog</target>
+      </trans-unit>
+      <trans-unit id="31" resname="Blog bottom text">
+        <source>Blog bottom text</source>
+        <target>Texte bas de blog</target>
+      </trans-unit>
+      <trans-unit id="32" resname="Blog header color">
+        <source>Blog header color</source>
+        <target>Couleur d'en-tête du blog</target>
+      </trans-unit>
+      <trans-unit id="33" resname="Blog header title color">
+        <source>Blog header title color</source>
+        <target>Couleur du titre d'en-tête du blog</target>
+      </trans-unit>
+      <trans-unit id="34" resname="Blog route">
+        <source>Blog route</source>
+        <target>URL du blog</target>
+      </trans-unit>
+      <trans-unit id="35" resname="Blog top text">
+        <source>Blog top text</source>
+        <target>Texte haut de blog</target>
+      </trans-unit>
+      <trans-unit id="36" resname="Bottom content">
+        <source>Bottom content</source>
+        <target>Contenu bas de page</target>
+      </trans-unit>
+      <trans-unit id="37" resname="Categories">
+        <source>Categories</source>
+        <target>Catégories</target>
+      </trans-unit>
+      <trans-unit id="38" resname="Category #%d">
+        <source>Category #%d</source>
+        <target>Catégorie #%d</target>
+      </trans-unit>
+      <trans-unit id="39" resname="Category created.">
+        <source>Category created.</source>
+        <target>Catégorie créée.</target>
+      </trans-unit>
+      <trans-unit id="40" resname="Category not found (id: %id%).">
+        <source>Category not found (id: %id%).</source>
+        <target>Catégorie introuvable (id : %id%).</target>
+      </trans-unit>
+      <trans-unit id="41" resname="Category updated.">
+        <source>Category updated.</source>
+        <target>Catégorie mise à jour.</target>
+      </trans-unit>
+      <trans-unit id="42" resname="Choose a language">
+        <source>Choose a language</source>
+        <target>Choisir une langue</target>
+      </trans-unit>
+      <trans-unit id="43" resname="Color applied to the main banner on blog, post, category, tag, author and search pages.">
+        <source>Color applied to the main banner on blog, post, category, tag, author and search pages.</source>
+        <target>Couleur appliquée à la bannière principale sur les pages blog, article, catégorie, tag, auteur et recherche.</target>
+      </trans-unit>
+      <trans-unit id="44" resname="Color applied to the titles displayed inside blog, post, category, tag, author and search headers.">
+        <source>Color applied to the titles displayed inside blog, post, category, tag, author and search headers.</source>
+        <target>Couleur appliquée aux titres affichés dans les en-têtes des pages blog, article, catégorie, tag, auteur et recherche.</target>
+      </trans-unit>
+      <trans-unit id="45" resname="Comment">
+        <source>Comment</source>
+        <target>Commentaire</target>
+      </trans-unit>
+      <trans-unit id="46" resname="Comment created.">
+        <source>Comment created.</source>
+        <target>Commentaire créé.</target>
+      </trans-unit>
+      <trans-unit id="47" resname="Comment is required.">
+        <source>Comment is required.</source>
+        <target>Le commentaire est obligatoire.</target>
+      </trans-unit>
+      <trans-unit id="48" resname="Comment updated.">
+        <source>Comment updated.</source>
+        <target>Commentaire mis à jour.</target>
+      </trans-unit>
+      <trans-unit id="49" resname="Comments">
+        <source>Comments</source>
+        <target>Commentaires</target>
+      </trans-unit>
+      <trans-unit id="50" resname="Configuration">
+        <source>Configuration</source>
+        <target>Configuration</target>
+      </trans-unit>
+      <trans-unit id="51" resname="Content">
+        <source>Content</source>
+        <target>Contenu</target>
+      </trans-unit>
+      <trans-unit id="52" resname="Counter">
+        <source>Counter</source>
+        <target>Compteur</target>
+      </trans-unit>
+      <trans-unit id="53" resname="Current author image">
+        <source>Current author image</source>
+        <target>Image actuelle de l'auteur</target>
+      </trans-unit>
+      <trans-unit id="54" resname="Current banner image">
+        <source>Current banner image</source>
+        <target>Image de bannière actuelle</target>
+      </trans-unit>
+      <trans-unit id="55" resname="Current image">
+        <source>Current image</source>
+        <target>Image actuelle</target>
+      </trans-unit>
+      <trans-unit id="56" resname="Default author for orphan posts">
+        <source>Default author for orphan posts</source>
+        <target>Auteur par défaut pour les articles orphelins</target>
+      </trans-unit>
+      <trans-unit id="57" resname="Default category">
+        <source>Default category</source>
+        <target>Catégorie par défaut</target>
+      </trans-unit>
+      <trans-unit id="58" resname="Delete current author image">
+        <source>Delete current author image</source>
+        <target>Supprimer l'image actuelle de l'auteur</target>
+      </trans-unit>
+      <trans-unit id="59" resname="Delete current banner image">
+        <source>Delete current banner image</source>
+        <target>Supprimer la bannière actuelle</target>
+      </trans-unit>
+      <trans-unit id="60" resname="Delete current featured image">
+        <source>Delete current featured image</source>
+        <target>Supprimer l'image mise en avant actuelle</target>
+      </trans-unit>
+      <trans-unit id="61" resname="Delete selected">
+        <source>Delete selected</source>
+        <target>Supprimer la sélection</target>
+      </trans-unit>
+      <trans-unit id="62" resname="Deletion failed for: #%ids%.">
+        <source>Deletion failed for: #%ids%.</source>
+        <target>Échec de la suppression pour : #%ids%.</target>
+      </trans-unit>
+      <trans-unit id="63" resname="Destination language">
+        <source>Destination language</source>
+        <target>Langue de destination</target>
+      </trans-unit>
+      <trans-unit id="64" resname="Do you really want to uninstall this module ?">
+        <source>Do you really want to uninstall this module ?</source>
+        <target>Voulez-vous vraiment désinstaller ce module ?</target>
+      </trans-unit>
+      <trans-unit id="65" resname="Draft">
+        <source>Draft</source>
+        <target>Brouillon</target>
+      </trans-unit>
+      <trans-unit id="66" resname="Duplicate selected">
+        <source>Duplicate selected</source>
+        <target>Dupliquer la sélection</target>
+      </trans-unit>
+      <trans-unit id="67" resname="Duplication failed for: #%ids%.">
+        <source>Duplication failed for: #%ids%.</source>
+        <target>Échec de la duplication pour : #%ids%.</target>
+      </trans-unit>
+      <trans-unit id="68" resname="Edit biography with Page Builder">
+        <source>Edit biography with Page Builder</source>
+        <target>Modifier la biographie avec Page Builder</target>
+      </trans-unit>
+      <trans-unit id="69" resname="Edit bottom content with Page Builder">
+        <source>Edit bottom content with Page Builder</source>
+        <target>Modifier le contenu bas avec Page Builder</target>
+      </trans-unit>
+      <trans-unit id="70" resname="Edit content with Page Builder">
+        <source>Edit content with Page Builder</source>
+        <target>Modifier le contenu avec Page Builder</target>
+      </trans-unit>
+      <trans-unit id="71" resname="Edit the bottom blog content with Page Builder">
+        <source>Edit the bottom blog content with Page Builder</source>
+        <target>Modifier le contenu bas du blog avec Page Builder</target>
+      </trans-unit>
+      <trans-unit id="72" resname="Edit the top blog content with Page Builder">
+        <source>Edit the top blog content with Page Builder</source>
+        <target>Modifier le contenu haut du blog avec Page Builder</target>
+      </trans-unit>
+      <trans-unit id="73" resname="Employee #%d">
+        <source>Employee #%d</source>
+        <target>Employé #%d</target>
+      </trans-unit>
+      <trans-unit id="74" resname="Employee not found (id: %id%).">
+        <source>Employee not found (id: %id%).</source>
+        <target>Employé introuvable (id : %id%).</target>
+      </trans-unit>
+      <trans-unit id="75" resname="Empty trash after (days)">
+        <source>Empty trash after (days)</source>
+        <target>Vider la corbeille après (jours)</target>
+      </trans-unit>
+      <trans-unit id="76" resname="Enable RSS feeds">
+        <source>Enable RSS feeds</source>
+        <target>Activer les flux RSS</target>
+      </trans-unit>
+      <trans-unit id="77" resname="Enable imported authors">
+        <source>Enable imported authors</source>
+        <target>Activer les auteurs importés</target>
+      </trans-unit>
+      <trans-unit id="78" resname="Enable imported categories">
+        <source>Enable imported categories</source>
+        <target>Activer les catégories importées</target>
+      </trans-unit>
+      <trans-unit id="79" resname="Enable imported tags">
+        <source>Enable imported tags</source>
+        <target>Activer les tags importés</target>
+      </trans-unit>
+      <trans-unit id="80" resname="Enter the WordPress URL before starting the import.">
+        <source>Enter the WordPress URL before starting the import.</source>
+        <target>Entrez l'URL WordPress avant de démarrer l'importation.</target>
+      </trans-unit>
+      <trans-unit id="81" resname="Ever Blog">
+        <source>Ever Blog</source>
+        <target>Ever Blog</target>
+      </trans-unit>
+      <trans-unit id="82" resname="Ever Blog - Configuration">
+        <source>Ever Blog - Configuration</source>
+        <target>Ever Blog - Configuration</target>
+      </trans-unit>
+      <trans-unit id="83" resname="Ever Blog navigation">
+        <source>Ever Blog navigation</source>
+        <target>Navigation Ever Blog</target>
+      </trans-unit>
+      <trans-unit id="84" resname="Excerpt">
+        <source>Excerpt</source>
+        <target>Résumé</target>
+      </trans-unit>
+      <trans-unit id="85" resname="Excerpt length">
+        <source>Excerpt length</source>
+        <target>Longueur du résumé</target>
+      </trans-unit>
+      <trans-unit id="86" resname="Existing translations">
+        <source>Existing translations</source>
+        <target>Traductions existantes</target>
+      </trans-unit>
+      <trans-unit id="87" resname="Export the translations customized for this module and import them on another shop.">
+        <source>Export the translations customized for this module and import them on another shop.</source>
+        <target>Exportez les traductions personnalisées pour ce module et importez-les sur une autre boutique.</target>
+      </trans-unit>
+      <trans-unit id="88" resname="Export translations">
+        <source>Export translations</source>
+        <target>Exporter les traductions</target>
+      </trans-unit>
+      <trans-unit id="89" resname="Facebook">
+        <source>Facebook</source>
+        <target>Facebook</target>
+      </trans-unit>
+      <trans-unit id="90" resname="Feature this post">
+        <source>Feature this post</source>
+        <target>Mettre cet article en vedette</target>
+      </trans-unit>
+      <trans-unit id="91" resname="Featured image">
+        <source>Featured image</source>
+        <target>Image mise en avant</target>
+      </trans-unit>
+      <trans-unit id="92" resname="Follow">
+        <source>Follow</source>
+        <target>Follow</target>
+      </trans-unit>
+      <trans-unit id="93" resname="Friendly URL">
+        <source>Friendly URL</source>
+        <target>URL conviviale</target>
+      </trans-unit>
+      <trans-unit id="94" resname="Front office + Back office">
+        <source>Front office + Back office</source>
+        <target>Front office + Back office</target>
+      </trans-unit>
+      <trans-unit id="95" resname="Front office only">
+        <source>Front office only</source>
+        <target>Front office uniquement</target>
+      </trans-unit>
+      <trans-unit id="96" resname="Generate and save translated module wordings for the selected language?">
+        <source>Generate and save translated module wordings for the selected language?</source>
+        <target>Générer et enregistrer les libellés traduits du module pour la langue sélectionnée ?</target>
+      </trans-unit>
+      <trans-unit id="97" resname="Global blog settings: routes, comments, pagination and displayed content.">
+        <source>Global blog settings: routes, comments, pagination and displayed content.</source>
+        <target>Paramètres globaux du blog : routes, commentaires, pagination et contenu affiché.</target>
+      </trans-unit>
+      <trans-unit id="98" resname="Google Translate is used in free mode without an API key. Generated translations are saved in the database so they can be exported afterwards.">
+        <source>Google Translate is used in free mode without an API key. Generated translations are saved in the database so they can be exported afterwards.</source>
+        <target>Google Translate est utilisé en mode gratuit sans clé API. Les traductions générées sont sauvegardées en base de données pour pouvoir être exportées ensuite.</target>
+      </trans-unit>
+      <trans-unit id="99" resname="Group #%d">
+        <source>Group #%d</source>
+        <target>Groupe #%d</target>
+      </trans-unit>
+      <trans-unit id="100" resname="ID">
+        <source>ID</source>
+        <target>ID</target>
+      </trans-unit>
+      <trans-unit id="101" resname="If the date is in the future and the post is published, it will be planned automatically.">
+        <source>If the date is in the future and the post is published, it will be planned automatically.</source>
+        <target>Si la date est dans le futur et que l'article est publié, il sera planifié automatiquement.</target>
+      </trans-unit>
+      <trans-unit id="102" resname="Image">
+        <source>Image</source>
+        <target>Image</target>
+      </trans-unit>
+      <trans-unit id="103" resname="Import the full WordPress blog">
+        <source>Import the full WordPress blog</source>
+        <target>Importer l'intégralité du blog WordPress</target>
+      </trans-unit>
+      <trans-unit id="104" resname="Import translations">
+        <source>Import translations</source>
+        <target>Importer les traductions</target>
+      </trans-unit>
+      <trans-unit id="105" resname="Imported post status">
+        <source>Imported post status</source>
+        <target>Statut des articles importés</target>
+      </trans-unit>
+      <trans-unit id="106" resname="Indexable">
+        <source>Indexable</source>
+        <target>Indexable</target>
+      </trans-unit>
+      <trans-unit id="107" resname="Invalid date format.">
+        <source>Invalid date format.</source>
+        <target>Format de date invalide.</target>
+      </trans-unit>
+      <trans-unit id="108" resname="Invalid product selection.">
+        <source>Invalid product selection.</source>
+        <target>Sélection de produit invalide.</target>
+      </trans-unit>
+      <trans-unit id="109" resname="Invalid security token.">
+        <source>Invalid security token.</source>
+        <target>Jeton de sécurité invalide.</target>
+      </trans-unit>
+      <trans-unit id="110" resname="Linked employee">
+        <source>Linked employee</source>
+        <target>Employé lié</target>
+      </trans-unit>
+      <trans-unit id="111" resname="Linked products">
+        <source>Linked products</source>
+        <target>Produits liés</target>
+      </trans-unit>
+      <trans-unit id="112" resname="LinkedIn">
+        <source>LinkedIn</source>
+        <target>LinkedIn</target>
+      </trans-unit>
+      <trans-unit id="113" resname="Maximum %limit% characters.">
+        <source>Maximum %limit% characters.</source>
+        <target>Maximum %limit% caractères.</target>
+      </trans-unit>
+      <trans-unit id="114" resname="Meta description">
+        <source>Meta description</source>
+        <target>Meta description</target>
+      </trans-unit>
+      <trans-unit id="115" resname="Meta title">
+        <source>Meta title</source>
+        <target>Meta titre</target>
+      </trans-unit>
+      <trans-unit id="116" resname="Moderate comments">
+        <source>Moderate comments</source>
+        <target>Modérer les commentaires</target>
+      </trans-unit>
+      <trans-unit id="117" resname="Module URLs to submit to Google Search Console.">
+        <source>Module URLs to submit to Google Search Console.</source>
+        <target>URLs du module à soumettre à Google Search Console.</target>
+      </trans-unit>
+      <trans-unit id="118" resname="Module settings">
+        <source>Module settings</source>
+        <target>Paramètres du module</target>
+      </trans-unit>
+      <trans-unit id="119" resname="Module translations">
+        <source>Module translations</source>
+        <target>Traductions du module</target>
+      </trans-unit>
+      <trans-unit id="120" resname="Module translations generated: %saved% saved, %queued% queued, %existing% kept, %unchanged% unchanged, %detected% source string(s) detected.">
+        <source>Module translations generated: %saved% saved, %queued% queued, %existing% kept, %unchanged% unchanged, %detected% source string(s) detected.</source>
+        <target>Traductions du module générées : %saved% enregistrée(s), %queued% en attente, %existing% conservée(s), %unchanged% inchangée(s), %detected% chaîne(s) source détectée(s).</target>
+      </trans-unit>
+      <trans-unit id="121" resname="Name is required.">
+        <source>Name is required.</source>
+        <target>Le nom est obligatoire.</target>
+      </trans-unit>
+      <trans-unit id="122" resname="Nickname">
+        <source>Nickname</source>
+        <target>Pseudo</target>
+      </trans-unit>
+      <trans-unit id="123" resname="Nickname is required.">
+        <source>Nickname is required.</source>
+        <target>Le pseudo est obligatoire.</target>
+      </trans-unit>
+      <trans-unit id="124" resname="No Ever Blog sitemap has been generated yet. Save a post, category, tag, author or the configuration to regenerate files.">
+        <source>No Ever Blog sitemap has been generated yet. Save a post, category, tag, author or the configuration to regenerate files.</source>
+        <target>Aucun plan du site Ever Blog n'a encore été généré. Enregistrez un article, une catégorie, un tag, un auteur ou la configuration pour régénérer les fichiers.</target>
+      </trans-unit>
+      <trans-unit id="125" resname="No default author">
+        <source>No default author</source>
+        <target>Aucun auteur par défaut</target>
+      </trans-unit>
+      <trans-unit id="126" resname="No linked employee">
+        <source>No linked employee</source>
+        <target>Aucun employé lié</target>
+      </trans-unit>
+      <trans-unit id="127" resname="No post was published.">
+        <source>No post was published.</source>
+        <target>Aucun article n'a été publié.</target>
+      </trans-unit>
+      <trans-unit id="128" resname="No product found.">
+        <source>No product found.</source>
+        <target>Aucun produit trouvé.</target>
+      </trans-unit>
+      <trans-unit id="129" resname="None">
+        <source>None</source>
+        <target>Aucun</target>
+      </trans-unit>
+      <trans-unit id="130" resname="Open preview">
+        <source>Open preview</source>
+        <target>Ouvrir l'aperçu</target>
+      </trans-unit>
+      <trans-unit id="131" resname="Optional for public post imports. Required for non-public content.">
+        <source>Optional for public post imports. Required for non-public content.</source>
+        <target>Facultatif pour les imports d'articles publics. Obligatoire pour les contenus non publics.</target>
+      </trans-unit>
+      <trans-unit id="132" resname="Overwrite existing database translations">
+        <source>Overwrite existing database translations</source>
+        <target>Écraser les traductions existantes en base de données</target>
+      </trans-unit>
+      <trans-unit id="133" resname="Parent category">
+        <source>Parent category</source>
+        <target>Catégorie parente</target>
+      </trans-unit>
+      <trans-unit id="134" resname="Parent category not found (id: %id%).">
+        <source>Parent category not found (id: %id%).</source>
+        <target>Catégorie parente introuvable (id : %id%).</target>
+      </trans-unit>
+      <trans-unit id="135" resname="Password">
+        <source>Password</source>
+        <target>Mot de passe</target>
+      </trans-unit>
+      <trans-unit id="136" resname="Please select a translation export file.">
+        <source>Please select a translation export file.</source>
+        <target>Veuillez sélectionner un fichier d'export de traductions.</target>
+      </trans-unit>
+      <trans-unit id="137" resname="Please select a valid image file.">
+        <source>Please select a valid image file.</source>
+        <target>Veuillez sélectionner un fichier image valide.</target>
+      </trans-unit>
+      <trans-unit id="138" resname="Please select at least one post.">
+        <source>Please select at least one post.</source>
+        <target>Veuillez sélectionner au moins un article.</target>
+      </trans-unit>
+      <trans-unit id="139" resname="Post #%post_id% duplicated successfully (copy #%copy_id%).">
+        <source>Post #%post_id% duplicated successfully (copy #%copy_id%).</source>
+        <target>Article #%post_id% dupliqué avec succès (copie #%copy_id%).</target>
+      </trans-unit>
+      <trans-unit id="140" resname="Post ID">
+        <source>Post ID</source>
+        <target>ID de l'article</target>
+      </trans-unit>
+      <trans-unit id="141" resname="Post created.">
+        <source>Post created.</source>
+        <target>Article créé.</target>
+      </trans-unit>
+      <trans-unit id="142" resname="Post not found (id: %id%).">
+        <source>Post not found (id: %id%).</source>
+        <target>Article introuvable (id : %id%).</target>
+      </trans-unit>
+      <trans-unit id="143" resname="Post updated.">
+        <source>Post updated.</source>
+        <target>Article mis à jour.</target>
+      </trans-unit>
+      <trans-unit id="144" resname="Posts">
+        <source>Posts</source>
+        <target>Articles</target>
+      </trans-unit>
+      <trans-unit id="145" resname="Posts kept in trash longer than this delay are deleted automatically.">
+        <source>Posts kept in trash longer than this delay are deleted automatically.</source>
+        <target>Les articles conservés dans la corbeille plus longtemps que ce délai sont supprimés automatiquement.</target>
+      </trans-unit>
+      <trans-unit id="146" resname="Posts on homepage">
+        <source>Posts on homepage</source>
+        <target>Articles en page d'accueil</target>
+      </trans-unit>
+      <trans-unit id="147" resname="Posts on product page">
+        <source>Posts on product page</source>
+        <target>Articles sur la page produit</target>
+      </trans-unit>
+      <trans-unit id="148" resname="Posts per page">
+        <source>Posts per page</source>
+        <target>Articles par page</target>
+      </trans-unit>
+      <trans-unit id="149" resname="Product not found (id: %id%).">
+        <source>Product not found (id: %id%).</source>
+        <target>Produit introuvable (id : %id%).</target>
+      </trans-unit>
+      <trans-unit id="150" resname="Publication">
+        <source>Publication</source>
+        <target>Publication</target>
+      </trans-unit>
+      <trans-unit id="151" resname="Publication date">
+        <source>Publication date</source>
+        <target>Date de publication</target>
+      </trans-unit>
+      <trans-unit id="152" resname="Publish selected">
+        <source>Publish selected</source>
+        <target>Publier la sélection</target>
+      </trans-unit>
+      <trans-unit id="153" resname="Published">
+        <source>Published</source>
+        <target>Publié</target>
+      </trans-unit>
+      <trans-unit id="154" resname="Remove">
+        <source>Remove</source>
+        <target>Supprimer</target>
+      </trans-unit>
+      <trans-unit id="155" resname="Review on pending posts">
+        <source>Review on pending posts</source>
+        <target>Révision des articles en attente</target>
+      </trans-unit>
+      <trans-unit id="156" resname="Root and Unclassed categories cannot be deleted.">
+        <source>Root and Unclassed categories cannot be deleted.</source>
+        <target>Les catégories Racine et Non classées ne peuvent pas être supprimées.</target>
+      </trans-unit>
+      <trans-unit id="157" resname="Root category is managed automatically and cannot be edited from the back office.">
+        <source>Root category is managed automatically and cannot be edited from the back office.</source>
+        <target>La catégorie racine est gérée automatiquement et ne peut pas être modifiée depuis le back office.</target>
+      </trans-unit>
+      <trans-unit id="158" resname="SEO">
+        <source>SEO</source>
+        <target>SEO</target>
+      </trans-unit>
+      <trans-unit id="159" resname="Save">
+        <source>Save</source>
+        <target>Enregistrer</target>
+      </trans-unit>
+      <trans-unit id="160" resname="Scope">
+        <source>Scope</source>
+        <target>Portée</target>
+      </trans-unit>
+      <trans-unit id="161" resname="Search">
+        <source>Search</source>
+        <target>Recherche</target>
+      </trans-unit>
+      <trans-unit id="162" resname="Search by product name, reference or ID">
+        <source>Search by product name, reference or ID</source>
+        <target>Rechercher par nom, référence ou ID de produit</target>
+      </trans-unit>
+      <trans-unit id="163" resname="Search by product name, reference or ID to link products without loading the whole catalogue.">
+        <source>Search by product name, reference or ID to link products without loading the whole catalogue.</source>
+        <target>Recherchez par nom, référence ou ID de produit pour lier des produits sans charger tout le catalogue.</target>
+      </trans-unit>
+      <trans-unit id="164" resname="Searching...">
+        <source>Searching...</source>
+        <target>Recherche en cours...</target>
+      </trans-unit>
+      <trans-unit id="165" resname="Select a category">
+        <source>Select a category</source>
+        <target>Sélectionner une catégorie</target>
+      </trans-unit>
+      <trans-unit id="166" resname="Select an author">
+        <source>Select an author</source>
+        <target>Sélectionner un auteur</target>
+      </trans-unit>
+      <trans-unit id="167" resname="Settings saved.">
+        <source>Settings saved.</source>
+        <target>Paramètres enregistrés.</target>
+      </trans-unit>
+      <trans-unit id="168" resname="Simply a blog">
+        <source>Simply a blog</source>
+        <target>Simple blog</target>
+      </trans-unit>
+      <trans-unit id="169" resname="Sitemaps could not be regenerated: %error%">
+        <source>Sitemaps could not be regenerated: %error%</source>
+        <target>Les plans du site n'ont pas pu être régénérés : %error%</target>
+      </trans-unit>
+      <trans-unit id="170" resname="Sitemaps were regenerated, but robots.txt could not be updated.">
+        <source>Sitemaps were regenerated, but robots.txt could not be updated.</source>
+        <target>Les plans du site ont été régénérés, mais robots.txt n'a pas pu être mis à jour.</target>
+      </trans-unit>
+      <trans-unit id="171" resname="Slug">
+        <source>Slug</source>
+        <target>Slug</target>
+      </trans-unit>
+      <trans-unit id="172" resname="Slug is too long (maximum %limit% characters).">
+        <source>Slug is too long (maximum %limit% characters).</source>
+        <target>Le slug est trop long (maximum %limit% caractères).</target>
+      </trans-unit>
+      <trans-unit id="173" resname="Source language">
+        <source>Source language</source>
+        <target>Langue source</target>
+      </trans-unit>
+      <trans-unit id="174" resname="Start the full WordPress blog import with the configured REST credentials?">
+        <source>Start the full WordPress blog import with the configured REST credentials?</source>
+        <target>Démarrer l'importation complète du blog WordPress avec les identifiants REST configurés ?</target>
+      </trans-unit>
+      <trans-unit id="175" resname="Status">
+        <source>Status</source>
+        <target>Statut</target>
+      </trans-unit>
+      <trans-unit id="176" resname="Status was changed to &quot;planned&quot; because the publication date is in the future.">
+        <source>Status was changed to &quot;planned&quot; because the publication date is in the future.</source>
+        <target>Le statut a été changé en &quot;planifié&quot; car la date de publication est dans le futur.</target>
+      </trans-unit>
+      <trans-unit id="177" resname="Status was changed to &quot;published&quot; because the publication date is in the past.">
+        <source>Status was changed to &quot;published&quot; because the publication date is in the past.</source>
+        <target>Le statut a été changé en &quot;publié&quot; car la date de publication est dans le passé.</target>
+      </trans-unit>
+      <trans-unit id="178" resname="Tag #%d">
+        <source>Tag #%d</source>
+        <target>Tag #%d</target>
+      </trans-unit>
+      <trans-unit id="179" resname="Tag created.">
+        <source>Tag created.</source>
+        <target>Tag créé.</target>
+      </trans-unit>
+      <trans-unit id="180" resname="Tag not found (id: %id%).">
+        <source>Tag not found (id: %id%).</source>
+        <target>Tag introuvable (id : %id%).</target>
+      </trans-unit>
+      <trans-unit id="181" resname="Tag updated.">
+        <source>Tag updated.</source>
+        <target>Tag mis à jour.</target>
+      </trans-unit>
+      <trans-unit id="182" resname="Tags">
+        <source>Tags</source>
+        <target>Tags</target>
+      </trans-unit>
+      <trans-unit id="183" resname="Taxonomy">
+        <source>Taxonomy</source>
+        <target>Taxonomie</target>
+      </trans-unit>
+      <trans-unit id="184" resname="The color must use hexadecimal format, for example #0a0f54.">
+        <source>The color must use hexadecimal format, for example #0a0f54.</source>
+        <target>La couleur doit être en format hexadécimal, par exemple #0a0f54.</target>
+      </trans-unit>
+      <trans-unit id="185" resname="The color must use hexadecimal format, for example #ffffff.">
+        <source>The color must use hexadecimal format, for example #ffffff.</source>
+        <target>La couleur doit être en format hexadécimal, par exemple #ffffff.</target>
+      </trans-unit>
+      <trans-unit id="186" resname="The selected translation file is empty.">
+        <source>The selected translation file is empty.</source>
+        <target>Le fichier de traduction sélectionné est vide.</target>
+      </trans-unit>
+      <trans-unit id="187" resname="The slug must contain only letters, numbers and hyphens.">
+        <source>The slug must contain only letters, numbers and hyphens.</source>
+        <target>Le slug ne doit contenir que des lettres, des chiffres et des tirets.</target>
+      </trans-unit>
+      <trans-unit id="188" resname="These URLs are also synchronized in robots.txt with Allow and Sitemap directives.">
+        <source>These URLs are also synchronized in robots.txt with Allow and Sitemap directives.</source>
+        <target>Ces URLs sont également synchronisées dans robots.txt avec les directives Allow et Sitemap.</target>
+      </trans-unit>
+      <trans-unit id="189" resname="This field is required (default language).">
+        <source>This field is required (default language).</source>
+        <target>Ce champ est obligatoire (langue par défaut).</target>
+      </trans-unit>
+      <trans-unit id="190" resname="This field is required.">
+        <source>This field is required.</source>
+        <target>Ce champ est obligatoire.</target>
+      </trans-unit>
+      <trans-unit id="191" resname="Title">
+        <source>Title</source>
+        <target>Titre</target>
+      </trans-unit>
+      <trans-unit id="192" resname="Title length">
+        <source>Title length</source>
+        <target>Longueur du titre</target>
+      </trans-unit>
+      <trans-unit id="193" resname="Translate only the module wording shown in front office and back office. Blog posts, categories, tags, authors and other admin-entered content are excluded.">
+        <source>Translate only the module wording shown in front office and back office. Blog posts, categories, tags, authors and other admin-entered content are excluded.</source>
+        <target>Traduit uniquement les libellés du module affichés en front office et en back office. Les articles, catégories, tags, auteurs et autres contenus saisis par l'administrateur sont exclus.</target>
+      </trans-unit>
+      <trans-unit id="194" resname="Translate the module">
+        <source>Translate the module</source>
+        <target>Traduire le module</target>
+      </trans-unit>
+      <trans-unit id="195" resname="Translation export file">
+        <source>Translation export file</source>
+        <target>Fichier d'export des traductions</target>
+      </trans-unit>
+      <trans-unit id="196" resname="Translations imported: %imported% item(s), %skipped% skipped.">
+        <source>Translations imported: %imported% item(s), %skipped% skipped.</source>
+        <target>Traductions importées : %imported% élément(s), %skipped% ignoré(s).</target>
+      </trans-unit>
+      <trans-unit id="197" resname="Trash">
+        <source>Trash</source>
+        <target>Corbeille</target>
+      </trans-unit>
+      <trans-unit id="198" resname="Twitter">
+        <source>Twitter</source>
+        <target>Twitter</target>
+      </trans-unit>
+      <trans-unit id="199" resname="Type at least %count% characters.">
+        <source>Type at least %count% characters.</source>
+        <target>Saisissez au moins %count% caractères.</target>
+      </trans-unit>
+      <trans-unit id="200" resname="Unable to create the author image destination directory.">
+        <source>Unable to create the author image destination directory.</source>
+        <target>Impossible de créer le répertoire de destination pour l'image de l'auteur.</target>
+      </trans-unit>
+      <trans-unit id="201" resname="Unable to create the image destination directory.">
+        <source>Unable to create the image destination directory.</source>
+        <target>Impossible de créer le répertoire de destination de l'image.</target>
+      </trans-unit>
+      <trans-unit id="202" resname="Unable to duplicate post #%post_id%: %error%">
+        <source>Unable to duplicate post #%post_id%: %error%</source>
+        <target>Impossible de dupliquer l'article #%post_id% : %error%</target>
+      </trans-unit>
+      <trans-unit id="203" resname="Unable to generate module translations: %error%">
+        <source>Unable to generate module translations: %error%</source>
+        <target>Impossible de générer les traductions du module : %error%</target>
+      </trans-unit>
+      <trans-unit id="204" resname="Unable to import WordPress content: %error%">
+        <source>Unable to import WordPress content: %error%</source>
+        <target>Impossible d'importer le contenu WordPress : %error%</target>
+      </trans-unit>
+      <trans-unit id="205" resname="Unable to import translations: %error%">
+        <source>Unable to import translations: %error%</source>
+        <target>Impossible d'importer les traductions : %error%</target>
+      </trans-unit>
+      <trans-unit id="206" resname="Unable to save author: %error%">
+        <source>Unable to save author: %error%</source>
+        <target>Impossible d'enregistrer l'auteur : %error%</target>
+      </trans-unit>
+      <trans-unit id="207" resname="Unable to save category: %error%">
+        <source>Unable to save category: %error%</source>
+        <target>Impossible d'enregistrer la catégorie : %error%</target>
+      </trans-unit>
+      <trans-unit id="208" resname="Unable to save comment: %error%">
+        <source>Unable to save comment: %error%</source>
+        <target>Impossible d'enregistrer le commentaire : %error%</target>
+      </trans-unit>
+      <trans-unit id="209" resname="Unable to save post: %error%">
+        <source>Unable to save post: %error%</source>
+        <target>Impossible d'enregistrer l'article : %error%</target>
+      </trans-unit>
+      <trans-unit id="210" resname="Unable to save tag: %error%">
+        <source>Unable to save tag: %error%</source>
+        <target>Impossible d'enregistrer le tag : %error%</target>
+      </trans-unit>
+      <trans-unit id="211" resname="Unable to save the author image reference.">
+        <source>Unable to save the author image reference.</source>
+        <target>Impossible d'enregistrer la référence de l'image de l'auteur.</target>
+      </trans-unit>
+      <trans-unit id="212" resname="Unable to save the image reference.">
+        <source>Unable to save the image reference.</source>
+        <target>Impossible d'enregistrer la référence de l'image.</target>
+      </trans-unit>
+      <trans-unit id="213" resname="Unable to upload the image.">
+        <source>Unable to upload the image.</source>
+        <target>Impossible de télécharger l'image.</target>
+      </trans-unit>
+      <trans-unit id="214" resname="Unclassed">
+        <source>Unclassed</source>
+        <target>Non classé</target>
+      </trans-unit>
+      <trans-unit id="215" resname="Unknown bulk action.">
+        <source>Unknown bulk action.</source>
+        <target>Action groupée inconnue.</target>
+      </trans-unit>
+      <trans-unit id="216" resname="Unsupported image format.">
+        <source>Unsupported image format.</source>
+        <target>Format d'image non pris en charge.</target>
+      </trans-unit>
+      <trans-unit id="217" resname="Use a WordPress application password, not the main account password.">
+        <source>Use a WordPress application password, not the main account password.</source>
+        <target>Utilisez un mot de passe d'application WordPress, pas le mot de passe du compte principal.</target>
+      </trans-unit>
+      <trans-unit id="218" resname="Views">
+        <source>Views</source>
+        <target>Vues</target>
+      </trans-unit>
+      <trans-unit id="219" resname="WooCommerce posts have been imported">
+        <source>WooCommerce posts have been imported</source>
+        <target>Les articles WooCommerce ont été importés</target>
+      </trans-unit>
+      <trans-unit id="220" resname="WordPress REST username">
+        <source>WordPress REST username</source>
+        <target>Nom d'utilisateur REST WordPress</target>
+      </trans-unit>
+      <trans-unit id="221" resname="WordPress application password">
+        <source>WordPress application password</source>
+        <target>Mot de passe d'application WordPress</target>
+      </trans-unit>
+      <trans-unit id="222" resname="WordPress import completed: %created% created post(s), %updated% updated post(s), %categories% category item(s), %tags% tag item(s), %authors% author item(s), %images% image(s), %redirects% redirect(s), %skipped% skipped item(s).">
+        <source>WordPress import completed: %created% created post(s), %updated% updated post(s), %categories% category item(s), %tags% tag item(s), %authors% author item(s), %images% image(s), %redirects% redirect(s), %skipped% skipped item(s).</source>
+        <target>Importation WordPress terminée : %created% article(s) créé(s), %updated% mis à jour, %categories% catégorie(s), %tags% tag(s), %authors% auteur(s), %images% image(s), %redirects% redirection(s), %skipped% ignoré(s).</target>
+      </trans-unit>
+      <trans-unit id="223" resname="WordPress posts have been imported">
+        <source>WordPress posts have been imported</source>
+        <target>Les articles WordPress ont été importés</target>
+      </trans-unit>
+      <trans-unit id="224" resname="WordPress site URL">
+        <source>WordPress site URL</source>
+        <target>URL du site WordPress</target>
+      </trans-unit>
+      <trans-unit id="225" resname="XML sitemaps">
+        <source>XML sitemaps</source>
+        <target>Plans du site XML</target>
+      </trans-unit>
+      <trans-unit id="226" resname="bottom_content_%d">
+        <source>bottom_content_%d</source>
+        <target>bottom_content_%d</target>
+      </trans-unit>
+      <trans-unit id="227" resname="bottom_text_%d">
+        <source>bottom_text_%d</source>
+        <target>bottom_text_%d</target>
+      </trans-unit>
+      <trans-unit id="228" resname="content_%d">
+        <source>content_%d</source>
+        <target>content_%d</target>
+      </trans-unit>
+      <trans-unit id="229" resname="excerpt_%d">
+        <source>excerpt_%d</source>
+        <target>excerpt_%d</target>
+      </trans-unit>
+      <trans-unit id="230" resname="link_rewrite_%d">
+        <source>link_rewrite_%d</source>
+        <target>link_rewrite_%d</target>
+      </trans-unit>
+      <trans-unit id="231" resname="meta_description_%d">
+        <source>meta_description_%d</source>
+        <target>meta_description_%d</target>
+      </trans-unit>
+      <trans-unit id="232" resname="meta_title_%d">
+        <source>meta_title_%d</source>
+        <target>meta_title_%d</target>
+      </trans-unit>
+      <trans-unit id="233" resname="title_%d">
+        <source>title_%d</source>
+        <target>title_%d</target>
+      </trans-unit>
+      <trans-unit id="234" resname="to get latest version of this module">
+        <source>to get latest version of this module</source>
+        <target>pour obtenir la dernière version de ce module</target>
+      </trans-unit>
+      <trans-unit id="235" resname="top_text_%d">
+        <source>top_text_%d</source>
+        <target>top_text_%d</target>
+      </trans-unit>
+      <trans-unit id="236" resname="Edit #%id%">
+        <source>Edit #%id%</source>
+        <target>Modifier #%id%</target>
+      </trans-unit>
+      <trans-unit id="237" resname="Create">
+        <source>Create</source>
+        <target>Créer</target>
+      </trans-unit>
+      <trans-unit id="238" resname="Back to list">
+        <source>Back to list</source>
+        <target>Retour à la liste</target>
+      </trans-unit>
+      <trans-unit id="239" resname="Add item">
+        <source>Add item</source>
+        <target>Ajouter</target>
+      </trans-unit>
+      <trans-unit id="240" resname="Cancel">
+        <source>Cancel</source>
+        <target>Annuler</target>
+      </trans-unit>
+      <trans-unit id="241" resname="Preview">
+        <source>Preview</source>
+        <target>Aperçu</target>
+      </trans-unit>
+      <trans-unit id="242" resname="Save and stay">
+        <source>Save and stay</source>
+        <target>Enregistrer et rester</target>
+      </trans-unit>
+      <trans-unit id="243" resname="Edition">
+        <source>Edition</source>
+        <target>Édition</target>
+      </trans-unit>
+      <trans-unit id="244" resname="Content, SEO, publication and relations are grouped by workflow.">
+        <source>Content, SEO, publication and relations are grouped by workflow.</source>
+        <target>Contenu, SEO, publication et relations sont regroupés par flux de travail.</target>
+      </trans-unit>
+      <trans-unit id="245" resname="Editing language:">
+        <source>Editing language:</source>
+        <target>Langue d'édition :</target>
+      </trans-unit>
+      <trans-unit id="246" resname="Language selector">
+        <source>Language selector</source>
+        <target>Sélecteur de langue</target>
+      </trans-unit>
+      <trans-unit id="247" resname="Content sections">
+        <source>Content sections</source>
+        <target>Sections de contenu</target>
+      </trans-unit>
+      <trans-unit id="248" resname="Auto-generate slug">
+        <source>Auto-generate slug</source>
+        <target>Générer le slug automatiquement</target>
+      </trans-unit>
+      <trans-unit id="249" resname="No publication setting is available for this resource.">
+        <source>No publication setting is available for this resource.</source>
+        <target>Aucun paramètre de publication n'est disponible pour cette ressource.</target>
+      </trans-unit>
+      <trans-unit id="250" resname="No configurable relation is available for this resource.">
+        <source>No configurable relation is available for this resource.</source>
+        <target>Aucune relation configurable n'est disponible pour cette ressource.</target>
+      </trans-unit>
+      <trans-unit id="251" resname="characters">
+        <source>characters</source>
+        <target>caractères</target>
+      </trans-unit>
+      <trans-unit id="252" resname="Sitemap">
+        <source>Sitemap</source>
+        <target>Sitemap</target>
+      </trans-unit>
+      <trans-unit id="253" resname="No banner image is associated with this category yet.">
+        <source>No banner image is associated with this category yet.</source>
+        <target>Aucune image de bannière n'est encore associée à cette catégorie.</target>
+      </trans-unit>
+      <trans-unit id="254" resname="Check this box and save to delete the current image.">
+        <source>Check this box and save to delete the current image.</source>
+        <target>Cochez cette case et enregistrez pour supprimer l'image actuelle.</target>
+      </trans-unit>
+      <trans-unit id="255" resname="Check this box and save to delete the current banner image.">
+        <source>Check this box and save to delete the current banner image.</source>
+        <target>Cochez cette case et enregistrez pour supprimer la bannière actuelle.</target>
+      </trans-unit>
+      <trans-unit id="256" resname="No featured image is associated with this post yet.">
+        <source>No featured image is associated with this post yet.</source>
+        <target>Aucune image mise en avant n'est encore associée à cet article.</target>
+      </trans-unit>
+      <trans-unit id="257" resname="No banner image is associated with this post yet.">
+        <source>No banner image is associated with this post yet.</source>
+        <target>Aucune image de bannière n'est encore associée à cet article.</target>
+      </trans-unit>
+      <trans-unit id="258" resname="No author image is associated with this author yet.">
+        <source>No author image is associated with this author yet.</source>
+        <target>Aucune image n'est encore associée à cet auteur.</target>
+      </trans-unit>
+      <trans-unit id="259" resname="sitemap">
+        <source>sitemap</source>
+        <target>Sitemap</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
