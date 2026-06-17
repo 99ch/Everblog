@@ -1,0 +1,760 @@
+/*Default blog page*/
+#module-everpsblog-blog .article, #module-everpsblog-blog .evercategory,
+#module-everpsblog-category .article, #module-everpsblog-author .article, #module-everpsblog-category .evercategory,
+#module-everpsblog-tag .article, #module-everpsblog-tag .evercategory{
+    border: none;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+#module-everpsblog-blog .article h3, #module-everpsblog-blog .evercategory h3,
+#module-everpsblog-category .article, #module-everpsblog-author .article, #module-everpsblog-category .evercategory h3,
+#module-everpsblog-tag .article, #module-everpsblog-tag .evercategory h3{
+    text-align: left;
+}
+#module-everpsblog-blog .article a, #module-everpsblog-blog .evercategory a,
+#module-everpsblog-category .article, #module-everpsblog-author .article, #module-everpsblog-category .evercategory a,
+#module-everpsblog-tag .article, #module-everpsblog-tag .evercategory a{
+    text-decoration: none;
+}
+#module-everpsblog-blog .article-content,
+#module-everpsblog-category .article-content,
+#module-everpsblog-tag .article-content,
+#module-everpsblog-author .article-content{
+    padding-top: 1rem;
+    padding-bottom: : 1rem;
+}
+/* Listings */
+.article-img{
+    display: flex;
+    justify-content: center;
+}
+
+
+#module-everpsblog-blog .everpsblog-blog-header,
+#module-everpsblog-category .everpsblog-blog-header,
+#module-everpsblog-tag .everpsblog-blog-header,
+#module-everpsblog-author .everpsblog-blog-header,
+#module-everpsblog-search .everpsblog-blog-header {
+    position: relative;
+    width: 99.6vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    overflow: hidden;
+    background-color: #0a0f54;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.everpsblog-blog-header--has-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 15, 84, 0.28) 0%, rgba(10, 15, 84, 0.55) 100%);
+}
+
+#module-everpsblog-blog .everpsblog-blog-header__inner,
+#module-everpsblog-category .everpsblog-blog-header__inner,
+#module-everpsblog-tag .everpsblog-blog-header__inner,
+#module-everpsblog-author .everpsblog-blog-header__inner,
+#module-everpsblog-search .everpsblog-blog-header__inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background: transparent;
+}
+
+.everpsblog-blog-header--has-banner .everpsblog-blog-header__inner {
+    min-height: clamp(260px, 34vw, 420px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#module-everpsblog-blog .everpsblog-blog-header__title,
+#module-everpsblog-category .everpsblog-blog-header__title,
+#module-everpsblog-tag .everpsblog-blog-header__title,
+#module-everpsblog-author .everpsblog-blog-header__title,
+#module-everpsblog-search .everpsblog-blog-header__title,
+#module-everpsblog-author .everpsblog-author-excerpt {
+    color: #fff;
+}
+#module-everpsblog-blog .everpsblog-top-category-btn,
+#module-everpsblog-category .everpsblog-top-category-btn,
+#module-everpsblog-category .everpsblog-subcategory-btn {
+    border: 1px solid #fff;
+    border-radius: 999px;
+    color: #fff;
+    background: transparent;
+    font-weight: 600;
+    padding: .45rem 1rem;
+}
+#module-everpsblog-blog .everpsblog-top-category-btn:hover,
+#module-everpsblog-blog .everpsblog-top-category-btn:focus,
+#module-everpsblog-blog .everpsblog-top-category-btn.active,
+#module-everpsblog-category .everpsblog-top-category-btn:hover,
+#module-everpsblog-category .everpsblog-top-category-btn:focus,
+#module-everpsblog-category .everpsblog-top-category-btn.active,
+#module-everpsblog-category .everpsblog-subcategory-btn:hover,
+#module-everpsblog-category .everpsblog-subcategory-btn:focus,
+#module-everpsblog-category .everpsblog-subcategory-btn.active {
+    background-color: #fff;
+    color: #0d2f7d;
+}
+
+/* Blog posts listing cards */
+.everpsblog-listing-card {
+    border-radius: 1rem;
+}
+.everpsblog-listing-card .everpsblog-image-wrapper {
+    min-height: 100%;
+}
+.everpsblog-listing-card .article-content {
+    text-align: center;
+    line-height: 1.2;
+}
+.everpsblog-listing-card .everpsblogcontent {
+    text-align: center;
+}
+.everpsblog-listing-card .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (min-width: 992px) {
+    .everpsblog-listing-card .article-content,
+    .everpsblog-listing-card .everpsblogcontent {
+        text-align: left;
+    }
+}
+/*Posts*/
+#module-everpsblog-post .post-header,
+#module-everpsblog-category .category-header,
+#module-everpsblog-tag .tag-header,
+#module-everpsblog-author .author-header{
+    display: flex;
+    justify-content: center;
+}
+#module-everpsblog-post .postcontent{
+    padding: 2%;
+    margin-bottom: 2%;
+}
+#module-everpsblog-post .postcontent img{
+    width: auto!important;
+}
+#module-everpsblog-post .leaveComment{
+    border: 1px solid #D3D3D3;
+    padding: 2%;
+    margin-bottom: 3%;
+}
+#module-everpsblog-post .zoomed img {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+#module-everpsblog-post .zoomed img:hover {
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+}
+.author-icon{
+    max-width: 40px;
+}
+#module-everpsblog-post .social-sharing{
+    margin-top: 0;
+    justify-content: center;
+}
+#module-everpsblog-post .social-sharing.social-sharing-hero {
+    justify-content: center;
+}
+#module-everpsblog-post .social-sharing.social-sharing-hero ul {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+#module-everpsblog-post .social-sharing li a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    white-space: nowrap;
+    text-indent: 100%;
+    overflow: hidden;
+}
+#module-everpsblog-post .social-sharing li,
+#module-everpsblog-post .social-sharing li:hover,
+#module-everpsblog-post .social-sharing li a,
+#module-everpsblog-post .social-sharing li a:hover {
+    transition: none;
+    opacity: 1;
+    transform: none;
+}
+#module-everpsblog-post .social-sharing.social-sharing-hero li.icon-gray,
+#module-everpsblog-post .social-sharing.social-sharing-hero li.icon-gray a,
+#module-everpsblog-post .social-sharing.social-sharing-hero li.icon-gray::before,
+#module-everpsblog-post .social-sharing.social-sharing-hero li.icon-gray a::before,
+#module-everpsblog-post .social-sharing.social-sharing-hero li.icon-gray:hover,
+#module-everpsblog-post .social-sharing.social-sharing-hero li.icon-gray:hover a,
+#module-everpsblog-post .social-sharing.social-sharing-hero li.icon-gray:hover::before,
+#module-everpsblog-post .social-sharing.social-sharing-hero li.icon-gray:hover a::before {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    box-shadow: none;
+    background-color: transparent;
+    transition: none;
+}
+#module-everpsblog-post .social-sharing li .text-hide {
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+#module-everpsblog-post .everpsblog-post-author-box__image-link {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #f4f6f8;
+}
+#module-everpsblog-post .everpsblog-post-author-box__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#module-everpsblog-post .everpsblog-post-author-box__name {
+    font-weight: 700;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+#module-everpsblog-post .everpsblog-post-author-box__name a {
+    color: inherit;
+    text-decoration: none;
+}
+#module-everpsblog-post .everpsblog-post-author-box__name a:hover,
+#module-everpsblog-post .everpsblog-post-author-box__name a:focus {
+    text-decoration: underline;
+}
+#module-everpsblog-post .everpsblog-post-author-box__summary {
+    color: #4f5965;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+#module-everpsblog-post .everpsblog-post-author-box__social-list {
+    gap: .5rem;
+}
+#module-everpsblog-post .everpsblog-post-author-box__social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.25rem;
+    padding: .45rem .75rem;
+    border: 1px solid #d6dbe1;
+    border-radius: 6px;
+    color: #27313d;
+    background: #fff;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+}
+#module-everpsblog-post .everpsblog-post-author-box__social:hover,
+#module-everpsblog-post .everpsblog-post-author-box__social:focus {
+    border-color: #0a0f54;
+    color: #0a0f54;
+    text-decoration: none;
+}
+@media (max-width: 767.98px) {
+    #module-everpsblog-post .everpsblog-post-author-box {
+        text-align: center;
+    }
+    #module-everpsblog-post .everpsblog-post-author-box__image-link {
+        aspect-ratio: 16 / 9;
+    }
+    #module-everpsblog-post .everpsblog-post-author-box__social-list {
+        justify-content: center;
+    }
+    #module-everpsblog-post .everpsblog-post-author-box__social {
+        flex: 1 1 auto;
+        max-width: 100%;
+    }
+}
+#module-everpsblog-post .taggedIn a{
+    /*float:left;*/
+    margin:0 0 7px 20px;
+    position:relative;
+    font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size:0.7em;
+    font-weight:bold;
+    text-decoration:none;
+    color:#996633;
+    text-shadow:0px 1px 0px rgba(255,255,255,.4);
+    padding:0.417em 0.417em 0.417em 0.917em;
+    border-top:1px solid #d99d38;
+    border-right:1px solid #d99d38;
+    border-bottom:1px solid #d99d38;
+    -webkit-border-radius:0 0.25em 0.25em 0;
+    -moz-border-radius:0 0.25em 0.25em 0;
+    border-radius:0 0.25em 0.25em 0;
+    background-image: -webkit-linear-gradient(top, rgb(254, 218, 113), rgb(254, 186, 71));
+    background-image: -moz-linear-gradient(top, rgb(254, 218, 113), rgb(254, 186, 71));
+    background-image: -o-linear-gradient(top, rgb(254, 218, 113), rgb(254, 186, 71));
+    background-image: -ms-linear-gradient(top, rgb(254, 218, 113), rgb(254, 186, 71));
+    background-image: linear-gradient(top, rgb(254, 218, 113), rgb(254, 186, 71));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#feda71', EndColorStr='#feba47');
+    -webkit-box-shadow:
+        inset 0 1px 0 #faeaba,
+        0 1px 1px rgba(0,0,0,.1);
+    -moz-box-shadow:
+        inset 0 1px 0 #faeaba,
+        0 1px 1px rgba(0,0,0,.1);
+    box-shadow:
+        inset 0 1px 0 #faeaba,
+        0 1px 1px rgba(0,0,0,.1);
+    z-index:100;
+}
+#module-everpsblog-post .taggedIn a:before, #right-column .tag_wrapper .tag:before {
+    content:'';
+    width:1.30em;
+    height:1.358em;
+    background-image: -webkit-linear-gradient(left top, rgb(254, 218, 113), rgb(254, 186, 71));
+    background-image: -moz-linear-gradient(left top, rgb(254, 218, 113), rgb(254, 186, 71));
+    background-image: -o-linear-gradient(left top, rgb(254, 218, 113), rgb(254, 186, 71));
+    background-image: -ms-linear-gradient(left top, rgb(254, 218, 113), rgb(254, 186, 71));
+    background-image: linear-gradient(left top, rgb(254, 218, 113), rgb(254, 186, 71));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#feda71', EndColorStr='#feba47');
+    position:absolute;
+    left:-0.69em;
+    top:.2em;
+    -webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    -o-transform:rotate(45deg);
+    transform:rotate(45deg);
+    border-left:1px solid #d99d38;
+    border-bottom:1px solid #d99d38;
+    -webkit-border-radius:0 0 0 0.25em;
+    -moz-border-radius:0 0 0 0.25em;
+    border-radius:0 0 0 0.25em;
+    z-index:1;
+}
+#module-everpsblog-post .taggedIn a:after, #right-column .tag_wrapper .tag:after {
+    content:'';
+    width:0.5em;
+    height:0.5em;
+    background:#fff;
+    -webkit-border-radius:4.167em;
+    -moz-border-radius:4.167em;
+    border-radius:4.167em;
+    border:1px solid #d99d38;
+    -webkit-box-shadow:0 1px 0 #faeaba;
+    -moz-box-shadow:0 1px 0 #faeaba;
+    box-shadow:0 1px 0 #faeaba;
+    position:absolute;
+    top:0.667em;
+    left:-0.083em;
+    z-index:9999;
+}
+#module-everpsblog-post .taggedIn a:hover, #right-column .tag_wrapper .tag:hover {
+    background-image: -webkit-linear-gradient(top, rgb(254, 225, 141), rgb(254, 200, 108));
+    background-image: -moz-linear-gradient(top, rgb(254, 225, 141), rgb(254, 200, 108));
+    background-image: -o-linear-gradient(top, rgb(254, 225, 141), rgb(254, 200, 108));
+    background-image: -ms-linear-gradient(top, rgb(254, 225, 141), rgb(254, 200, 108));
+    background-image: linear-gradient(top, rgb(254, 225, 141), rgb(254, 200, 108));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#fee18d', EndColorStr='#fec86c');
+    border-color:#e1b160;
+}
+#module-everpsblog-post .taggedIn a:hover:before, #right-column .tag_wrapper .tag:hover:before {
+    background-image: -webkit-linear-gradient(left top, rgb(254, 225, 141), rgb(254, 200, 108));
+    background-image: -moz-linear-gradient(left top, rgb(254, 225, 141), rgb(254, 200, 108));
+    background-image: -o-linear-gradient(left top, rgb(254, 225, 141), rgb(254, 200, 108));
+    background-image: -ms-linear-gradient(left top, rgb(254, 225, 141), rgb(254, 200, 108));
+    background-image: linear-gradient(left top, rgb(254, 225, 141), rgb(254, 200, 108));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#fee18d', EndColorStr='#fec86c');
+    border-color:#e1b160;
+}
+/*Rewriting bad themes*/
+#module-everpsblog-post #evercomment{
+    display: block!important;
+}
+/*Posts : missing Bootstrap CSS*/
+#module-everpsblog-post .form-control {
+    display: block;
+    width: 100%;
+    padding: .5rem .75rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    background-color: #fff;
+    background-image: none;
+    background-clip: padding-box;
+    border-radius: 0;
+}
+/*Comment zone*/
+#module-everpsblog-post #leaveComment {
+    font-size: 1.3rem;
+}
+#module-everpsblog-post #commentsTitle {
+    font-size: 1.3rem;
+}
+#module-everpsblog-post .commentcontainer {
+    margin-top: 3%;
+}
+#module-everpsblog-post .commentblock {
+    border: 1px solid #eee;
+    border-color: rgba(0,0,0,0.2);
+    border-radius: 1%;
+    padding: 10px;
+    margin-bottom: 3%;
+    font-size: 0.9rem;
+}
+#module-everpsblog-post .comment{
+    padding-top: 8px;
+}
+#module-everpsblog-post .commentdate{
+    text-align: right;
+}
+/*Linked products*/
+#module-everpsblog-post #postProducts {
+    font-size: 1.3rem;
+}
+/* Social links */
+.twitter:before {
+    content: "";
+    background-image: url(../img/x.svg);
+    background-size: cover;
+}
+.facebook:before {
+    content: "";
+    background-image: url(../img/facebook.svg);
+    background-size: cover;
+    background-position: center;
+}
+.linkedin:before {
+    content: "";
+    background-image: url(../img/linkedin.svg);
+    background-size: cover;
+    background-position: center;
+}
+.facebook.icon-gray {
+    background-image: url(../img/facebook.svg);
+    background-size: cover;
+    background-position: center;
+}
+.twitter.icon-gray {
+    background-image: url(../img/x.svg);
+    background-size: cover;
+    background-position: center;
+}
+.linkedin.icon-gray {
+    background-image: url(../img/linkedin.svg);
+    background-size: cover;
+    background-position: center;
+}
+/* Rewriting products listing */
+body#module-everpsblog-blog .products,
+body#module-everpsblog-tag .products,
+body#module-everpsblog-author .products,
+body#module-everpsblog-post .products{
+    padding: 0%;
+}
+body#module-everpsblog-blog #products .product-miniature,
+body#module-everpsblog-blog .featured-products .product-miniature,
+body#module-everpsblog-blog .product-accessories .product-miniature,
+body#module-everpsblog-blog .product-miniature .product-miniature,
+body#module-everpsblog-tag #products .product-miniature,
+body#module-everpsblog-tag .featured-products .product-miniature,
+body#module-everpsblog-tag .product-accessories .product-miniature,
+body#module-everpsblog-tag .product-miniature .product-miniature,
+body#module-everpsblog-author #products .product-miniature,
+body#module-everpsblog-author .featured-products .product-miniature,
+body#module-everpsblog-author .product-accessories .product-miniature,
+body#module-everpsblog-author .product-miniature .product-miniature,
+body#module-everpsblog-post #products .product-miniature,
+body#module-everpsblog-post .featured-products .product-miniature,
+body#module-everpsblog-post .product-accessories .product-miniature,
+body#module-everpsblog-post .product-miniature .product-miniature{
+    margin: 0 .3rem;
+}
+/* Missing Bootstrap */
+.d-flex{
+    display: flex;
+}
+.justify-content-center{
+    justify-content: center;
+}
+.rounded-circle {
+    border-radius: 50%;
+}
+.d-none{
+    display: none;
+}
+
+
+#module-everpsblog-category .everpsblog-category-header {
+    width: 99.6vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+}
+
+#module-everpsblog-category .everpsblog-category-hero {
+    position: relative;
+    background: transparent;
+    overflow: hidden;
+}
+
+#module-everpsblog-category .everpsblog-category-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: transparent;
+}
+
+#module-everpsblog-category .everpsblog-category-hero-overlay {
+    position: relative;
+    z-index: 1;
+    max-width: 1024px;
+    margin: auto;
+    min-height: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem 1rem;
+    text-align: center;
+    gap: 1.5rem;
+}
+
+#module-everpsblog-category .everpsblog-category-title {
+    color: #fff;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+#module-everpsblog-category .everpsblog-subcategories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .75rem;
+}
+
+#module-everpsblog-category .everpsblog-subcategory-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: .5rem 1.25rem;
+    border: 2px solid rgba(255, 255, 255, .9);
+    border-radius: 999px;
+    background: transparent;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    line-height: 1.2;
+    transition: all .2s ease;
+}
+
+#module-everpsblog-category .everpsblog-subcategory-btn.active,
+#module-everpsblog-category .everpsblog-subcategory-btn:hover,
+#module-everpsblog-category .everpsblog-subcategory-btn:focus {
+    background: #fff;
+    color: #0a0f54;
+    border-color: #fff;
+    text-decoration: none;
+}
+
+@media (max-width: 767.98px) {
+    #module-everpsblog-category .everpsblog-category-title {
+        font-size: 1.7rem;
+    }
+
+    #module-everpsblog-category .everpsblog-subcategory-btn {
+        min-height: 40px;
+        padding: .45rem 1rem;
+    }
+}
+
+#module-everpsblog-post .everpsblog-post-header {
+    width: 99.6vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+}
+
+@media (max-width: 767.98px) {
+    #module-everpsblog-blog .everpsblog-blog-header,
+    #module-everpsblog-category .everpsblog-category-header,
+    #module-everpsblog-post .everpsblog-post-header {
+        width: 100vw;
+    }
+}
+
+#module-everpsblog-post .ai-summary-banner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: .75rem 1.25rem;
+    padding: .9rem 1.1rem;
+    border-radius: 1.25rem;
+    background: #dce8df;
+}
+
+#module-everpsblog-post .everpsblog-post-hero {
+    position: relative;
+    background: linear-gradient(90deg, #0a0f54 0%, #0a0f54 50%, #0a0f54 100%);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+#module-everpsblog-post .everpsblog-post-hero-overlay {
+    max-width: 900px;
+    margin: auto;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    text-align: center;
+    gap: 1.5rem;
+}
+
+#module-everpsblog-post .everpsblog-post-hero--has-banner .everpsblog-post-hero-overlay {
+    max-width: 1120px;
+    min-height: 0;
+    padding: 2.5rem 1rem;
+}
+
+#module-everpsblog-post .everpsblog-post-banner {
+    width: 100%;
+    min-height: 260px;
+    max-height: 420px;
+    height: clamp(260px, 34vw, 420px);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#module-everpsblog-category .everpsblog-taxonomy-hero-overlay,
+#module-everpsblog-tag .everpsblog-taxonomy-hero-overlay,
+#module-everpsblog-author .everpsblog-taxonomy-hero-overlay {
+    max-width: 1120px;
+    margin: auto;
+}
+
+#module-everpsblog-post .everpsblog-post-title {
+    color: #fff;
+    font-size: 2.2rem;
+    font-weight: 700;
+    max-width: 900px;
+}
+
+#module-everpsblog-post .everpsblog-post-intro {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.15rem;
+}
+
+#module-everpsblog-post .everpsblog-post-intro p {
+    margin-bottom: 1rem;
+}
+
+#module-everpsblog-post .everpsblog-post-intro .postexcerpt {
+    font-size: 1.9rem;
+    line-height: 1.35;
+}
+
+@media (max-width: 767.98px) {
+    #module-everpsblog-post .everpsblog-post-title {
+        font-size: 1.7rem;
+    }
+
+    #module-everpsblog-post .everpsblog-post-intro .postexcerpt {
+        font-size: 1.4rem;
+    }
+}
+#module-everpsblog-post .ai-summary-heading {
+    color: #2f8c52;
+}
+#module-everpsblog-post .ai-summary-line-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .85rem;
+    width: 100%;
+}
+#module-everpsblog-post .ai-summary-line-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .35rem;
+    color: #2f8c52;
+    text-decoration: none;
+    font-weight: 500;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+#module-everpsblog-post .ai-summary-line-links a:hover,
+#module-everpsblog-post .ai-summary-line-links a:focus {
+    text-decoration: underline;
+}
+#module-everpsblog-post .ai-summary-line-links img {
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+
+@media (max-width: 767.98px) {
+    #module-everpsblog-post .ai-summary-banner {
+        justify-content: center;
+        padding: 1rem 1.25rem;
+        border-radius: 1.5rem;
+        gap: .65rem;
+    }
+
+    #module-everpsblog-post .ai-summary-heading,
+    #module-everpsblog-post .ai-summary-line-links {
+        width: 100%;
+    }
+
+    #module-everpsblog-post .ai-summary-heading {
+        text-align: center;
+    }
+
+    #module-everpsblog-post .ai-summary-line-links {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        gap: .85rem;
+    }
+
+    #module-everpsblog-post .ai-summary-line-links a {
+        justify-content: center;
+        min-height: 36px;
+        min-width: 28px;
+        line-height: 1;
+    }
+
+    #module-everpsblog-post .ai-summary-line-links a span {
+        display: none;
+    }
+
+    #module-everpsblog-post .ai-summary-line-links a svg {
+        width: 24px;
+        height: 24px;
+        display: block;
+    }
+}
+
+@media (max-width: 420px) {
+    #module-everpsblog-post .ai-summary-line-links {
+        gap: .7rem;
+    }
+}
+                                                                                                                    

@@ -1,0 +1,450 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: false
+    public: false
+
+  # ─────────────────────────────────────────────
+  # COMMAND
+  # ─────────────────────────────────────────────
+  prestashop.module.everpsblog.command.run_cron:
+    class: PrestaShop\Module\Everpsblog\Command\RunCronCommand
+    tags:
+      - { name: 'console.command' }
+
+  prestashop.module.everpsblog.command.import_wordpress:
+    class: PrestaShop\Module\Everpsblog\Command\ImportWordPressCommand
+    arguments:
+      - '@PrestaShop\Module\Everpsblog\Service\WordPressRestImporter'
+    tags:
+      - { name: 'console.command' }
+
+  prestashop.module.everpsblog.command.cache_warmup:
+    class: PrestaShop\Module\Everpsblog\Command\WarmupCacheCommand
+    tags:
+      - { name: 'console.command' }
+
+  # ─────────────────────────────────────────────
+  # DOMAIN REPOSITORIES (DDD)
+  # ─────────────────────────────────────────────
+  prestashop.module.everpsblog.blog.repository.post_write:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\Repository\PostWriteRepository
+    arguments:
+      - '@doctrine.orm.entity_manager'
+
+  prestashop.module.everpsblog.blog.repository.post_read:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\Repository\PostReadRepository
+    arguments:
+      - '@doctrine.orm.entity_manager'
+
+  prestashop.module.everpsblog.blog.repository.category_write:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\Repository\CategoryWriteRepository
+    arguments:
+      - '@doctrine.orm.entity_manager'
+
+  prestashop.module.everpsblog.blog.repository.tag_write:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\Repository\TagWriteRepository
+    arguments:
+      - '@doctrine.orm.entity_manager'
+
+  prestashop.module.everpsblog.blog.repository.author_write:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\Repository\AuthorWriteRepository
+    arguments:
+      - '@doctrine.orm.entity_manager'
+
+  PrestaShop\Module\Everpsblog\Core\Domain\Blog\Repository\AuthorWriteRepository:
+    alias: prestashop.module.everpsblog.blog.repository.author_write
+
+  prestashop.module.everpsblog.blog.repository.comment_write:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\Repository\CommentWriteRepository
+    arguments:
+      - '@doctrine.orm.entity_manager'
+
+  # ─────────────────────────────────────────────
+  # HANDLERS
+  # ─────────────────────────────────────────────
+  prestashop.module.everpsblog.blog.post_rules_applier:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\CommandHandler\PostRulesApplier
+
+  prestashop.module.everpsblog.blog.create_post_handler:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\CommandHandler\CreatePostHandler
+    arguments:
+      - '@prestashop.module.everpsblog.blog.post_rules_applier'
+      - '@prestashop.module.everpsblog.blog.repository.post_write'
+
+  prestashop.module.everpsblog.blog.update_post_handler:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\CommandHandler\UpdatePostHandler
+    arguments:
+      - '@doctrine.orm.entity_manager'
+      - '@prestashop.module.everpsblog.blog.post_rules_applier'
+      - '@prestashop.module.everpsblog.blog.repository.post_write'
+      - '@prestashop.module.everpsblog.service.blog_redirect'
+
+  prestashop.module.everpsblog.blog.delete_post_handler:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\CommandHandler\DeletePostHandler
+    arguments:
+      - '@doctrine.orm.entity_manager'
+      - '@prestashop.module.everpsblog.blog.repository.post_write'
+
+  prestashop.module.everpsblog.blog.create_category_handler:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\CommandHandler\CreateCategoryHandler
+    arguments:
+      - '@prestashop.module.everpsblog.blog.repository.category_write'
+
+  prestashop.module.everpsblog.blog.update_category_handler:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\CommandHandler\UpdateCategoryHandler
+    arguments:
+      - '@prestashop.module.everpsblog.blog.repository.category_write'
+
+  prestashop.module.everpsblog.blog.delete_category_handler:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\CommandHandler\DeleteCategoryHandler
+    arguments:
+      - '@prestashop.module.everpsblog.blog.repository.category_write'
+      - '@prestashop.module.everpsblog.blog.install_service'
+
+  prestashop.module.everpsblog.blog.create_tag_handler:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\CommandHandler\CreateTagHandler
+    arguments:
+      - '@prestashop.module.everpsblog.blog.repository.tag_write'
+
+  prestashop.module.everpsblog.blog.update_tag_handler:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\CommandHandler\UpdateTagHandler
+    arguments:
+      - '@prestashop.module.everpsblog.blog.repository.tag_write'
+
+  prestashop.module.everpsblog.blog.delete_tag_handler:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\CommandHandler\DeleteTagHandler
+    arguments:
+      - '@prestashop.module.everpsblog.blog.repository.tag_write'
+
+  prestashop.module.everpsblog.blog.create_author_handler:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\CommandHandler\CreateAuthorHandler
+    arguments:
+      - '@prestashop.module.everpsblog.blog.repository.author_write'
+
+  prestashop.module.everpsblog.blog.update_author_handler:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\CommandHandler\UpdateAuthorHandler
+    arguments:
+      - '@prestashop.module.everpsblog.blog.repository.author_write'
+
+  prestashop.module.everpsblog.blog.delete_author_handler:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\CommandHandler\DeleteAuthorHandler
+    arguments:
+      - '@prestashop.module.everpsblog.blog.repository.author_write'
+
+  prestashop.module.everpsblog.blog.create_comment_handler:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\CommandHandler\CreateCommentHandler
+    arguments:
+      - '@prestashop.module.everpsblog.blog.repository.comment_write'
+
+  prestashop.module.everpsblog.blog.update_comment_handler:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\CommandHandler\UpdateCommentHandler
+    arguments:
+      - '@prestashop.module.everpsblog.blog.repository.comment_write'
+
+  prestashop.module.everpsblog.blog.delete_comment_handler:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\CommandHandler\DeleteCommentHandler
+    arguments:
+      - '@prestashop.module.everpsblog.blog.repository.comment_write'
+
+  # ─────────────────────────────────────────────
+  # COMMAND BUS
+  # ─────────────────────────────────────────────
+  prestashop.module.everpsblog.blog.command_bus:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\CommandBus\InMemoryCommandBus
+    arguments:
+      -
+        PrestaShop\Module\Everpsblog\Core\Domain\Blog\Command\CreatePostCommand: '@prestashop.module.everpsblog.blog.create_post_handler'
+        PrestaShop\Module\Everpsblog\Core\Domain\Blog\Command\UpdatePostCommand: '@prestashop.module.everpsblog.blog.update_post_handler'
+        PrestaShop\Module\Everpsblog\Core\Domain\Blog\Command\DeletePostCommand: '@prestashop.module.everpsblog.blog.delete_post_handler'
+        PrestaShop\Module\Everpsblog\Core\Domain\Blog\Command\CreateCategoryCommand: '@prestashop.module.everpsblog.blog.create_category_handler'
+        PrestaShop\Module\Everpsblog\Core\Domain\Blog\Command\UpdateCategoryCommand: '@prestashop.module.everpsblog.blog.update_category_handler'
+        PrestaShop\Module\Everpsblog\Core\Domain\Blog\Command\DeleteCategoryCommand: '@prestashop.module.everpsblog.blog.delete_category_handler'
+        PrestaShop\Module\Everpsblog\Core\Domain\Blog\Command\CreateTagCommand: '@prestashop.module.everpsblog.blog.create_tag_handler'
+        PrestaShop\Module\Everpsblog\Core\Domain\Blog\Command\UpdateTagCommand: '@prestashop.module.everpsblog.blog.update_tag_handler'
+        PrestaShop\Module\Everpsblog\Core\Domain\Blog\Command\DeleteTagCommand: '@prestashop.module.everpsblog.blog.delete_tag_handler'
+        PrestaShop\Module\Everpsblog\Core\Domain\Blog\Command\CreateAuthorCommand: '@prestashop.module.everpsblog.blog.create_author_handler'
+        PrestaShop\Module\Everpsblog\Core\Domain\Blog\Command\UpdateAuthorCommand: '@prestashop.module.everpsblog.blog.update_author_handler'
+        PrestaShop\Module\Everpsblog\Core\Domain\Blog\Command\DeleteAuthorCommand: '@prestashop.module.everpsblog.blog.delete_author_handler'
+        PrestaShop\Module\Everpsblog\Core\Domain\Blog\Command\CreateCommentCommand: '@prestashop.module.everpsblog.blog.create_comment_handler'
+        PrestaShop\Module\Everpsblog\Core\Domain\Blog\Command\UpdateCommentCommand: '@prestashop.module.everpsblog.blog.update_comment_handler'
+        PrestaShop\Module\Everpsblog\Core\Domain\Blog\Command\DeleteCommentCommand: '@prestashop.module.everpsblog.blog.delete_comment_handler'
+
+  PrestaShop\Module\Everpsblog\Core\Domain\Blog\CommandBus\CommandBusInterface:
+    alias: prestashop.module.everpsblog.blog.command_bus
+
+  # ─────────────────────────────────────────────
+  # APPLICATION
+  # ─────────────────────────────────────────────
+  prestashop.module.everpsblog.blog.validator.post_request:
+    class: PrestaShop\Module\Everpsblog\Application\Blog\PostRequestValidator
+
+  prestashop.module.everpsblog.blog.validator.category_request:
+    class: PrestaShop\Module\Everpsblog\Application\Blog\CategoryRequestValidator
+
+  prestashop.module.everpsblog.blog.validator.tag_request:
+    class: PrestaShop\Module\Everpsblog\Application\Blog\TagRequestValidator
+
+  prestashop.module.everpsblog.blog.validator.author_request:
+    class: PrestaShop\Module\Everpsblog\Application\Blog\AuthorRequestValidator
+
+  prestashop.module.everpsblog.blog.validator.comment_request:
+    class: PrestaShop\Module\Everpsblog\Application\Blog\CommentRequestValidator
+
+  prestashop.module.everpsblog.blog.install_service:
+    class: PrestaShop\Module\Everpsblog\Service\BlogInstallService
+    public: true
+
+  PrestaShop\Module\Everpsblog\Service\BlogInstallService:
+    alias: prestashop.module.everpsblog.blog.install_service
+    public: true
+
+  prestashop.module.everpsblog.blog.post_data_builder:
+    class: PrestaShop\Module\Everpsblog\Core\Domain\Blog\CommandHandler\PostCommandDataBuilder
+    arguments:
+      - '@=service("prestashop.adapter.legacy.context").getContext().shop.id'
+      - 0
+      - '@prestashop.module.everpsblog.blog.install_service'
+
+  prestashop.module.everpsblog.blog.assembler.post_command:
+    class: PrestaShop\Module\Everpsblog\Application\Blog\PostCommandAssembler
+    arguments:
+      - '@prestashop.module.everpsblog.blog.post_data_builder'
+      - '@prestashop.module.everpsblog.blog.validator.post_request'
+
+  PrestaShop\Module\Everpsblog\Application\Blog\PostCommandAssembler:
+    alias: prestashop.module.everpsblog.blog.assembler.post_command
+
+  prestashop.module.everpsblog.blog.assembler.category_command:
+    class: PrestaShop\Module\Everpsblog\Application\Blog\CategoryCommandAssembler
+    arguments:
+      - '@prestashop.module.everpsblog.blog.validator.category_request'
+      - '@=service("prestashop.adapter.legacy.context").getContext().shop.id'
+
+  prestashop.module.everpsblog.blog.assembler.tag_command:
+    class: PrestaShop\Module\Everpsblog\Application\Blog\TagCommandAssembler
+    arguments:
+      - '@prestashop.module.everpsblog.blog.validator.tag_request'
+      - '@=service("prestashop.adapter.legacy.context").getContext().shop.id'
+
+  prestashop.module.everpsblog.blog.assembler.author_command:
+    class: PrestaShop\Module\Everpsblog\Application\Blog\AuthorCommandAssembler
+    arguments:
+      - '@prestashop.module.everpsblog.blog.validator.author_request'
+      - '@=service("prestashop.adapter.legacy.context").getContext().shop.id'
+
+  prestashop.module.everpsblog.blog.assembler.comment_command:
+    class: PrestaShop\Module\Everpsblog\Application\Blog\CommentCommandAssembler
+    arguments:
+      - '@prestashop.module.everpsblog.blog.validator.comment_request'
+
+  PrestaShop\Module\Everpsblog\Application\Blog\CategoryCommandAssembler:
+    alias: prestashop.module.everpsblog.blog.assembler.category_command
+
+  PrestaShop\Module\Everpsblog\Application\Blog\TagCommandAssembler:
+    alias: prestashop.module.everpsblog.blog.assembler.tag_command
+
+  PrestaShop\Module\Everpsblog\Application\Blog\AuthorCommandAssembler:
+    alias: prestashop.module.everpsblog.blog.assembler.author_command
+
+  PrestaShop\Module\Everpsblog\Application\Blog\CommentCommandAssembler:
+    alias: prestashop.module.everpsblog.blog.assembler.comment_command
+
+  # ─────────────────────────────────────────────
+  # SERVICES
+  # ─────────────────────────────────────────────
+  prestashop.module.everpsblog.service.context_state:
+    class: PrestaShop\Module\Everpsblog\Service\ContextStateService
+
+  PrestaShop\Module\Everpsblog\Service\ContextStateService:
+    alias: prestashop.module.everpsblog.service.context_state
+
+  prestashop.module.everpsblog.service.blog_image:
+    class: PrestaShop\Module\Everpsblog\Service\BlogImageService
+
+  PrestaShop\Module\Everpsblog\Service\BlogImageService:
+    alias: prestashop.module.everpsblog.service.blog_image
+
+  prestashop.module.everpsblog.service.blog_sitemap:
+    class: PrestaShop\Module\Everpsblog\Service\BlogSitemapService
+    public: true
+
+  PrestaShop\Module\Everpsblog\Service\BlogSitemapService:
+    alias: prestashop.module.everpsblog.service.blog_sitemap
+
+  PrestaShop\Module\Everpsblog\Service\WordPressRestImporter:
+    arguments:
+      - '@prestashop.module.everpsblog.service.blog_image'
+      - '@prestashop.module.everpsblog.service.blog_sitemap'
+      - '@prestashop.module.everpsblog.service.blog_redirect'
+      - '@prestashop.module.everpsblog.blog.install_service'
+
+  prestashop.module.everpsblog.service.blog_redirect:
+    class: PrestaShop\Module\Everpsblog\Service\BlogRedirectService
+
+  PrestaShop\Module\Everpsblog\Service\BlogRedirectService:
+    alias: prestashop.module.everpsblog.service.blog_redirect
+
+  prestashop.module.everpsblog.service.module_translation_catalog:
+    class: PrestaShop\Module\Everpsblog\Service\ModuleTranslationCatalogService
+
+  PrestaShop\Module\Everpsblog\Service\ModuleTranslationCatalogService:
+    alias: prestashop.module.everpsblog.service.module_translation_catalog
+
+  prestashop.module.everpsblog.service.module_translation_source_extractor:
+    class: PrestaShop\Module\Everpsblog\Service\ModuleTranslationSourceExtractor
+
+  PrestaShop\Module\Everpsblog\Service\ModuleTranslationSourceExtractor:
+    alias: prestashop.module.everpsblog.service.module_translation_source_extractor
+
+  prestashop.module.everpsblog.service.google_translate_free:
+    class: PrestaShop\Module\Everpsblog\Service\GoogleTranslateFreeClient
+
+  PrestaShop\Module\Everpsblog\Service\GoogleTranslateFreeClient:
+    alias: prestashop.module.everpsblog.service.google_translate_free
+
+  prestashop.module.everpsblog.service.module_auto_translation:
+    class: PrestaShop\Module\Everpsblog\Service\ModuleAutoTranslationService
+    arguments:
+      - '@prestashop.module.everpsblog.service.module_translation_source_extractor'
+      - '@prestashop.module.everpsblog.service.google_translate_free'
+      - '@prestashop.module.everpsblog.service.module_translation_catalog'
+
+  PrestaShop\Module\Everpsblog\Service\ModuleAutoTranslationService:
+    alias: prestashop.module.everpsblog.service.module_auto_translation
+
+  prestashop.module.everpsblog.service.database_integrity:
+    class: PrestaShop\Module\Everpsblog\Service\DatabaseIntegrityService
+
+  PrestaShop\Module\Everpsblog\Service\DatabaseIntegrityService:
+    alias: prestashop.module.everpsblog.service.database_integrity
+
+  prestashop.module.everpsblog.blog.image_uploader:
+    class: PrestaShop\Module\Everpsblog\Service\ImageUploader
+
+  PrestaShop\Module\Everpsblog\Service\ImageUploader:
+    alias: prestashop.module.everpsblog.blog.image_uploader
+
+  prestashop.module.everpsblog.service.admin_blog_image_manager:
+    class: PrestaShop\Module\Everpsblog\Service\AdminBlogImageManager
+    arguments:
+      - '@prestashop.module.everpsblog.service.blog_image'
+      - '@prestashop.module.everpsblog.blog.image_uploader'
+
+  PrestaShop\Module\Everpsblog\Service\AdminBlogImageManager:
+    alias: prestashop.module.everpsblog.service.admin_blog_image_manager
+
+  PrestaShop\Module\Everpsblog\Service\AdminRouteSigner:
+    class: PrestaShop\Module\Everpsblog\Service\AdminRouteSigner
+
+  prestashop.module.everpsblog.service.post_duplicator:
+    class: PrestaShop\Module\Everpsblog\Service\PostDuplicator
+    arguments:
+      - '@prestashop.module.everpsblog.service.blog_image'
+
+  PrestaShop\Module\Everpsblog\Service\PostDuplicator:
+    alias: prestashop.module.everpsblog.service.post_duplicator
+
+  prestashop.module.everpsblog.service.product_autocomplete:
+    class: PrestaShop\Module\Everpsblog\Service\ProductAutocompleteProvider
+
+  PrestaShop\Module\Everpsblog\Service\ProductAutocompleteProvider:
+    alias: prestashop.module.everpsblog.service.product_autocomplete
+
+  # ─────────────────────────────────────────────
+  # DOCTRINE
+  # ─────────────────────────────────────────────
+
+  prestashop.module.everpsblog.doctrine.table_prefix_subscriber:
+    class: PrestaShop\Module\Everpsblog\Doctrine\TablePrefixSubscriber
+    arguments:
+      - '@=constant("_DB_PREFIX_")'
+      - 'PrestaShop\Module\Everpsblog\Entity\'
+    tags:
+      - { name: doctrine.event_subscriber }
+
+  # ─────────────────────────────────────────────
+  # DOCTRINE REPOSITORIES (FIX WARNING FACTORY)
+  # ─────────────────────────────────────────────
+  prestashop.module.everpsblog.repository.post:
+    class: PrestaShop\Module\Everpsblog\Repository\PostRepository
+    factory: ['@doctrine.orm.entity_manager', getRepository]
+    arguments:
+      - 'PrestaShop\Module\Everpsblog\Entity\Post'
+
+  prestashop.module.everpsblog.repository.category:
+    class: PrestaShop\Module\Everpsblog\Repository\CategoryRepository
+    factory: ['@doctrine.orm.entity_manager', getRepository]
+    arguments:
+      - 'PrestaShop\Module\Everpsblog\Entity\Category'
+
+  prestashop.module.everpsblog.repository.tag:
+    class: PrestaShop\Module\Everpsblog\Repository\TagRepository
+    factory: ['@doctrine.orm.entity_manager', getRepository]
+    arguments:
+      - 'PrestaShop\Module\Everpsblog\Entity\Tag'
+
+
+  PrestaShop\Module\Everpsblog\Repository\PostRepository:
+    alias: prestashop.module.everpsblog.repository.post
+
+  PrestaShop\Module\Everpsblog\Repository\CategoryRepository:
+    alias: prestashop.module.everpsblog.repository.category
+
+  PrestaShop\Module\Everpsblog\Repository\TagRepository:
+    alias: prestashop.module.everpsblog.repository.tag
+
+  prestashop.module.everpsblog.repository.author:
+    class: PrestaShop\Module\Everpsblog\Repository\AuthorRepository
+    factory: ['@doctrine.orm.entity_manager', getRepository]
+    arguments:
+      - 'PrestaShop\Module\Everpsblog\Entity\Author'
+
+
+  PrestaShop\Module\Everpsblog\Repository\AuthorRepository:
+    alias: prestashop.module.everpsblog.repository.author
+
+  prestashop.module.everpsblog.repository.comment:
+    class: PrestaShop\Module\Everpsblog\Repository\CommentRepository
+    factory: ['@doctrine.orm.entity_manager', getRepository]
+    arguments:
+      - 'PrestaShop\Module\Everpsblog\Entity\Comment'
+
+  PrestaShop\Module\Everpsblog\Repository\CommentRepository:
+    alias: prestashop.module.everpsblog.repository.comment
+
+  prestashop.module.everpsblog.repository.image:
+    class: PrestaShop\Module\Everpsblog\Repository\ImageRepository
+    factory: ['@doctrine.orm.entity_manager', getRepository]
+    arguments:
+      - 'PrestaShop\Module\Everpsblog\Entity\Image'
+
+  PrestaShop\Module\Everpsblog\Repository\ImageRepository:
+    alias: prestashop.module.everpsblog.repository.image
+
+  PrestaShop\Module\Everpsblog\Form\DataProvider\:
+    resource: '../src/Form/DataProvider/*'
+
+  PrestaShop\Module\Everpsblog\Grid\Definition\:
+    resource: '../src/Grid/Definition/*'
+
+  PrestaShop\Module\Everpsblog\Grid\Data\:
+    resource: '../src/Grid/Data/*'
+
+  PrestaShop\Module\Everpsblog\Service\Audit\:
+    resource: '../src/Service/Audit/*'
+
+  PrestaShop\Module\Everpsblog\Service\Cache\:
+    resource: '../src/Service/Cache/*'
+
+  PrestaShop\Module\Everpsblog\Adapter\:
+    resource: '../src/Adapter/*'
+
+  PrestaShop\Module\Everpsblog\Controller\Admin\:
+    resource: '../src/Controller/Admin/*'
+    public: true
+    tags: ['controller.service_arguments']
+
+  PrestaShop\Module\Everpsblog\Form\Type\Admin\:
+    resource: '../src/Form/Type/Admin/*'
+    tags: ['form.type']

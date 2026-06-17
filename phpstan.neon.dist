@@ -1,0 +1,44 @@
+parameters:
+  level: 5
+  treatPhpDocTypesAsCertain: false
+  reportUnmatchedIgnoredErrors: false
+  paths:
+    - classes
+    - config
+    - controllers
+    - install
+    - src
+    - upgrade
+  excludePaths:
+    - vendor/*
+    - views/*
+    - mails/*
+    - translations/*
+    - docs/*
+    - controllers/front/pending.php
+    - controllers/front/planned.php
+    - controllers/front/sitemaps.php
+  bootstrapFiles:
+    - phpstan-bootstrap.php
+  universalObjectCratesClasses:
+    - stdClass
+    - Module
+    - ObjectModel
+    - Cookie
+    - Order
+    - OrderInvoice
+    - Product
+  dynamicConstantNames:
+    - _DB_PREFIX_
+    - _MYSQL_ENGINE_
+    - _PS_IMG_
+    - _PS_IMG_DIR_
+    - _PS_MODULE_DIR_
+    - _PS_ROOT_DIR_
+    - _PS_USE_SQL_SLAVE_
+    - _PS_VERSION_
+    - _COOKIE_KEY_
+    - __PS_BASE_URI__
+  ignoreErrors:
+    - '#Property PrestaShop\\Module\\Everpsblog\\Entity\\[A-Za-z]+::.* is (unused|never read, only written|never written, only read).#'
+    - '#^Method EverPsBlogpostModuleFrontController::(getChildrenCategoriesForFront|categoryHasChildren)\(\) is unused\.$#'

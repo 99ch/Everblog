@@ -1,0 +1,404 @@
+{% extends '@PrestaShop/Admin/layout.html.twig' %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <style>
+    .ever-admin {
+      --ever-primary: #0f766e;
+      --ever-primary-600: #0f3d3e;
+      --ever-primary-50: #e8f6f3;
+      --ever-accent: #0f766e;
+      --ever-muted: #6b7280;
+      --ever-border: #e5e7eb;
+      --ever-surface: #ffffff;
+      --ever-bg: #f8fafc;
+      color: #111827;
+    }
+    .ever-admin .ever-shell {
+      background: var(--ever-bg);
+      border-radius: 16px;
+      padding: 1.5rem;
+      border: 1px solid var(--ever-border);
+    }
+    .ever-admin .ever-tabs {
+      display: flex;
+      gap: .35rem;
+      background: #fff;
+      border: 1px solid var(--ever-border);
+      border-radius: 999px;
+      padding: .35rem;
+      margin-bottom: 1.25rem;
+      overflow-x: auto;
+      width: fit-content;
+      max-width: 100%;
+    }
+    .ever-admin .ever-tabs a {
+      padding: .5rem 1.1rem;
+      font-weight: 600;
+      color: #374151;
+      text-decoration: none;
+      border-radius: 999px;
+      white-space: nowrap;
+      transition: all .15s ease;
+    }
+    .ever-admin .ever-tabs a:hover { background: var(--ever-primary-50); color: var(--ever-primary-600); }
+    .ever-admin .ever-tabs a.active { background: linear-gradient(120deg, var(--ever-primary), var(--ever-accent)); color: #fff; }
+    .ever-admin .ever-card {
+      background: var(--ever-surface);
+      border: 1px solid var(--ever-border);
+      border-radius: 14px;
+      box-shadow: 0 20px 45px -35px rgba(15, 23, 42, .3);
+      overflow: hidden;
+    }
+    .ever-admin .ever-card-head {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--ever-border);
+      background: #fff;
+    }
+    .ever-admin .ever-card-head h2 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+    .ever-admin .ever-card-head p {
+      margin: .2rem 0 0;
+      font-size: .88rem;
+      color: var(--ever-muted);
+    }
+    .ever-admin .ever-card-body { padding: 1.5rem; }
+    .ever-admin .ever-form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem 1.5rem;
+    }
+    .ever-admin .ever-form-grid .form-group,
+    .ever-admin .ever-form-grid .form-control-group { margin-bottom: 0 !important; }
+    .ever-admin .ever-form-grid label,
+    .ever-admin .ever-form-grid .form-control-label {
+      display: block;
+      font-size: .82rem;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: .35rem;
+      text-align: left !important;
+    }
+    .ever-admin .ever-form-grid input[type="text"],
+    .ever-admin .ever-form-grid input[type="number"],
+    .ever-admin .ever-form-grid input[type="password"],
+    .ever-admin .ever-form-grid input[type="url"],
+    .ever-admin .ever-form-grid select,
+    .ever-admin .ever-form-grid textarea {
+      width: 100%;
+      border: 1px solid var(--ever-border);
+      border-radius: 8px;
+      padding: .55rem .75rem;
+      font-size: .92rem;
+      background: #fff;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .ever-admin .ever-form-grid input:focus,
+    .ever-admin .ever-form-grid select:focus,
+    .ever-admin .ever-form-grid textarea:focus {
+      outline: none;
+      border-color: var(--ever-primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, .15);
+    }
+    .ever-admin .ever-form-grid input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      vertical-align: middle;
+      margin-right: .4rem;
+      accent-color: var(--ever-primary);
+    }
+    .ever-admin .ever-actions {
+      padding: 1rem 1.25rem;
+      background: #f9fafb;
+      border-top: 1px solid var(--ever-border);
+      display: flex;
+      gap: .5rem;
+      justify-content: flex-end;
+    }
+    .ever-admin .ever-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      padding: .55rem 1.25rem;
+      font-size: .9rem;
+      font-weight: 700;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all .15s ease;
+    }
+    .ever-admin .ever-btn-primary { background: var(--ever-primary); color: #fff; border-color: var(--ever-primary); }
+    .ever-admin .ever-btn-primary:hover { background: var(--ever-primary-600); color: #fff; }
+    .ever-admin .ever-btn-import { background: #0f766e; color: #fff; border-color: #0f766e; }
+    .ever-admin .ever-btn-import:hover { background: #115e59; color: #fff; }
+    .ever-admin .ever-sitemaps-card { margin-bottom: 1.25rem; }
+    .ever-admin .ever-sitemap-list {
+      display: grid;
+      gap: .55rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .ever-admin .ever-sitemap-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border: 1px solid var(--ever-border);
+      border-radius: 8px;
+      padding: .65rem .75rem;
+      background: #f9fafb;
+    }
+    .ever-admin .ever-sitemap-list a {
+      overflow-wrap: anywhere;
+      font-weight: 600;
+    }
+    .ever-admin .ever-sitemap-note {
+      margin: .9rem 0 0;
+      color: var(--ever-muted);
+      font-size: .88rem;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+<div class="everblog-bo">
+  {% include '@Modules/everpsblog/views/templates/admin/modern/_nav.html.twig' %}
+
+  <div class="everblog-bo-page-head">
+    <div>
+      <p class="everblog-bo-kicker">Ever Blog</p>
+      <h2 class="everblog-bo-title">{{ 'Configuration'|trans({}, 'Modules.Everpsblog.Admin') }}</h2>
+      <p class="everblog-bo-description">{{ 'Routes, comments, pagination and displayed content.'|trans({}, 'Modules.Everpsblog.Admin') }}</p>
+    </div>
+  </div>
+
+    <div class="card everblog-bo-card mb-3">
+      <div class="card-header everblog-bo-card__header">
+        <div>
+          <strong>{{ 'XML sitemaps'|trans({}, 'Modules.Everpsblog.Admin') }}</strong>
+          <p class="everblog-bo-description">{{ 'Module URLs to submit to Google Search Console.'|trans({}, 'Modules.Everpsblog.Admin') }}</p>
+        </div>
+      </div>
+      <div class="everblog-bo-card__body">
+        {% if sitemapUrls is defined and sitemapUrls is not empty %}
+          <ul class="everblog-bo-sitemap-list">
+            {% for sitemapUrl in sitemapUrls %}
+              <li>
+                <a href="{{ sitemapUrl }}" target="_blank" rel="noopener noreferrer">{{ sitemapUrl }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+          <p class="everblog-bo-description">{{ 'These URLs are also synchronized in robots.txt with Allow and Sitemap directives.'|trans({}, 'Modules.Everpsblog.Admin') }}</p>
+        {% else %}
+          <p class="everblog-bo-description">{{ 'No Ever Blog sitemap has been generated yet. Save a post, category, tag, author or the configuration to regenerate files.'|trans({}, 'Modules.Everpsblog.Admin') }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="card everblog-bo-card mb-3">
+      <div class="card-header everblog-bo-card__header">
+        <div>
+          <strong>{{ 'Module translations'|trans({}, 'Modules.Everpsblog.Admin') }}</strong>
+          <p class="everblog-bo-description">{{ 'Export the translations customized for this module and import them on another shop.'|trans({}, 'Modules.Everpsblog.Admin') }}</p>
+        </div>
+      </div>
+      <div class="everblog-bo-card__body">
+        <div class="everblog-bo-form-grid">
+          <div>
+            <a class="btn btn-primary" href="{{ translationExportUrl }}">
+              <i class="material-icons">file_download</i>
+              {{ 'Export translations'|trans({}, 'Modules.Everpsblog.Admin') }}
+            </a>
+          </div>
+          <form method="post" action="{{ translationImportUrl }}" enctype="multipart/form-data">
+            <input type="hidden" name="_token" value="{{ csrf_token('everpsblog_translation_import') }}">
+            <label for="everpsblog-translation-file">{{ 'Translation export file'|trans({}, 'Modules.Everpsblog.Admin') }}</label>
+            <input id="everpsblog-translation-file" type="file" name="translation_file" accept="application/json,.json" required>
+            <div class="everblog-bo-actions" style="padding-left:0;padding-right:0;border-top:none;">
+              <button type="submit" class="btn btn-outline-secondary">
+                <i class="material-icons">file_upload</i>
+                {{ 'Import translations'|trans({}, 'Modules.Everpsblog.Admin') }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="card everblog-bo-card mb-3">
+      <div class="card-header everblog-bo-card__header">
+        <div>
+          <strong>{{ 'Automatic module translation'|trans({}, 'Modules.Everpsblog.Admin') }}</strong>
+          <p class="everblog-bo-description">{{ 'Translate only the module wording shown in front office and back office. Blog posts, categories, tags, authors and other admin-entered content are excluded.'|trans({}, 'Modules.Everpsblog.Admin') }}</p>
+        </div>
+      </div>
+      <div class="everblog-bo-card__body">
+        <form method="post" action="{{ translationAutoUrl }}">
+          <input type="hidden" name="_token" value="{{ csrf_token('everpsblog_translation_auto') }}">
+          <div class="everblog-bo-form-grid">
+            <div>
+              <label for="everpsblog-translation-source">{{ 'Source language'|trans({}, 'Modules.Everpsblog.Admin') }}</label>
+              <select id="everpsblog-translation-source" name="source_language_id" required>
+                {% for language in translationLanguages %}
+                  <option value="{{ language.id }}"{{ language.id == defaultTranslationSourceLanguageId ? ' selected' : '' }}>
+                    {{ language.name }}{% if language.iso_code %} ({{ language.iso_code }}){% endif %}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+            <div>
+              <label for="everpsblog-translation-target">{{ 'Destination language'|trans({}, 'Modules.Everpsblog.Admin') }}</label>
+              <select id="everpsblog-translation-target" name="target_language_id" required>
+                <option value="">{{ 'Choose a language'|trans({}, 'Modules.Everpsblog.Admin') }}</option>
+                {% for language in translationLanguages %}
+                  <option value="{{ language.id }}">
+                    {{ language.name }}{% if language.iso_code %} ({{ language.iso_code }}){% endif %}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+            <div>
+              <label for="everpsblog-translation-scope">{{ 'Scope'|trans({}, 'Modules.Everpsblog.Admin') }}</label>
+              <select id="everpsblog-translation-scope" name="translation_scope" required>
+                <option value="all">{{ 'Front office + Back office'|trans({}, 'Modules.Everpsblog.Admin') }}</option>
+                <option value="shop">{{ 'Front office only'|trans({}, 'Modules.Everpsblog.Admin') }}</option>
+                <option value="admin">{{ 'Back office only'|trans({}, 'Modules.Everpsblog.Admin') }}</option>
+              </select>
+            </div>
+            <div>
+              <label for="everpsblog-translation-overwrite">{{ 'Existing translations'|trans({}, 'Modules.Everpsblog.Admin') }}</label>
+              <label style="display:flex;align-items:center;gap:.5rem;margin:0;">
+                <input id="everpsblog-translation-overwrite" type="checkbox" name="overwrite_existing" value="1">
+                <span>{{ 'Overwrite existing database translations'|trans({}, 'Modules.Everpsblog.Admin') }}</span>
+              </label>
+            </div>
+          </div>
+          <p class="everblog-bo-description">{{ 'Google Translate is used in free mode without an API key. Generated translations are saved in the database so they can be exported afterwards.'|trans({}, 'Modules.Everpsblog.Admin') }}</p>
+          <div class="everblog-bo-actions" style="padding-left:0;padding-right:0;">
+            <button
+              type="submit"
+              class="btn btn-outline-secondary"
+              onclick="return confirm('{{ 'Generate and save translated module wordings for the selected language?'|trans({}, 'Modules.Everpsblog.Admin')|e('js') }}');"
+            >
+              <i class="material-icons">translate</i>
+              {{ 'Translate the module'|trans({}, 'Modules.Everpsblog.Admin') }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card everblog-bo-card">
+      {{ form_start(configurationForm, {'attr': {'id': 'ever-config-form'}}) }}
+      <div class="card-header everblog-bo-card__header">
+        <div>
+          <strong>{{ 'Module settings'|trans({}, 'Modules.Everpsblog.Admin') }}</strong>
+          <p class="everblog-bo-description">{{ 'Adjust the blog behavior and save to apply changes.'|trans({}, 'Modules.Everpsblog.Admin') }}</p>
+        </div>
+      </div>
+      <div class="everblog-bo-card__body">
+        <div class="everblog-bo-form-grid">
+          {{ form_widget(configurationForm) }}
+        </div>
+      </div>
+      <div class="everblog-bo-bulk">
+        <button type="submit" name="import_wordpress_blog" value="1" class="btn btn-outline-secondary" onclick="return confirm('{{ 'Start the full WordPress blog import with the configured REST credentials?'|trans({}, 'Modules.Everpsblog.Admin')|e('js') }}');">
+          <i class="material-icons">sync</i>
+          {{ 'Import the full WordPress blog'|trans({}, 'Modules.Everpsblog.Admin') }}
+        </button>
+        <button type="submit" class="btn btn-primary">
+          <i class="material-icons">save</i>
+          {{ 'Save'|trans({}, 'Modules.Everpsblog.Admin') }}
+        </button>
+      </div>
+      {{ form_end(configurationForm) }}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  {% if qcdPageBuilderTargets is defined and qcdPageBuilderTargets is not empty %}
+  <script>
+    window.everQcdPageBuilderTargets = window.everQcdPageBuilderTargets || {};
+    window.everQcdPageBuilderTargets['ever-config-form'] = {{ qcdPageBuilderTargets|json_encode|raw }};
+  </script>
+  {% endif %}
+  <script src="https://cdn.jsdelivr.net/npm/tinymce@6/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+    (function () {
+      var root = document.getElementById('ever-config-form');
+      if (!root || typeof tinymce === 'undefined') { return; }
+
+      var everTinyMceUploadUrl = '{{ path('everpsblog_admin_tinymce_upload')|e('js') }}';
+      var everTinyMceUploadToken = '{{ csrf_token('everpsblog_tinymce_upload')|e('js') }}';
+      function everTinyMceImageUploadHandler(blobInfo, progress) {
+        return new Promise(function (resolve, reject) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', everTinyMceUploadUrl);
+          xhr.withCredentials = true;
+          xhr.upload.onprogress = function (event) {
+            if (event.lengthComputable && typeof progress === 'function') {
+              progress(event.loaded / event.total * 100);
+            }
+          };
+          xhr.onload = function () {
+            var json;
+            try {
+              json = JSON.parse(xhr.responseText || '{}');
+            } catch (error) {
+              reject('Invalid upload response.');
+              return;
+            }
+            if (xhr.status < 200 || xhr.status >= 300) {
+              reject(json.error || 'Image upload failed.');
+              return;
+            }
+            if (!json || typeof json.location !== 'string') {
+              reject('Invalid upload response.');
+              return;
+            }
+            resolve(json.location);
+          };
+          xhr.onerror = function () {
+            reject('Image upload failed.');
+          };
+
+          var formData = new FormData();
+          formData.append('_token', everTinyMceUploadToken);
+          formData.append('file', blobInfo.blob(), blobInfo.filename());
+          xhr.send(formData);
+        });
+      }
+
+      var targets = root.querySelectorAll('textarea[data-ever-richtext="1"]');
+      Array.prototype.forEach.call(targets, function (textarea) {
+        if (!textarea.id) {
+          textarea.id = 'ever-config-rte-' + Math.random().toString(36).slice(2, 10);
+        }
+        tinymce.init({
+          target: textarea,
+          license_key: 'gpl',
+          promotion: false,
+          branding: false,
+          height: 320,
+          menubar: 'edit view insert format tools table',
+          plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount',
+          toolbar: 'undo redo | blocks | bold italic underline forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media table | removeformat | code fullscreen',
+          automatic_uploads: true,
+          paste_data_images: true,
+          images_upload_handler: everTinyMceImageUploadHandler,
+          content_style: 'body { font-family:Inter,Helvetica,Arial,sans-serif; font-size:14px; }',
+          setup: function (editor) {
+            editor.on('change keyup', function () { editor.save(); });
+          }
+        });
+      });
+    })();
+  </script>
+{% endblock %}

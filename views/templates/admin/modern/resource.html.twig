@@ -1,0 +1,514 @@
+{% extends '@PrestaShop/Admin/layout.html.twig' %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
+  <style>
+    .ever-admin {
+      --ever-primary: #0f766e;
+      --ever-primary-600: #0f3d3e;
+      --ever-primary-50: #e8f6f3;
+      --ever-accent: #0f766e;
+      --ever-success: #16a34a;
+      --ever-warning: #f59e0b;
+      --ever-danger: #dc2626;
+      --ever-muted: #6b7280;
+      --ever-border: #e5e7eb;
+      --ever-surface: #ffffff;
+      --ever-bg: #f8fafc;
+      color: #111827;
+    }
+    .ever-admin .ever-shell {
+      background: var(--ever-bg);
+      border-radius: 16px;
+      padding: 1.5rem;
+      border: 1px solid var(--ever-border);
+    }
+    .ever-admin .ever-tabs {
+      display: flex;
+      gap: .35rem;
+      background: #fff;
+      border: 1px solid var(--ever-border);
+      border-radius: 999px;
+      padding: .35rem;
+      margin-bottom: 1.25rem;
+      overflow-x: auto;
+      width: fit-content;
+      max-width: 100%;
+    }
+    .ever-admin .ever-tabs a {
+      padding: .5rem 1.1rem;
+      font-weight: 600;
+      color: #374151;
+      text-decoration: none;
+      border-radius: 999px;
+      white-space: nowrap;
+      transition: all .15s ease;
+    }
+    .ever-admin .ever-tabs a:hover {
+      background: var(--ever-primary-50);
+      color: var(--ever-primary-600);
+    }
+    .ever-admin .ever-tabs a.active {
+      background: linear-gradient(120deg, var(--ever-primary), var(--ever-accent));
+      color: #fff;
+    }
+    .ever-admin .ever-card {
+      background: var(--ever-surface);
+      border: 1px solid var(--ever-border);
+      border-radius: 14px;
+      box-shadow: 0 20px 45px -35px rgba(15, 23, 42, .3);
+      overflow: hidden;
+    }
+    .ever-admin .ever-card-head {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--ever-border);
+      background: #fff;
+    }
+    .ever-admin .ever-card-head h2 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #111827;
+    }
+    .ever-admin .ever-filter {
+      background: #f9fafb;
+      border-bottom: 1px solid var(--ever-border);
+      padding: 1rem 1.25rem;
+    }
+    .ever-admin .ever-filter label {
+      display: block;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--ever-muted);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      margin-bottom: .25rem;
+    }
+    .ever-admin .ever-filter input {
+      width: 100%;
+      border: 1px solid var(--ever-border);
+      border-radius: 8px;
+      padding: .5rem .75rem;
+      font-size: .92rem;
+      background: #fff;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .ever-admin .ever-filter input:focus {
+      outline: none;
+      border-color: var(--ever-primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, .15);
+    }
+    .ever-admin .ever-filter .ever-filter-actions {
+      display: flex;
+      gap: .5rem;
+      margin-top: .75rem;
+    }
+    .ever-admin .ever-table-wrap {
+      overflow-x: auto;
+    }
+    .ever-admin table.ever-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 0;
+    }
+    .ever-admin table.ever-table thead th {
+      background: #f9fafb;
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: #374151;
+      padding: .85rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--ever-border);
+      white-space: nowrap;
+    }
+    .ever-admin table.ever-table thead th .ever-sort-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      color: inherit;
+      text-decoration: none;
+    }
+    .ever-admin table.ever-table thead th .ever-sort-link:hover {
+      color: var(--ever-primary-600);
+    }
+    .ever-admin .ever-sort-state {
+      color: var(--ever-primary-600);
+      font-size: .68rem;
+      font-weight: 800;
+    }
+    .ever-admin table.ever-table tbody td {
+      padding: .85rem 1rem;
+      font-size: .92rem;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: middle;
+    }
+    .ever-admin table.ever-table tbody tr:hover {
+      background: #f9fafb;
+    }
+    .ever-admin table.ever-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .ever-admin .ever-col-check {
+      width: 42px;
+      text-align: center;
+    }
+    .ever-admin .ever-col-id {
+      font-weight: 700;
+      color: var(--ever-muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: .85rem;
+    }
+    .ever-admin .ever-col-title {
+      font-weight: 600;
+      color: #111827;
+    }
+    .ever-admin .ever-thumb {
+      width: 64px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--ever-border);
+      background: #f3f4f6;
+      display: block;
+    }
+    .ever-admin .ever-thumb-empty {
+      width: 64px;
+      height: 40px;
+      border-radius: 6px;
+      background: repeating-linear-gradient(45deg, #f3f4f6, #f3f4f6 5px, #fafafa 5px, #fafafa 10px);
+      border: 1px solid var(--ever-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9ca3af;
+      font-size: .68rem;
+    }
+    .ever-admin .ever-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      font-size: .74rem;
+      font-weight: 700;
+      padding: .22rem .6rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+    }
+    .ever-admin .ever-badge::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+    .ever-admin .ever-badge-published { background: #dcfce7; color: #166534; }
+    .ever-admin .ever-badge-draft { background: #fef3c7; color: #92400e; }
+    .ever-admin .ever-badge-planned { background: #e0e7ff; color: #3730a3; }
+    .ever-admin .ever-badge-trash { background: #fee2e2; color: #991b1b; }
+    .ever-admin .ever-badge-protected { background: #fee2e2; color: #991b1b; }
+    .ever-admin .ever-badge-default { background: #f3f4f6; color: #374151; }
+    .ever-admin .ever-actions {
+      display: flex;
+      gap: .35rem;
+      justify-content: flex-end;
+    }
+    .ever-admin .ever-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      padding: .4rem .75rem;
+      font-size: .8rem;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all .15s ease;
+      line-height: 1.2;
+    }
+    .ever-admin .ever-btn-edit { border-color: var(--ever-primary); color: var(--ever-primary-600); background: #fff; }
+    .ever-admin .ever-btn-edit:hover { background: var(--ever-primary-50); }
+    .ever-admin .ever-btn-delete { border-color: #fecaca; color: var(--ever-danger); background: #fff; }
+    .ever-admin .ever-btn-delete:hover { background: #fef2f2; }
+    .ever-admin .ever-btn-primary { background: var(--ever-primary); color: #fff; border-color: var(--ever-primary); }
+    .ever-admin .ever-btn-primary:hover { background: var(--ever-primary-600); color: #fff; }
+    .ever-admin .ever-btn-ghost { background: #fff; color: #374151; border-color: var(--ever-border); }
+    .ever-admin .ever-btn-ghost:hover { background: #f9fafb; }
+    .ever-admin .ever-empty {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      color: var(--ever-muted);
+    }
+    .ever-admin .ever-empty svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: .75rem;
+      color: #d1d5db;
+    }
+    .ever-admin .ever-empty p { margin: 0; font-size: .95rem; }
+    .ever-admin .ever-bulk {
+      display: flex;
+      gap: .5rem;
+      align-items: center;
+      padding: .85rem 1.25rem;
+      border-top: 1px solid var(--ever-border);
+      background: #f9fafb;
+    }
+    .ever-admin .ever-bulk select {
+      border: 1px solid var(--ever-border);
+      border-radius: 8px;
+      padding: .45rem .75rem;
+      font-size: .88rem;
+      background: #fff;
+    }
+    .ever-admin .ever-count {
+      margin-left: auto;
+      font-size: .82rem;
+      color: var(--ever-muted);
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+{% set currentOrderBy = app.request.query.get('orderBy')|default('') %}
+{% set currentOrderWay = app.request.query.get('orderWay')|default('DESC')|upper %}
+<div class="everblog-bo">
+  {% include '@Modules/everpsblog/views/templates/admin/modern/_nav.html.twig' %}
+
+  <div class="everblog-bo-page-head">
+    <div>
+      <p class="everblog-bo-kicker">{{ 'Manage'|trans({}, 'Modules.Everpsblog.Admin') }}</p>
+      <h2 class="everblog-bo-title">{{ definition.title|trans({}, 'Modules.Everpsblog.Admin') }}</h2>
+      <p class="everblog-bo-description mb-0">
+        {{ '%count% result(s)'|trans({'%count%': data.records|length}, 'Modules.Everpsblog.Admin') }}
+      </p>
+    </div>
+    {% if createUrl is defined and createUrl %}
+      <a class="btn btn-primary everblog-bo-page-head__action" href="{{ createUrl }}">
+        <i class="material-icons">add</i>
+        {{ 'Add'|trans({}, 'Modules.Everpsblog.Admin') }}
+      </a>
+    {% endif %}
+  </div>
+
+  {% if definition.filters is not empty %}
+    <form method="get" class="everblog-bo-filterbar">
+      <div class="everblog-bo-filterbar__caption">
+        <i class="material-icons">filter_alt</i>
+        <span>{{ 'Filters'|trans({}, 'Modules.Everpsblog.Admin') }}</span>
+        <span class="everblog-bo-filterbar__count">{{ definition.filters|length }}</span>
+      </div>
+      {% if currentOrderBy %}
+        <input type="hidden" name="orderBy" value="{{ currentOrderBy }}">
+        <input type="hidden" name="orderWay" value="{{ currentOrderWay }}">
+      {% endif %}
+      <div class="everblog-bo-filterbar__fields">
+        {% for id, label in definition.filters %}
+          <div class="everblog-bo-filterbar__field everblog-bo-filterbar__field--{{ id|replace({'_': '-'}) }}">
+            <label class="sr-only" for="filter_{{ id }}">{{ label|trans({}, 'Modules.Everpsblog.Admin') }}</label>
+            <input class="form-control form-control-sm" type="search" id="filter_{{ id }}" name="{{ id }}" value="{{ app.request.get(id) }}" placeholder="{{ label|trans({}, 'Modules.Everpsblog.Admin') }}" title="{{ label|trans({}, 'Modules.Everpsblog.Admin') }}">
+          </div>
+        {% endfor %}
+      </div>
+      <div class="everblog-bo-filterbar__actions">
+        <a href="?" class="btn btn-sm btn-outline-secondary">
+          <i class="material-icons">clear</i>
+          <span>{{ 'Reset'|trans({}, 'Modules.Everpsblog.Admin') }}</span>
+        </a>
+        <button type="submit" class="btn btn-sm btn-primary">
+          <i class="material-icons">search</i>
+          <span>{{ 'Search'|trans({}, 'Modules.Everpsblog.Admin') }}</span>
+        </button>
+      </div>
+    </form>
+  {% endif %}
+
+  <div class="card everblog-bo-card">
+    <div class="card-header everblog-bo-card__header">
+      <div>
+        <strong>{{ definition.title|trans({}, 'Modules.Everpsblog.Admin') }}</strong>
+        <span class="text-muted ml-2">{{ '%count% result(s)'|trans({'%count%': data.records|length}, 'Modules.Everpsblog.Admin') }}</span>
+      </div>
+    </div>
+
+      <form method="post"{% if bulkActionUrl is defined and bulkActionUrl %} action="{{ bulkActionUrl }}"{% endif %} onsubmit="return everpsblogConfirmBulk(this, event);">
+        {% if bulkCsrfTokenId is defined and bulkCsrfTokenId %}
+          <input type="hidden" name="_token" value="{{ csrf_token(bulkCsrfTokenId) }}">
+        {% endif %}
+        {% if data.records is empty %}
+          <div class="everblog-bo-empty">
+            <i class="material-icons">search_off</i>
+            <span>{{ 'No data is available yet.'|trans({}, 'Modules.Everpsblog.Admin') }}</span>
+          </div>
+        {% else %}
+          <div class="everblog-bo-table-wrap table-responsive">
+            <table class="table table-striped table-hover mb-0 everblog-bo-table">
+              <thead>
+                <tr>
+                  <th class="everblog-bo-table__select"><input type="checkbox" aria-label="{{ 'Select all'|trans({}, 'Modules.Everpsblog.Admin') }}"></th>
+                  {% for column in definition.columns %}
+                    <th>
+                      {% if column.sortable is defined and column.sortable %}
+                        {% set nextOrderWay = currentOrderBy == column.id and currentOrderWay == 'ASC' ? 'DESC' : 'ASC' %}
+                        {% set sortQuery = app.request.query.all()|merge({'orderBy': column.id, 'orderWay': nextOrderWay}) %}
+                        <a class="everblog-bo-sort-link" href="?{{ sortQuery|url_encode }}">
+                          <span>{{ column.name|trans({}, 'Modules.Everpsblog.Admin') }}</span>
+                          {% if currentOrderBy == column.id %}
+                            <span class="everblog-bo-sort-state">{{ currentOrderWay == 'ASC' ? 'ASC' : 'DESC' }}</span>
+                          {% endif %}
+                        </a>
+                      {% else %}
+                        {{ column.name|trans({}, 'Modules.Everpsblog.Admin') }}
+                      {% endif %}
+                    </th>
+                  {% endfor %}
+                  <th style="width:1%; text-align:right;">{{ 'Actions'|trans({}, 'Modules.Everpsblog.Admin') }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in data.records %}
+                  {% set rowId = attribute(row, definition.columns|first.id) %}
+                  <tr class="everblog-bo-table__row">
+                    <td class="everblog-bo-table__select">
+                      <input type="checkbox" name="bulk_ids[]" value="{{ rowId }}"{% if row._is_deletable is defined and not row._is_deletable %} disabled{% endif %}>
+                    </td>
+                    {% for column in definition.columns %}
+                      {% set type = column.type|default('text') %}
+                      {% set value = attribute(row, column.id) %}
+                      <td>
+                        {% if type == 'id' %}
+                          <span class="everblog-bo-id">#{{ value }}</span>
+                        {% elseif type == 'image' %}
+                          {% if value %}
+                            <img src="{{ value }}" alt="" class="everblog-bo-thumb" loading="lazy">
+                          {% else %}
+                            <span class="everblog-bo-thumb-empty" aria-label="{{ 'No image'|trans({}, 'Modules.Everpsblog.Admin') }}">-</span>
+                          {% endif %}
+                        {% elseif type == 'status' %}
+                          {% set status = value|lower %}
+                          {% set labelMap = {'published': 'Published', 'draft': 'Draft', 'planned': 'Planned', 'protected': 'Protected', '1': 'Active', '0': 'Inactive', '': 'Inactive'} %}
+                          {% set boolMap = {'1': 'published', '0': 'draft', '': 'draft'} %}
+                          {% set labelMap = labelMap|merge({'trash': 'Trash'}) %}
+                          {% set badgeKey = boolMap[status]|default(status in ['published','draft','planned','trash','protected'] ? status : 'default') %}
+                          <span class="everblog-bo-badge everblog-bo-badge--{{ badgeKey }}">{{ labelMap[status]|default(value|capitalize)|trans({}, 'Modules.Everpsblog.Admin') }}</span>
+                        {% elseif type == 'number' %}
+                          <span class="everblog-bo-id">{{ value }}</span>
+                        {% elseif type == 'date' %}
+                          {% if value %}
+                            <span class="everblog-bo-id">{{ value|date('d/m/Y') }}</span>
+                          {% else %}
+                            <span class="everblog-bo-id">-</span>
+                          {% endif %}
+                        {% elseif column.id == 'title' %}
+                          <span class="everblog-bo-title-cell">{{ value }}</span>
+                        {% else %}
+                          {{ value }}
+                        {% endif %}
+                      </td>
+                    {% endfor %}
+                    <td>
+                      <div class="everblog-bo-row-actions">
+                        {% if row._actions.preview is defined and row._actions.preview %}
+                          <a class="btn btn-sm btn-outline-secondary everblog-bo-icon-btn" href="{{ row._actions.preview }}" target="_blank" rel="noopener noreferrer" title="{{ 'Preview'|trans({}, 'Modules.Everpsblog.Admin') }}" aria-label="{{ 'Preview'|trans({}, 'Modules.Everpsblog.Admin') }}">
+                            <i class="material-icons">visibility</i>
+                            <span class="sr-only">{{ 'Preview'|trans({}, 'Modules.Everpsblog.Admin') }}</span>
+                          </a>
+                        {% endif %}
+                        <a class="btn btn-sm btn-outline-primary everblog-bo-icon-btn" href="{{ row._actions.edit }}" title="{{ 'Edit'|trans({}, 'Modules.Everpsblog.Admin') }}" aria-label="{{ 'Edit'|trans({}, 'Modules.Everpsblog.Admin') }}">
+                          <i class="material-icons">edit</i>
+                          <span class="sr-only">{{ 'Edit'|trans({}, 'Modules.Everpsblog.Admin') }}</span>
+                        </a>
+                        {% if row._actions.duplicate is defined and row._actions.duplicate %}
+                          <button
+                            type="submit"
+                            class="btn btn-sm btn-outline-secondary everblog-bo-icon-btn"
+                            formaction="{{ row._actions.duplicate }}"
+                            formmethod="post"
+                            name="_csrf_token"
+                            value="{{ csrf_token('everpsblog_post_duplicate_' ~ rowId) }}"
+                            data-single-action="1"
+                            title="{{ 'Duplicate'|trans({}, 'Modules.Everpsblog.Admin') }}"
+                            aria-label="{{ 'Duplicate'|trans({}, 'Modules.Everpsblog.Admin') }}"
+                            onclick="return confirm('{{ 'Duplicate this post?'|trans({}, 'Modules.Everpsblog.Admin')|e('js') }}');"
+                          >
+                            <i class="material-icons">content_copy</i>
+                            <span class="sr-only">{{ 'Duplicate'|trans({}, 'Modules.Everpsblog.Admin') }}</span>
+                          </button>
+                        {% endif %}
+                        {% if row._actions.delete is defined and row._actions.delete %}
+                          <a class="btn btn-sm btn-outline-danger everblog-bo-icon-btn" href="{{ row._actions.delete }}" title="{{ 'Delete'|trans({}, 'Modules.Everpsblog.Admin') }}" aria-label="{{ 'Delete'|trans({}, 'Modules.Everpsblog.Admin') }}" onclick="return confirm('{{ 'Confirm deletion?'|trans({}, 'Modules.Everpsblog.Admin')|e('js') }}');">
+                            <i class="material-icons">delete</i>
+                            <span class="sr-only">{{ 'Delete'|trans({}, 'Modules.Everpsblog.Admin') }}</span>
+                          </a>
+                        {% endif %}
+                      </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="everblog-bo-bulk">
+            <select name="bulk_action">
+              {% for action in definition.bulkActions %}
+                <option value="{{ action.id }}">{{ action.name|trans({}, 'Modules.Everpsblog.Admin') }}</option>
+              {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-sm btn-outline-secondary">
+              <i class="material-icons">done</i>
+              <span>{{ 'Apply'|trans({}, 'Modules.Everpsblog.Admin') }}</span>
+            </button>
+          </div>
+        {% endif %}
+      </form>
+    </div>
+</div>
+
+<script>
+  (function() {
+    var selectAll = document.querySelector('.everblog-bo .everblog-bo-table__select input[type=checkbox]:not([name])');
+    if (selectAll) {
+      selectAll.addEventListener('change', function() {
+        var boxes = document.querySelectorAll('.everblog-bo input[name="bulk_ids[]"]');
+        boxes.forEach(function(b){ b.checked = selectAll.checked; });
+      });
+    }
+  })();
+
+  window.everpsblogConfirmBulk = function (form, event) {
+    var submitter = event && event.submitter ? event.submitter : document.activeElement;
+    if (submitter && submitter.getAttribute('data-single-action') === '1') {
+      return true;
+    }
+    var actionSelect = form.querySelector('select[name="bulk_action"]');
+    if (!actionSelect) {
+      return true;
+    }
+    var checked = form.querySelectorAll('input[name="bulk_ids[]"]:checked');
+    if (!checked.length) {
+      alert('{{ 'Please select at least one row.'|trans({}, 'Modules.Everpsblog.Admin')|e('js') }}');
+      return false;
+    }
+    var action = actionSelect.value;
+    var messages = {
+      'delete': '{{ 'Confirm deletion of %count% item(s)?'|trans({}, 'Modules.Everpsblog.Admin')|e('js') }}',
+      'duplicate': '{{ 'Duplicate %count% item(s)?'|trans({}, 'Modules.Everpsblog.Admin')|e('js') }}',
+      'publishall': '{{ 'Publish %count% item(s)?'|trans({}, 'Modules.Everpsblog.Admin')|e('js') }}'
+    };
+    var message = messages[action] || '{{ 'Apply this action to %count% item(s)?'|trans({}, 'Modules.Everpsblog.Admin')|e('js') }}';
+    message = message.replace('%count%', checked.length);
+    return window.confirm(message);
+  };
+</script>
+{% endblock %}

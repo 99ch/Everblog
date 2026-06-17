@@ -1,0 +1,67 @@
+<?php
+
+declare(strict_types=1);
+
+
+namespace PrestaShop\Module\Everpsblog\Repository;
+
+use Doctrine\ORM\EntityRepository;
+
+if (!defined('_PS_VERSION_')) {
+    exit;
+}
+
+
+class TagRepository extends EntityRepository
+{
+    public function findByShopAndLanguage($shopId, $langId)
+    {
+        return $this->createLocalizedQb($shopId, $langId)->getQuery()->getArrayResult();
+    }
+
+    public function findAllTags($langId, $shopId, $active = 1)
+    {
+        return $this->createLocalizedQb($shopId, $langId)
+            ->andWhere('t.active = :active')
+            ->setParameter('active', (int) $active)
+            ->orderBy('tl.title', 'ASC')
+            ->getQuery()
+            ->getArrayResult();
+    }
+
+    public function findTagByLinkRewrite($linkRewrite, $langId, $shopId)
+    {
+        return $this->createLocalizedQb($shopId, $langId)
+            ->andWhere('tl.linkRewrite = :linkRewrite')
+            ->setParameter('linkRewrite', (string) $linkRewrite)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
+     * Back office listing for the tags grid.
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public function findBackOfficeList($langId, $shopId, $limit = 100)
+    {
+        return $this->createLocalizedQb($shopId, $langId)
+            ->select('t.id AS id_ever_tag, t.active AS active, t.count AS count, tl.title AS title, tl.linkRewrite AS link_rewrite')
+            ->orderBy('tl.title', 'ASC')
+            ->setMaxResults((int) $limit)
+            ->getQuery()
+            ->getArrayResult();
+    }
+
+    private function createLocalizedQb($shopId, $langId)
+    {
+        return $this->createQueryBuilder('t')
+            ->innerJoin('t.translations', 'tl')
+            ->innerJoin('t.shops', 'ts')
+            ->andWhere('tl.langId = :langId')
+            ->andWhere('ts.shopId = :shopId')
+            ->setParameter('langId', (int) $langId)
+            ->setParameter('shopId', (int) $shopId);
+    }
+}
