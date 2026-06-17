@@ -81,6 +81,25 @@
 }
 
 /* ============================================================
+   Banner image: <img> replaces CSS background-image for reliability.
+   Keeps the same visual dimensions as the original background div.
+   ============================================================ */
+.everpsblog-post-banner {
+    width: 100%;
+    overflow: hidden;
+}
+.everpsblog-post-banner__img {
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: clamp(260px, 34vw, 420px) !important;
+    max-height: 420px !important;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0;
+}
+
+/* ============================================================
    Social sharing — nouveau rendu SVG circulaire dans le hero
    ============================================================ */
 #module-everpsblog-post .everpsblog-social-share {
