@@ -1,0 +1,246 @@
+/* ============================================================
+   Compatibility fixes for Bootstrap 4 theme (PRS05102_2)
+   The module uses Bootstrap 5 classes; this polyfills them.
+   ============================================================ */
+
+/* BS5 → BS4: fw-semibold */
+.fw-semibold { font-weight: 600 !important; }
+
+/* BS5 → BS4: gap utilities (flex/grid gap) */
+.gap-2 { gap: 0.5rem !important; }
+.gap-3 { gap: 1rem !important; }
+
+/* BS5 → BS4: margin-end / margin-start */
+.me-2 { margin-right: 0.5rem !important; }
+.ms-auto { margin-left: auto !important; }
+.ms-2 { margin-left: 0.5rem !important; }
+
+/* BS5 → BS4: rounded-pill */
+.rounded-pill { border-radius: 50rem !important; }
+
+/* BS5 → BS4: form-switch (RGPD checkbox) */
+.form-switch { padding-left: 0 !important; }
+
+/* BS5 → BS4: border utilities */
+.border-0 { border: 0 !important; }
+
+/* ============================================================
+   Fix card-in-card: the theme wraps #content in .card.card-block
+   The module adds its own .card elements inside → double borders.
+   ============================================================ */
+#module-everpsblog-post #content.page-content,
+#module-everpsblog-blog #content.page-content,
+#module-everpsblog-category #content.page-content,
+#module-everpsblog-tag #content.page-content,
+#module-everpsblog-author #content.page-content,
+#module-everpsblog-search #content.page-content {
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+}
+
+/* ============================================================
+   Fix double container: theme already has .container,
+   the module adds another one inside.
+   ============================================================ */
+#module-everpsblog-post .content > .container,
+#module-everpsblog-blog .content > .container,
+#module-everpsblog-category .content > .container,
+#module-everpsblog-tag .content > .container,
+#module-everpsblog-author .content > .container {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 100%;
+}
+
+/* ============================================================
+   Fix blog header full-bleed with PRS05102_2 theme structure.
+   The 99.6vw technique breaks because the theme has a wrapper
+   with overflow constraints.
+   ============================================================ */
+#module-everpsblog-blog .everpsblog-blog-header,
+#module-everpsblog-category .everpsblog-blog-header,
+#module-everpsblog-tag .everpsblog-blog-header,
+#module-everpsblog-author .everpsblog-blog-header,
+#module-everpsblog-search .everpsblog-blog-header {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* ============================================================
+   Fix post hero: make it span full card width despite card-body padding
+   ============================================================ */
+.everpsblog-post-header .card-body {
+    padding: 0 !important;
+}
+.everpsblog-post-hero {
+    border-radius: 0 !important;
+}
+
+/* ============================================================
+   Fix X social sharing icon size in post hero
+   The <li> has no fixed dimensions → background SVG fills everything
+   ============================================================ */
+#module-everpsblog-post .social-sharing li.x.icon-gray {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
+    overflow: hidden;
+    background-size: 22px 22px !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+#module-everpsblog-post .social-sharing li.x.icon-gray a {
+    width: 40px !important;
+    height: 40px !important;
+    background-image: none !important;
+}
+
+/* ============================================================
+   Fix comment section header — title and subtitle appear merged
+   justify-content-between needs an explicit flex width
+   ============================================================ */
+#module-everpsblog-post .comment-form .d-flex.justify-content-between,
+#module-everpsblog-post section .d-flex.justify-content-between {
+    width: 100%;
+    gap: 1rem;
+}
+#module-everpsblog-post section .d-flex.justify-content-between > span:first-child {
+    flex-shrink: 0;
+}
+
+/* ============================================================
+   Fix AI Summary Banner SVG icons (qcd_ai_summary_banner module)
+   Theme applies max-width: 100% globally on SVGs → icons become huge
+   ============================================================ */
+.ai-summary-banner svg {
+    width: 16px !important;
+    height: 16px !important;
+    max-width: 16px !important;
+    max-height: 16px !important;
+    flex-shrink: 0;
+    display: inline-block;
+}
+.ai-summary-line-links {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+.ai-summary-line-links a {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    white-space: nowrap;
+}
+
+/* ============================================================
+   Fix text overflow in post content area
+   Long unbroken strings overflow the card width
+   ============================================================ */
+#module-everpsblog-post .postcontent,
+#module-everpsblog-post .everpsblogcontent,
+#module-everpsblog-post .card-body {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* just to avoid error in console log */
+.everpsblog-search-toolbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: start;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.everpsblog-search-toolbar__search {
+    grid-column: 2;
+    justify-self: center;
+}
+
+.everpsblog-search {
+    margin: 0;
+}
+
+.everpsblog-search .input-group {
+    flex-wrap: nowrap;
+}
+
+.everpsblog-search-toolbar > .rss-link {
+    grid-column: 3;
+    justify-self: end;
+    align-self: start;
+}
+
+.everpsblog-search input[type="search"] {
+    /* Keep outer rounding only on the left side */
+    border-radius: .6rem 0 0 .6rem;
+    max-width: 350px;
+}
+
+/* Match search button rounding with the input */
+.everpsblog-search button[type="submit"] {
+    border-radius: 0 .6rem .6rem 0;
+}
+
+@media (max-width: 767.98px) {
+    .everpsblog-search-toolbar {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+    }
+
+    .everpsblog-search-toolbar__search {
+        grid-column: 1;
+        justify-self: stretch;
+    }
+
+    .everpsblog-search {
+        width: 100%;
+    }
+
+    .everpsblog-search .input-group {
+        width: 100%;
+    }
+
+    .everpsblog-search input[type="search"] {
+        max-width: none;
+    }
+
+    .everpsblog-search-toolbar > .rss-link {
+        grid-column: 2;
+    }
+}
+
+/* Force X branding even if the active theme still styles .twitter buttons. */
+.social-sharing .x:before,
+.social-sharing li.x:before,
+.social-sharing li.x a:before {
+    content: "";
+    background-image: url(../img/x.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.social-sharing a.x.icon-gray,
+.social-sharing .x.icon-gray,
+.social-sharing li.x.icon-gray,
+.social-sharing li.x.icon-gray a {
+    background-image: url(../img/x.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
