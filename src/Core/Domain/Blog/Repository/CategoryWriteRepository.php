@@ -38,7 +38,7 @@ class CategoryWriteRepository
             'count' => 0,
             'allowed_groups' => $this->encodeArray($data['allowed_groups'] ?? null),
             'category_products' => $this->encodeArray($data['category_products'] ?? null),
-            'groups' => $this->encodeArray($data['allowed_groups'] ?? null),
+            '`groups`' => $this->encodeArray($data['allowed_groups'] ?? null),
             'date_add' => $now,
             'date_upd' => $now,
         ]);
@@ -61,7 +61,7 @@ class CategoryWriteRepository
             'is_root_category' => (int) ($data['is_root_category'] ?? 0),
             'allowed_groups' => $this->encodeArray($data['allowed_groups'] ?? null),
             'category_products' => $this->encodeArray($data['category_products'] ?? null),
-            'groups' => $this->encodeArray($data['allowed_groups'] ?? null),
+            '`groups`' => $this->encodeArray($data['allowed_groups'] ?? null),
             'date_upd' => date('Y-m-d H:i:s'),
         ], ['id_ever_category' => $categoryId]);
 
