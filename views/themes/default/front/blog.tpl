@@ -131,9 +131,9 @@
     </div>
     {/if}
 
-    {* Posts grid *}
+    {* Posts — Option B : liste éditoriale *}
     {if isset($post_number) && $post_number > 0}
-    <div class="row" id="everpsblog-posts" data-empty-text="{l s='No posts match your filters yet.' d='Modules.Everpsblog.Shop'}">
+    <div id="everpsblog-posts" data-empty-text="{l s='No posts match your filters yet.' d='Modules.Everpsblog.Shop'}">
         {hook h="displayBeforeEverLoop"}
         {foreach from=$posts item=item}
             {include file="{$everpsblog_theme_front_template_base}/loop/post_array.tpl"}
