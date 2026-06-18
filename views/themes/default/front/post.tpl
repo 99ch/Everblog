@@ -103,7 +103,7 @@
 {/if}
 
 {* ── En-tête article ────────────────────────────────────── *}
-<div class="everpsblog-post-col">
+<div class="container everpsblog-post-col">
     <header class="everpsblog-post-header">
 
         {* Méta : catégorie · date · auteur *}

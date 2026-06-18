@@ -531,6 +531,13 @@ class EverPsBlogpostModuleFrontController extends AbstractFrontController
             if (false === $showAiSummaryBanner) {
                 $showAiSummaryBanner = true;
             }
+            if (!empty($this->post->excerpt)) {
+                $this->post->excerpt = html_entity_decode(
+                    (string) $this->post->excerpt,
+                    ENT_QUOTES | ENT_HTML5,
+                    'UTF-8'
+                );
+            }
             $postIntroExcerpt = (string) ($this->post->excerpt ?? '');
             $normalizedPostIntroExcerpt = $this->normalizeIntroExcerpt($postIntroExcerpt);
             $showPostIntroExcerpt = $normalizedPostIntroExcerpt !== ''
