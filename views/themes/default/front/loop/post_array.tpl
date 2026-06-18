@@ -48,14 +48,10 @@
 {else}
     {assign var='post_link' value=$link->getModuleLink('everpsblog', 'post', ['id_ever_post' => $post_id, 'link_rewrite' => $post_rewrite])}
 {/if}
-{assign var='has_thumb' value=false}
-{if isset($show_featured_post) && $show_featured_post && isset($item.featured_thumb) && $item.featured_thumb}
-    {assign var='has_thumb' value=true}
-{/if}
 <article class="col-12 mb-4" id="everpsblog-{$post_id|escape:'htmlall':'UTF-8'}">
     <div class="card h-100 shadow-sm border-0 everpsblog everpsblog-listing-card overflow-hidden">
         <div class="row no-gutters align-items-stretch">
-            {if $has_thumb}
+            {if isset($show_featured_post) && $show_featured_post && isset($item.featured_thumb) && $item.featured_thumb}
             <div class="col-12 col-lg-5">
                 <div class="article-img text-center mb-0 h-100">
                     <div class="everpsblog-image-wrapper position-relative overflow-hidden w-100 h-100" style="aspect-ratio: 16 / 9;">
@@ -65,8 +61,10 @@
                     </div>
                 </div>
             </div>
+            <div class="col-12 col-lg-7">
+            {else}
+            <div class="col-12">
             {/if}
-            <div class="col-12 {if $has_thumb}col-lg-7{/if}">
                 <div class="card-body d-flex flex-column h-100 p-4">
                     <h2 class="everpsblog article-content h2 mb-3" id="everpsblog-post-title-{$post_id|escape:'htmlall':'UTF-8'}">
                         <a href="{$post_link|escape:'htmlall':'UTF-8'}" title="{$post_title|escape:'htmlall':'UTF-8'} {$shop.name|escape:'htmlall':'UTF-8'}" class="text-dark text-decoration-none">
