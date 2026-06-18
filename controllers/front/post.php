@@ -840,7 +840,7 @@ class EverPsBlogpostModuleFrontController extends AbstractFrontController
         $sql->from('ever_blog_comments');
         $sql->where('user_email = "' . pSQL((string) $email) . '"');
         $sql->where('id_lang = ' . (int) $idLang);
-        $sql->orderBy('date_add DESC');
+        $sql->orderBy('`date_add` DESC');
         $sql->limit(1);
 
         return $this->arrayToObject(Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow($sql));
