@@ -75,83 +75,103 @@
 {/block}
 
 {block name="page_content"}
-<div class="everpsblog-blog-header container-fluid px-0 mb-4">
-    <div class="everpsblog-blog-header__inner text-center py-5">
-        <h1 class="m-0 everpsblog-blog-header__title">
-            {l s='Our blog' d='Modules.Everpsblog.Shop'}
-        </h1>
-        {if !isset($pagination) || $pagination.current_page <= 1}
-        <div class="everpsblog-blog-header__categories d-flex flex-wrap justify-content-center gap-2 mt-4">
-            {if isset($evercategory) && $evercategory|count > 0}
-                {foreach from=$evercategory item=item}
-                    {if !$item.is_root_category && $item.link_rewrite != 'home' && $item.title|lower != 'home'}
-                        <a class="btn everpsblog-top-category-btn" href="{$link->getModuleLink('everpsblog', 'category', ['id_ever_category' => $item.id_ever_category, 'link_rewrite' => $item.link_rewrite])|escape:'htmlall':'UTF-8'}" title="{$item.title|escape:'htmlall':'UTF-8'}">
-                            {$item.title|escape:'htmlall':'UTF-8'}
-                        </a>
-                    {/if}
-                {/foreach}
-            {/if}
-        </div>
+
+{* ── Blog header ─────────────────────────────────────────── *}
+{include file="{$everpsblog_theme_front_template_base}/loop/header.tpl"}
+
+{* ── Main content ────────────────────────────────────────── *}
+<div class="container">
+
+    {* Search bar *}
+    <div class="everpsblog-search-toolbar">
+        <form method="get"
+              action="{$link->getModuleLink('everpsblog','search')|escape:'htmlall':'UTF-8'}"
+              class="everpsblog-search-form"
+              data-doofinder-ignore="true">
+            <div class="input-group">
+                <input id="everpsblog-search-input"
+                       class="form-control"
+                       type="search"
+                       name="keyword"
+                       placeholder="{l s='Search by keywords' d='Modules.Everpsblog.Shop'}"
+                       aria-label="{l s='Search the blog' d='Modules.Everpsblog.Shop'}"
+                       data-doofinder-ignore="true">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        {l s='Search' d='Modules.Everpsblog.Shop'}
+                    </button>
+                </div>
+            </div>
+        </form>
+        {if isset($allow_feed) && $allow_feed && isset($feed_url) && $feed_url}
+        <a class="everpsblog-rss-link"
+           href="{$feed_url|escape:'htmlall':'UTF-8'}"
+           target="_blank"
+           rel="noopener noreferrer">
+            RSS
+        </a>
         {/if}
     </div>
-</div>
-<div class="container my-4">
-    {include file="{$everpsblog_theme_front_template_base}/loop/search_form.tpl"}
-{if isset($facet_url)}
-<script type="text/javascript">
-    var facetUrl = '{$facet_url|escape:'javascript'}';
-</script>
-{/if}
-<span class="paginated float-end d-none">{if isset($pagination) && $pagination.current_page > 0}{l s='(page' d='Modules.Everpsblog.Shop'} {$pagination.current_page|escape:'htmlall':'UTF-8'}/{$pagination.pages_count|escape:'htmlall':'UTF-8'}{l s=')' d='Modules.Everpsblog.Shop'}{/if}</span>
-{if isset($paginated) && !$paginated}
-{if isset($default_blog_top_text) && $default_blog_top_text}
-<div class="row mt-2">
-    {$default_blog_top_text nofilter}
-</div>
-{/if}
-{* Hide categories list on blog pages *}
-{*<div class="row mt-2">
-{foreach from=$evercategory item=item}
-    {if !$item.is_root_category}
-    {include file="{$everpsblog_theme_front_template_base}/loop/category_array.tpl"}
+
+    {if isset($facet_url)}
+    <script>var facetUrl = '{$facet_url|escape:'javascript'}';</script>
     {/if}
-{/foreach}
-</div>*}
-{/if}
 
-{if isset($post_number) && $post_number > 0}
-<div class="row mt-2" id="everpsblog-posts" data-empty-text="{l s='No posts match your filters yet.' d='Modules.Everpsblog.Shop'}">
-{hook h="displayBeforeEverLoop"}
-{foreach from=$posts item=item}
-{include file="{$everpsblog_theme_front_template_base}/loop/post_array.tpl"}
-{/foreach}
-</div>
-{else}
-<div class="alert alert-info">{l s='Sorry, there is no post, please come back later !' d='Modules.Everpsblog.Shop'}</div>
-{/if}
-{if isset($post_number) && $post_number > 0 && isset($pagination.should_be_displayed) && $pagination.should_be_displayed}
-<div class="row">
-    {include file='_partials/pagination.tpl' pagination=$pagination}
-</div>
-{/if}
-{hook h="displayAfterEverLoop"}
+    {* Pagination label (hidden, used by JS) *}
+    <span class="paginated sr-only d-none">
+        {if isset($pagination) && $pagination.current_page > 0}
+            {l s='(page' d='Modules.Everpsblog.Shop'} {$pagination.current_page|escape:'htmlall':'UTF-8'}/{$pagination.pages_count|escape:'htmlall':'UTF-8'}{l s=')' d='Modules.Everpsblog.Shop'}
+        {/if}
+    </span>
 
-{if isset($paginated) && !$paginated}
-{if isset($default_blog_bottom_text) && $default_blog_bottom_text}
-<div class="row mt-2">
-    {$default_blog_bottom_text nofilter}
-</div>
-{/if}
-{/if}
-{if isset($everhome_products) && $everhome_products}
-<section id="products" class="mt-2">
-  <h2 class="text-center">{l s='Our best products' d='Modules.Everpsblog.Shop'}</h2>
-  <div class="products row">
-    {foreach from=$everhome_products item="product"}
-      {include file="catalog/_partials/miniatures/product.tpl" product=$product productClasses="col-12"}
-    {/foreach}
-  </div>
-</section>
-{/if}
+    {* Optional top editorial text *}
+    {if isset($paginated) && !$paginated && isset($default_blog_top_text) && $default_blog_top_text}
+    <div class="row mt-2">
+        {$default_blog_top_text nofilter}
+    </div>
+    {/if}
+
+    {* Posts grid *}
+    {if isset($post_number) && $post_number > 0}
+    <div class="row" id="everpsblog-posts" data-empty-text="{l s='No posts match your filters yet.' d='Modules.Everpsblog.Shop'}">
+        {hook h="displayBeforeEverLoop"}
+        {foreach from=$posts item=item}
+            {include file="{$everpsblog_theme_front_template_base}/loop/post_array.tpl"}
+        {/foreach}
+    </div>
+    {else}
+    <div class="alert alert-info">
+        {l s='Sorry, there is no post, please come back later !' d='Modules.Everpsblog.Shop'}
+    </div>
+    {/if}
+
+    {* Pagination *}
+    {if isset($post_number) && $post_number > 0 && isset($pagination.should_be_displayed) && $pagination.should_be_displayed}
+    <div class="row mt-2">
+        {include file='_partials/pagination.tpl' pagination=$pagination}
+    </div>
+    {/if}
+
+    {hook h="displayAfterEverLoop"}
+
+    {* Optional bottom editorial text *}
+    {if isset($paginated) && !$paginated && isset($default_blog_bottom_text) && $default_blog_bottom_text}
+    <div class="row mt-2">
+        {$default_blog_bottom_text nofilter}
+    </div>
+    {/if}
+
+    {* Related products *}
+    {if isset($everhome_products) && $everhome_products}
+    <section id="everpsblog-products" class="mt-4">
+        <h2 class="text-center mb-3">{l s='Our best products' d='Modules.Everpsblog.Shop'}</h2>
+        <div class="products row">
+            {foreach from=$everhome_products item="product"}
+                {include file="catalog/_partials/miniatures/product.tpl" product=$product productClasses="col-12"}
+            {/foreach}
+        </div>
+    </section>
+    {/if}
+
 </div>
 {/block}
