@@ -1446,6 +1446,12 @@ class EverPsBlog extends Module
                 'all'
             );
         }
+        if (file_exists($this->module_folder . '/views/css/blog-post.css')) {
+            $this->context->controller->addCSS(
+                $this->module_folder . '/views/css/blog-post.css',
+                'all'
+            );
+        }
         return $dynamic_header_css;
     }
 
