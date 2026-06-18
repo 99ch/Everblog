@@ -114,32 +114,24 @@ final class PostDuplicator
 
     private function duplicateTranslations(int $sourcePostId, int $newPostId): void
     {
-        $translations = \Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS(
-            'SELECT * FROM `' . _DB_PREFIX_ . 'ever_blog_post_lang`
-             WHERE id_ever_post = ' . (int) $sourcePostId
-        ) ?: [];
-
-        foreach ($translations as $translation) {
-            $title = trim((string) ($translation['title'] ?? ''));
-            if ('' === $title) {
-                $title = 'Article #' . (int) $newPostId;
-            }
-
-            $metaTitle = trim((string) ($translation['meta_title'] ?? ''));
-            // Pass $null_values = false so Db::insert() keeps
-            // Empty strings (PrestaShop would otherwise convert `''` to SQL NULL, which
-            // would violate the NOT NULL constraint on the `content` column).
-            \Db::getInstance()->insert('ever_blog_post_lang', [
-                'id_ever_post' => $newPostId,
-                'id_lang' => (int) ($translation['id_lang'] ?? 0),
-                'title' => $this->appendCopySuffix($title),
-                'meta_title' => '' !== $metaTitle ? $this->appendCopySuffix($metaTitle) : '',
-                'meta_description' => (string) ($translation['meta_description'] ?? ''),
-                'link_rewrite' => $this->buildCopyLinkRewrite($translation, $newPostId),
-                'content' => (string) ($translation['content'] ?? ''),
-                'excerpt' => (string) ($translation['excerpt'] ?? ''),
-            ], false);
-        }
+        // Use INSERT INTO ... SELECT to copy content directly in MySQL.
+        // This avoids PHP-side pSQL() escaping failures on HTML content
+        // that contains apostrophes (e.g. "seller's profile page").
+        \Db::getInstance()->execute(
+            'INSERT INTO `' . _DB_PREFIX_ . 'ever_blog_post_lang`
+                 (`id_ever_post`, `id_lang`, `title`, `meta_title`, `meta_description`, `link_rewrite`, `content`, `excerpt`)
+             SELECT
+                 ' . (int) $newPostId . ',
+                 `id_lang`,
+                 IF(TRIM(`title`) = "", CONCAT("Article #", ' . (int) $newPostId . '), CONCAT(LEFT(TRIM(`title`), 247), " (copie)")),
+                 IF(TRIM(`meta_title`) != "", CONCAT(LEFT(TRIM(`meta_title`), 247), " (copie)"), ""),
+                 `meta_description`,
+                 CONCAT(LEFT(`link_rewrite`, 240), "-copie-' . (int) $newPostId . '"),
+                 `content`,
+                 `excerpt`
+             FROM `' . _DB_PREFIX_ . 'ever_blog_post_lang`
+             WHERE `id_ever_post` = ' . (int) $sourcePostId
+        );
     }
 
     private function duplicateRelations(int $sourcePostId, int $newPostId): void
