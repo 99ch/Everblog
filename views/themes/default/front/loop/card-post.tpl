@@ -18,9 +18,7 @@
                     src="{$item.featured_thumb|escape:'htmlall':'UTF-8'}"
                     alt="{$post_title|escape:'htmlall':'UTF-8'}"
                     class="everpsblog-post-item__img{if isset($animated) && $animated} animated{/if}"
-                    loading="lazy"
-                    width="380"
-                    height="214">
+                    loading="lazy">
             </a>
         </div>
         <div class="col-12 col-md-8 everpsblog-post-item__content everpsblog-post-item__content--with-img">
@@ -48,7 +46,7 @@
             {* Extrait *}
             {if $post_summary}
             <p class="everpsblog-post-item__excerpt">
-                {$post_summary|strip_tags|truncate:180:'...'|escape:'htmlall':'UTF-8'}
+                {$post_summary|strip_tags|truncate:180:'...'|escape:'html':'UTF-8'}
             </p>
             {/if}
 
