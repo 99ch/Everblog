@@ -327,18 +327,10 @@ class EverPsBlogpostModuleFrontController extends AbstractFrontController
                     $comment->active = 0;
                     $comment->id = $this->addComment($comment);
                     $comment->id_ever_comment = $comment->id;
-                    // alert admin ! comment saved ! whouhouhouhou !
-                    if ($this->sendCommentAlert((int) $comment->id)) {
-                        $success[] = $this->transShop('Your comment has been submitted');
-                        $this->context->smarty->assign([
-                            'successes' => $success,
-                        ]);
-                    } else {
-                        $errors[] = $this->transShop('Email has not been sent to admin');
-                        $this->context->smarty->assign([
-                            'errors' => $errors,
-                        ]);
-                    }
+                    $success[] = $this->transShop('Your comment has been submitted');
+                    $this->context->smarty->assign(['successes' => $success]);
+                    // Notify admin silently — failure does not affect user feedback
+                    $this->sendCommentAlert((int) $comment->id);
                 }
             }
             // Now prepare template and show it
