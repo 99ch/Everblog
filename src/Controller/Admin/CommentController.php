@@ -52,6 +52,8 @@ class CommentController extends AbstractDomainController
             'resource' => 'comment',
             'currentResource' => 'comment',
             'createUrl' => $this->generateUrl('everpsblog_admin_comment_form'),
+            'bulkActionUrl' => $this->generateUrl('everpsblog_admin_comment_bulk'),
+            'bulkCsrfTokenId' => 'everpsblog_comment_bulk',
             'navigationLinks' => $this->getAdminNavigationLinks(),
         ]);
     }
@@ -140,6 +142,53 @@ class CommentController extends AbstractDomainController
         $this->commandBus->handle(new DeleteCommentCommand($commentId));
 
         return new JsonResponse(null, JsonResponse::HTTP_NO_CONTENT);
+    }
+
+    public function bulkAction(Request $request): Response
+    {
+        $this->validateCsrfToken($request, 'everpsblog_comment_bulk');
+
+        $action = (string) $request->request->get('bulk_action', '');
+        $rawIds = (array) $request->request->get('bulk_ids', []);
+        $ids = array_values(array_unique(array_filter(array_map('intval', $rawIds))));
+
+        if (empty($ids)) {
+            $this->addFlash('warning', $this->transAdmin('Veuillez sélectionner au moins un commentaire.'));
+
+            return $this->redirectToRoute('everpsblog_admin_comment');
+        }
+
+        switch ($action) {
+            case 'delete':
+                $deleted = 0;
+                foreach ($ids as $commentId) {
+                    try {
+                        $this->commandBus->handle(new DeleteCommentCommand($commentId));
+                        ++$deleted;
+                    } catch (\Throwable $e) {
+                        \PrestaShopLogger::addLog('[everpsblog][CommentController::bulkDelete] ' . $e->getMessage(), 3);
+                    }
+                }
+                if ($deleted > 0) {
+                    $this->addFlash('success', $this->transAdmin('%count% commentaire(s) supprimé(s).', ['%count%' => $deleted]));
+                }
+                break;
+
+            case 'approveall':
+                $inClause = implode(',', $ids);
+                \Db::getInstance()->execute(
+                    'UPDATE `' . _DB_PREFIX_ . 'ever_blog_comments`
+                     SET `active` = 1
+                     WHERE `id_ever_comment` IN (' . $inClause . ')'
+                );
+                $this->addFlash('success', $this->transAdmin('%count% commentaire(s) approuvé(s).', ['%count%' => count($ids)]));
+                break;
+
+            default:
+                $this->addFlash('error', $this->transAdmin('Action groupée inconnue.'));
+        }
+
+        return $this->redirectToRoute('everpsblog_admin_comment');
     }
 
     private function validateCsrfToken(Request $request, string $tokenId): void

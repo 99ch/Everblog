@@ -127,6 +127,7 @@ class PostController extends AbstractDomainController
                     }
                     $this->handleFeaturedImageUpload($publicationForm->get('featured_image_file')->getData(), (int) $savedPostId);
                     $this->handleBannerImageUpload($publicationForm->get('banner_image_file')->getData(), (int) $savedPostId);
+                    $this->cacheInvalidator->invalidatePostMutation((int) $savedPostId);
                     $this->refreshSitemapsAfterBackOfficeChange($this->blogSitemapService);
                     $submitAction = (string) $request->request->get('_submit_action', 'save');
 
@@ -174,6 +175,7 @@ class PostController extends AbstractDomainController
 
         $command = $this->commandAssembler->assembleCreate($request->request->all());
         $postId = $this->commandBus->handle($command);
+        $this->cacheInvalidator->invalidatePostMutation((int) $postId);
         $sitemapsRefreshed = $this->refreshSitemapsAfterBackOfficeChange($this->blogSitemapService, false);
 
         return new JsonResponse(['id_ever_post' => $postId, 'sitemaps_refreshed' => $sitemapsRefreshed], JsonResponse::HTTP_CREATED);
@@ -186,6 +188,7 @@ class PostController extends AbstractDomainController
         $command = $this->commandAssembler->assembleUpdate($postId, $request->request->all());
 
         $updatedPostId = $this->commandBus->handle($command);
+        $this->cacheInvalidator->invalidatePostMutation((int) $updatedPostId);
         $sitemapsRefreshed = $this->refreshSitemapsAfterBackOfficeChange($this->blogSitemapService, false);
 
         return new JsonResponse(['id_ever_post' => $updatedPostId, 'sitemaps_refreshed' => $sitemapsRefreshed], JsonResponse::HTTP_OK);
@@ -195,6 +198,7 @@ class PostController extends AbstractDomainController
     {
         $this->validateCsrfToken($request, 'everpsblog_post_delete_' . $postId);
 
+        $this->cacheInvalidator->invalidatePostMutation($postId);
         $this->commandBus->handle(new DeletePostCommand($postId));
         $this->sensitiveActionLogger->log('bo_post_delete', ['post_id' => $postId]);
         $this->refreshSitemapsAfterBackOfficeChange($this->blogSitemapService, false);
@@ -307,6 +311,7 @@ class PostController extends AbstractDomainController
         }
 
         if ($success > 0) {
+            $this->cacheInvalidator->invalidateAll();
             $this->refreshSitemapsAfterBackOfficeChange($this->blogSitemapService);
             $this->addFlash('success', $this->transAdmin('%count% article(s) dupliqué(s).', ['%count%' => $success]));
         }
@@ -340,6 +345,7 @@ class PostController extends AbstractDomainController
         }
 
         if ($success > 0) {
+            $this->cacheInvalidator->invalidateAll();
             $this->refreshSitemapsAfterBackOfficeChange($this->blogSitemapService);
             $this->addFlash('success', $this->transAdmin('%count% article(s) supprimé(s).', ['%count%' => $success]));
         }
@@ -358,17 +364,20 @@ class PostController extends AbstractDomainController
         $success = 0;
 
         try {
+            $shopId = (int) $this->getContextShopId();
             $success = (int) \Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue(
-                'SELECT COUNT(*) FROM `' . _DB_PREFIX_ . 'ever_blog_post`
-                 WHERE `id_ever_post` IN (' . $inClause . ')
-                 AND `id_shop` = ' . (int) $this->getContextShopId()
+                'SELECT COUNT(*) FROM `' . _DB_PREFIX_ . 'ever_blog_post` p
+                 INNER JOIN `' . _DB_PREFIX_ . 'ever_blog_post_shop` ps
+                     ON ps.id_ever_post = p.id_ever_post AND ps.id_shop = ' . $shopId . '
+                 WHERE p.`id_ever_post` IN (' . $inClause . ')'
             );
 
             \Db::getInstance()->execute(
-                'UPDATE `' . _DB_PREFIX_ . 'ever_blog_post`
-                 SET `post_status` = \'published\', `active` = 1, `date_upd` = \'' . pSQL($now) . '\'
-                 WHERE `id_ever_post` IN (' . $inClause . ')
-                 AND `id_shop` = ' . (int) $this->getContextShopId()
+                'UPDATE `' . _DB_PREFIX_ . 'ever_blog_post` p
+                 INNER JOIN `' . _DB_PREFIX_ . 'ever_blog_post_shop` ps
+                     ON ps.id_ever_post = p.id_ever_post AND ps.id_shop = ' . $shopId . '
+                 SET p.`post_status` = \'published\', p.`active` = 1, p.`date_upd` = \'' . pSQL($now) . '\'
+                 WHERE p.`id_ever_post` IN (' . $inClause . ')'
             );
 
             foreach ($escapedIds as $postId) {
@@ -385,6 +394,7 @@ class PostController extends AbstractDomainController
         }
 
         if ($success > 0) {
+            $this->cacheInvalidator->invalidateAll();
             $this->refreshSitemapsAfterBackOfficeChange($this->blogSitemapService);
             $this->addFlash('success', $this->transAdmin('%count% article(s) publié(s).', ['%count%' => $success]));
         } else {

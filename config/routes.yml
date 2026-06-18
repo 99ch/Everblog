@@ -310,6 +310,13 @@ everpsblog_admin_author_delete_preflight:
 
 
 
+everpsblog_admin_comment_bulk:
+  path: /everpsblog/comment/bulk
+  methods: [POST]
+  defaults:
+    _controller: 'PrestaShop\Module\Everpsblog\Controller\Admin\CommentController::bulkAction'
+    _legacy_controller: AdminEverPsBlogComment
+
 everpsblog_admin_comment_create:
   path: /everpsblog/comment
   methods: [POST]

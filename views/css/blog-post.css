@@ -1,0 +1,498 @@
+/* ============================================================
+   blog-post.css — Page article (Option A)
+   Bootstrap 4 uniquement. Pas de dépendance BS5.
+   ============================================================ */
+
+:root {
+    --everpsblog-post-max-width: 760px;
+    --everpsblog-accent: #3c7a2a;
+    --everpsblog-text:   #212529;
+    --everpsblog-muted:  #6c757d;
+    --everpsblog-divider: #e9ecef;
+}
+
+/* ── Colonne centrée ─────────────────────────────────────── */
+.everpsblog-post-col {
+    max-width: var(--everpsblog-post-max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* ── Hero image pleine largeur ───────────────────────────── */
+.everpsblog-post-hero {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+    background: #f0f0f0;
+}
+
+.everpsblog-post-hero__img {
+    display: block;
+    width: 100%;
+    height: clamp(220px, 38vw, 460px);
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0;
+}
+
+/* ── En-tête article (sous le hero) ─────────────────────── */
+.everpsblog-post-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Fil : Catégorie · Date · Auteur */
+.everpsblog-post-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--everpsblog-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 1rem;
+}
+
+.everpsblog-post-meta__sep { color: #ced4da; }
+
+.everpsblog-post-meta a {
+    color: var(--everpsblog-muted);
+    text-decoration: none;
+}
+
+.everpsblog-post-meta a:hover { color: var(--everpsblog-accent); }
+
+/* Titre h1 */
+.everpsblog-post-title {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--everpsblog-text);
+    margin: 0 0 1.25rem;
+}
+
+/* Chapô / extrait */
+.everpsblog-post-excerpt-intro {
+    font-size: 1.05rem;
+    color: var(--everpsblog-muted);
+    line-height: 1.7;
+    margin: 0 0 1.5rem;
+    font-style: italic;
+}
+
+/* ── Séparateur ──────────────────────────────────────────── */
+.everpsblog-post-divider {
+    border: 0;
+    border-top: 1px solid var(--everpsblog-divider);
+    margin: 1.5rem 0;
+}
+
+/* ── Partage social ──────────────────────────────────────── */
+.everpsblog-post-share {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.25rem 0;
+}
+
+.everpsblog-post-share__label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--everpsblog-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-right: 0.25rem;
+}
+
+/* Surcharge des icônes social du hero (réutilisées) */
+#module-everpsblog-post .everpsblog-post-share .everpsblog-social-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #f8f9fa;
+    border: 1px solid var(--everpsblog-divider);
+    transition: background 0.2s, transform 0.18s, border-color 0.2s;
+}
+
+#module-everpsblog-post .everpsblog-post-share .everpsblog-social-btn:hover {
+    background: #e9ecef;
+    border-color: #adb5bd;
+    transform: translateY(-2px);
+}
+
+#module-everpsblog-post .everpsblog-post-share .everpsblog-social-btn img {
+    width: 20px !important;
+    height: 20px !important;
+    max-width: 20px !important;
+    max-height: 20px !important;
+}
+
+/* ── Bandeau IA (discret) ────────────────────────────────── */
+.everpsblog-ai-banner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    background: #f8f9fa;
+    border: 1px solid var(--everpsblog-divider);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 2rem;
+    font-size: 0.8rem;
+    color: var(--everpsblog-muted);
+}
+
+.everpsblog-ai-banner__label {
+    font-weight: 600;
+    white-space: nowrap;
+    margin-right: 0.25rem;
+}
+
+.everpsblog-ai-banner__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.everpsblog-ai-banner__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.3rem;
+    text-decoration: none;
+    color: var(--everpsblog-text);
+    font-size: 0.78rem;
+    font-weight: 500;
+    transition: background 0.15s, border-color 0.15s;
+    white-space: nowrap;
+}
+
+.everpsblog-ai-banner__link:hover {
+    background: #e9ecef;
+    border-color: #adb5bd;
+    text-decoration: none;
+    color: var(--everpsblog-text);
+}
+
+.everpsblog-ai-banner__link img {
+    width: 14px !important;
+    height: 14px !important;
+    max-width: 14px !important;
+    max-height: 14px !important;
+    flex-shrink: 0;
+}
+
+/* ── Corps de l'article ──────────────────────────────────── */
+.everpsblog-post-body {
+    font-size: 1.02rem;
+    line-height: 1.8;
+    color: var(--everpsblog-text);
+    margin-bottom: 2.5rem;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.everpsblog-post-body h2 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 0.85rem;
+}
+
+.everpsblog-post-body h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-top: 1.75rem;
+    margin-bottom: 0.65rem;
+}
+
+.everpsblog-post-body p { margin-bottom: 1.25rem; }
+
+.everpsblog-post-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.4rem;
+    margin: 0.5rem 0;
+}
+
+.everpsblog-post-body ul,
+.everpsblog-post-body ol {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+}
+
+.everpsblog-post-body li { margin-bottom: 0.4rem; }
+
+.everpsblog-post-body blockquote {
+    border-left: 4px solid var(--everpsblog-accent);
+    padding: 0.75rem 1.25rem;
+    margin: 1.5rem 0;
+    background: #f8f9fa;
+    border-radius: 0 0.4rem 0.4rem 0;
+    color: #495057;
+    font-style: italic;
+}
+
+.everpsblog-post-body a {
+    color: var(--everpsblog-accent);
+    text-decoration: underline;
+}
+
+/* ── Tags & vues ─────────────────────────────────────────── */
+.everpsblog-post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 2rem;
+}
+
+.everpsblog-post-tag {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: #e9ecef;
+    color: #495057;
+    border-radius: 50rem;
+    text-decoration: none;
+    transition: background 0.15s;
+}
+
+.everpsblog-post-tag:hover {
+    background: #dee2e6;
+    color: #212529;
+    text-decoration: none;
+}
+
+.everpsblog-post-views {
+    font-size: 0.8rem;
+    color: var(--everpsblog-muted);
+}
+
+/* ── Boîte auteur ────────────────────────────────────────── */
+.everpsblog-author-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    background: #f8f9fa;
+    border: 1px solid var(--everpsblog-divider);
+    border-radius: 0.6rem;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.everpsblog-author-box__avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.everpsblog-author-box__avatar-placeholder {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #dee2e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #6c757d;
+    flex-shrink: 0;
+}
+
+.everpsblog-author-box__name {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 0.3rem;
+}
+
+.everpsblog-author-box__name a {
+    color: var(--everpsblog-text);
+    text-decoration: none;
+}
+
+.everpsblog-author-box__name a:hover { color: var(--everpsblog-accent); }
+
+.everpsblog-author-box__bio {
+    font-size: 0.9rem;
+    color: var(--everpsblog-muted);
+    margin: 0 0 0.5rem;
+    line-height: 1.5;
+}
+
+.everpsblog-author-box__social {
+    display: inline-flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.everpsblog-author-box__social a {
+    font-size: 0.78rem;
+    color: var(--everpsblog-muted);
+    text-decoration: none;
+    border: 1px solid #dee2e6;
+    padding: 0.1rem 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.everpsblog-author-box__social a:hover { color: var(--everpsblog-accent); border-color: var(--everpsblog-accent); }
+
+/* ── Section commentaires ────────────────────────────────── */
+.everpsblog-comments-section {
+    margin-bottom: 2.5rem;
+}
+
+.everpsblog-comments-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--everpsblog-divider);
+}
+
+.everpsblog-comments-header__title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.everpsblog-comments-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 0.4rem;
+    background: var(--everpsblog-accent);
+    color: #fff;
+    border-radius: 50rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+/* Commentaire individuel */
+.everpsblog-comment {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--everpsblog-divider);
+}
+
+.everpsblog-comment:last-child { border-bottom: none; }
+
+.everpsblog-comment__avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.everpsblog-comment__avatar-placeholder {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #6c757d;
+    flex-shrink: 0;
+}
+
+.everpsblog-comment__body { flex: 1; min-width: 0; }
+
+.everpsblog-comment__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.everpsblog-comment__name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--everpsblog-text);
+}
+
+.everpsblog-comment__date {
+    font-size: 0.78rem;
+    color: var(--everpsblog-muted);
+}
+
+.everpsblog-comment__text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #343a40;
+    margin: 0;
+}
+
+/* Formulaire de commentaire */
+.everpsblog-comment-form {
+    background: #f8f9fa;
+    border: 1px solid var(--everpsblog-divider);
+    border-radius: 0.6rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.everpsblog-comment-form__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem;
+}
+
+.everpsblog-comment-form__subtitle {
+    font-size: 0.8rem;
+    color: var(--everpsblog-muted);
+    margin: 0 0 1.25rem;
+}
+
+/* ── Articles liés ───────────────────────────────────────── */
+.everpsblog-related { margin-top: 3rem; }
+
+.everpsblog-related__title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 767.98px) {
+    .everpsblog-post-hero__img {
+        height: clamp(160px, 50vw, 280px);
+    }
+
+    .everpsblog-post-title {
+        font-size: 1.4rem;
+    }
+
+    .everpsblog-author-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .everpsblog-author-box__social { justify-content: center; }
+
+    .everpsblog-comment-form { padding: 1rem; }
+}

@@ -137,13 +137,13 @@ class ConfigurationController extends AbstractDomainController
                 $this->addFlash(
                     'success',
                     $this->transAdmin(
-                        '%count% orphan post(s) were reassigned to the default author.',
+                        '%count% article(s) sans auteur ont été réassignés à l\'auteur par défaut.',
                         ['%count%' => $reassignedPosts]
                     )
                 );
             }
 
-            $this->addFlash('success', $this->transAdmin('Settings saved.'));
+            $this->addFlash('success', $this->transAdmin('Paramètres enregistrés.'));
             $this->cacheInvalidator->invalidateConfiguration();
 
             if ($request->request->has('import_wordpress_blog')) {
@@ -167,8 +167,8 @@ class ConfigurationController extends AbstractDomainController
             'translationLanguages' => $this->getTranslationLanguageOptions(),
             'defaultTranslationSourceLanguageId' => $this->getContextLangId(),
             'qcdPageBuilderTargets' => $this->buildQcdPageBuilderTargets('everpsblog_configuration', 1, [
-                'top_text' => $this->transAdmin('Edit the top blog content with Page Builder'),
-                'bottom_text' => $this->transAdmin('Edit the bottom blog content with Page Builder'),
+                'top_text' => $this->transAdmin('Modifier le contenu supérieur du blog avec le Page Builder'),
+                'bottom_text' => $this->transAdmin('Modifier le contenu inférieur du blog avec le Page Builder'),
             ]),
         ]);
     }
@@ -186,7 +186,7 @@ class ConfigurationController extends AbstractDomainController
     public function autoTranslateAction(Request $request): Response
     {
         if (!$this->isCsrfTokenValid('everpsblog_translation_auto', (string) $request->request->get('_token'))) {
-            $this->addFlash('error', $this->transAdmin('Invalid security token.'));
+            $this->addFlash('error', $this->transAdmin('Jeton de sécurité invalide.'));
 
             return $this->redirectToRoute('everpsblog_admin_dashboard');
         }
@@ -207,7 +207,7 @@ class ConfigurationController extends AbstractDomainController
             $this->addFlash(
                 'success',
                 $this->transAdmin(
-                    'Module translations generated: %saved% saved, %queued% queued, %existing% kept, %unchanged% unchanged, %detected% source string(s) detected.',
+                    'Traductions du module générées : %saved% sauvegardées, %queued% en file, %existing% conservées, %unchanged% inchangées, %detected% chaîne(s) source détectée(s).',
                     [
                         '%saved%' => (int) $stats['saved'],
                         '%queued%' => (int) $stats['queued'],
@@ -222,7 +222,7 @@ class ConfigurationController extends AbstractDomainController
             $this->addFlash(
                 'error',
                 $this->transAdmin(
-                    'Unable to generate module translations: %error%',
+                    'Impossible de générer les traductions du module : %error%',
                     ['%error%' => $this->describeException($exception)]
                 )
             );
@@ -234,14 +234,14 @@ class ConfigurationController extends AbstractDomainController
     public function importTranslationsAction(Request $request): Response
     {
         if (!$this->isCsrfTokenValid('everpsblog_translation_import', (string) $request->request->get('_token'))) {
-            $this->addFlash('error', $this->transAdmin('Invalid security token.'));
+            $this->addFlash('error', $this->transAdmin('Jeton de sécurité invalide.'));
 
             return $this->redirectToRoute('everpsblog_admin_dashboard');
         }
 
         $file = $request->files->get('translation_file');
         if (null === $file || !is_callable([$file, 'getRealPath'])) {
-            $this->addFlash('error', $this->transAdmin('Please select a translation export file.'));
+            $this->addFlash('error', $this->transAdmin('Veuillez sélectionner un fichier d\'export de traductions.'));
 
             return $this->redirectToRoute('everpsblog_admin_dashboard');
         }
@@ -249,7 +249,7 @@ class ConfigurationController extends AbstractDomainController
         $path = (string) $file->getRealPath();
         $content = is_file($path) ? file_get_contents($path) : false;
         if (false === $content || '' === trim((string) $content)) {
-            $this->addFlash('error', $this->transAdmin('The selected translation file is empty.'));
+            $this->addFlash('error', $this->transAdmin('Le fichier de traductions sélectionné est vide.'));
 
             return $this->redirectToRoute('everpsblog_admin_dashboard');
         }
@@ -259,7 +259,7 @@ class ConfigurationController extends AbstractDomainController
             $this->addFlash(
                 'success',
                 $this->transAdmin(
-                    'Translations imported: %imported% item(s), %skipped% skipped.',
+                    'Traductions importées : %imported% élément(s), %skipped% ignoré(s).',
                     [
                         '%imported%' => (int) $stats['imported'],
                         '%skipped%' => (int) $stats['skipped'],
@@ -268,7 +268,7 @@ class ConfigurationController extends AbstractDomainController
             );
         } catch (\Throwable $exception) {
             \PrestaShopLogger::addLog('EverPsBlog translation import failed: ' . $exception->getMessage(), 3);
-            $this->addFlash('error', $this->transAdmin('Unable to import translations: %error%', ['%error%' => $this->describeException($exception)]));
+            $this->addFlash('error', $this->transAdmin('Impossible d\'importer les traductions : %error%', ['%error%' => $this->describeException($exception)]));
         }
 
         return $this->redirectToRoute('everpsblog_admin_dashboard');
@@ -409,7 +409,7 @@ class ConfigurationController extends AbstractDomainController
     {
         $apiUrl = trim((string) ($formData['wordpress_api_url'] ?? ''));
         if ('' === $apiUrl) {
-            $this->addFlash('error', $this->transAdmin('Enter the WordPress URL before starting the import.'));
+            $this->addFlash('error', $this->transAdmin('Saisissez l\'URL WordPress avant de lancer l\'import.'));
 
             return;
         }
@@ -426,7 +426,7 @@ class ConfigurationController extends AbstractDomainController
             $this->addFlash(
                 'success',
                 $this->transAdmin(
-                    'WordPress import completed: %created% created post(s), %updated% updated post(s), %categories% category item(s), %tags% tag item(s), %authors% author item(s), %images% image(s), %redirects% redirect(s), %skipped% skipped item(s).',
+                    'Import WordPress terminé : %created% article(s) créé(s), %updated% mis à jour, %categories% catégorie(s), %tags% tag(s), %authors% auteur(s), %images% image(s), %redirects% redirection(s), %skipped% ignoré(s).',
                     [
                         '%created%' => (int) $stats['posts_created'],
                         '%updated%' => (int) $stats['posts_updated'],
@@ -441,7 +441,7 @@ class ConfigurationController extends AbstractDomainController
             );
         } catch (\Throwable $exception) {
             \PrestaShopLogger::addLog('EverPsBlog WordPress import failed: ' . $exception->getMessage(), 3);
-            $this->addFlash('error', $this->transAdmin('Unable to import WordPress content: %error%', ['%error%' => $this->describeException($exception)]));
+            $this->addFlash('error', $this->transAdmin('Impossible d\'importer le contenu WordPress : %error%', ['%error%' => $this->describeException($exception)]));
         }
     }
 

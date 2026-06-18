@@ -30,109 +30,109 @@ class ConfigurationType extends AbstractType
     {
         $builder
             ->add('theme', ChoiceType::class, [
-                'label' => 'Front theme',
+                'label' => 'Thème front-office',
                 'choices' => (array) ($options['theme_choices'] ?? []),
-                'help' => 'Selects the front-office template set used for blog pages and blog blocks.',
+                'help' => 'Sélectionne le jeu de templates utilisé pour les pages et blocs du blog.',
             ])
             ->add('route', TextType::class, [
-                'label' => 'Blog route',
+                'label' => 'Route du blog',
                 'constraints' => [
                     new NotBlank(),
                     new Length(['max' => 64]),
                 ],
             ])
             ->add('allow_comments', CheckboxType::class, [
-                'label' => 'Allow comments',
+                'label' => 'Autoriser les commentaires',
                 'required' => false,
             ])
             ->add('check_comments', CheckboxType::class, [
-                'label' => 'Moderate comments',
+                'label' => 'Modérer les commentaires',
                 'required' => false,
             ])
             ->add('show_ai_summary_banner', CheckboxType::class, [
-                'label' => 'Show AI summary prompt block on post pages',
+                'label' => 'Afficher le bloc de résumé IA sur les pages d\'articles',
                 'required' => false,
             ])
             ->add('rss_enabled', CheckboxType::class, [
-                'label' => 'Enable RSS feeds',
+                'label' => 'Activer les flux RSS',
                 'required' => false,
-                'help' => 'Adds RSS feed links on blog, category, tag and author pages.',
+                'help' => 'Ajoute des liens de flux RSS sur les pages blog, catégorie, tag et auteur.',
             ])
             ->add('posts_per_page', IntegerType::class, [
-                'label' => 'Posts per page',
+                'label' => 'Articles par page',
                 'constraints' => [new GreaterThan(['value' => 0])],
             ])
             ->add('home_posts', IntegerType::class, [
-                'label' => 'Posts on homepage',
+                'label' => 'Articles en page d\'accueil',
                 'constraints' => [new GreaterThan(['value' => 0])],
             ])
             ->add('product_posts', IntegerType::class, [
-                'label' => 'Posts on product page',
+                'label' => 'Articles en page produit',
                 'constraints' => [new GreaterThan(['value' => 0])],
             ])
             ->add('excerpt_length', IntegerType::class, [
-                'label' => 'Excerpt length',
+                'label' => 'Longueur de l\'extrait',
                 'constraints' => [new GreaterThan(['value' => 0])],
             ])
             ->add('title_length', IntegerType::class, [
-                'label' => 'Title length',
+                'label' => 'Longueur du titre',
                 'constraints' => [new GreaterThan(['value' => 0])],
             ])
             ->add('empty_trash_days', IntegerType::class, [
-                'label' => 'Empty trash after (days)',
-                'help' => 'Posts kept in trash longer than this delay are deleted automatically.',
+                'label' => 'Vider la corbeille après (jours)',
+                'help' => 'Les articles en corbeille depuis plus longtemps sont supprimés automatiquement.',
                 'constraints' => [new GreaterThanOrEqual(['value' => 0])],
             ])
             ->add('default_author_id', ChoiceType::class, [
-                'label' => 'Default author for orphan posts',
+                'label' => 'Auteur par défaut pour les articles sans auteur',
                 'required' => false,
-                'placeholder' => 'No default author',
+                'placeholder' => 'Aucun auteur par défaut',
                 'choices' => (array) ($options['author_choices'] ?? []),
             ])
             ->add('header_bg_color', TextType::class, [
-                'label' => 'Blog header color',
+                'label' => 'Couleur d\'en-tête du blog',
                 'required' => false,
-                'help' => 'Primary background color applied to blog heroes and banners.',
+                'help' => 'Couleur de fond principale appliquée aux héros et bannières du blog.',
                 'attr' => [
                     'type' => 'color',
                 ],
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^#[0-9a-fA-F]{6}$/',
-                        'message' => 'The color must use hexadecimal format, for example #0a0f54.',
+                        'message' => 'La couleur doit être au format hexadécimal, par exemple #0a0f54.',
                     ]),
                 ],
             ])
             ->add('header_bg_alt_color', TextType::class, [
-                'label' => 'Blog header secondary color',
+                'label' => 'Couleur secondaire d\'en-tête du blog',
                 'required' => false,
-                'help' => 'Secondary background color used by themes that render a hero gradient.',
+                'help' => 'Couleur de fond secondaire pour les thèmes avec dégradé en héro.',
                 'attr' => [
                     'type' => 'color',
                 ],
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^#[0-9a-fA-F]{6}$/',
-                        'message' => 'The color must use hexadecimal format, for example #b64a32.',
+                        'message' => 'La couleur doit être au format hexadécimal, par exemple #b64a32.',
                     ]),
                 ],
             ])
             ->add('header_overlay_bg_color', TextType::class, [
-                'label' => 'Blog hero overlay color',
+                'label' => 'Couleur de l\'overlay héro du blog',
                 'required' => false,
-                'help' => 'Background overlay color used above hero images or gradients.',
+                'help' => 'Couleur d\'overlay appliquée au-dessus des images ou dégradés héro.',
                 'attr' => [
                     'type' => 'color',
                 ],
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^#[0-9a-fA-F]{6}$/',
-                        'message' => 'The color must use hexadecimal format, for example #121212.',
+                        'message' => 'La couleur doit être au format hexadécimal, par exemple #121212.',
                     ]),
                 ],
             ])
             ->add('page_bg_color', TextType::class, [
-                'label' => 'Blog page background',
+                'label' => 'Fond de page du blog',
                 'required' => false,
                 'attr' => [
                     'type' => 'color',
@@ -140,162 +140,162 @@ class ConfigurationType extends AbstractType
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^#[0-9a-fA-F]{6}$/',
-                        'message' => 'The color must use hexadecimal format, for example #ffffff.',
+                        'message' => 'La couleur doit être au format hexadécimal, par exemple #ffffff.',
                     ]),
                 ],
             ])
             ->add('surface_bg_color', TextType::class, [
-                'label' => 'Blog surface background',
+                'label' => 'Fond des surfaces du blog',
                 'required' => false,
-                'help' => 'Background for content surfaces and form controls.',
+                'help' => 'Fond pour les surfaces de contenu et les contrôles de formulaire.',
                 'attr' => [
                     'type' => 'color',
                 ],
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^#[0-9a-fA-F]{6}$/',
-                        'message' => 'The color must use hexadecimal format, for example #ffffff.',
+                        'message' => 'La couleur doit être au format hexadécimal, par exemple #ffffff.',
                     ]),
                 ],
             ])
             ->add('card_bg_color', TextType::class, [
-                'label' => 'Blog card background',
+                'label' => 'Fond des cartes du blog',
                 'required' => false,
-                'help' => 'Background for post cards and compact blocks.',
+                'help' => 'Fond pour les cartes d\'articles et blocs compacts.',
                 'attr' => [
                     'type' => 'color',
                 ],
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^#[0-9a-fA-F]{6}$/',
-                        'message' => 'The color must use hexadecimal format, for example #f1f1f1.',
+                        'message' => 'La couleur doit être au format hexadécimal, par exemple #f1f1f1.',
                     ]),
                 ],
             ])
             ->add('soft_bg_color', TextType::class, [
-                'label' => 'Blog soft section background',
+                'label' => 'Fond des sections secondaires du blog',
                 'required' => false,
-                'help' => 'Background for secondary sections such as related posts.',
+                'help' => 'Fond pour les sections secondaires comme les articles liés.',
                 'attr' => [
                     'type' => 'color',
                 ],
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^#[0-9a-fA-F]{6}$/',
-                        'message' => 'The color must use hexadecimal format, for example #ededed.',
+                        'message' => 'La couleur doit être au format hexadécimal, par exemple #ededed.',
                     ]),
                 ],
             ])
             ->add('placeholder_bg_color', TextType::class, [
-                'label' => 'Blog placeholder background',
+                'label' => 'Fond de substitution du blog',
                 'required' => false,
-                'help' => 'Background used when an image is missing.',
+                'help' => 'Fond affiché lorsqu\'une image est absente.',
                 'attr' => [
                     'type' => 'color',
                 ],
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^#[0-9a-fA-F]{6}$/',
-                        'message' => 'The color must use hexadecimal format, for example #d8d8d8.',
+                        'message' => 'La couleur doit être au format hexadécimal, par exemple #d8d8d8.',
                     ]),
                 ],
             ])
             ->add('accent_bg_color', TextType::class, [
-                'label' => 'Blog accent background',
+                'label' => 'Fond d\'accentuation du blog',
                 'required' => false,
-                'help' => 'Accent background for highlighted blocks and badges.',
+                'help' => 'Fond d\'accentuation pour les blocs mis en avant et les badges.',
                 'attr' => [
                     'type' => 'color',
                 ],
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^#[0-9a-fA-F]{6}$/',
-                        'message' => 'The color must use hexadecimal format, for example #8cced2.',
+                        'message' => 'La couleur doit être au format hexadécimal, par exemple #8cced2.',
                     ]),
                 ],
             ])
             ->add('header_title_color', TextType::class, [
-                'label' => 'Blog header title color',
+                'label' => 'Couleur du titre d\'en-tête du blog',
                 'required' => false,
-                'help' => 'Color applied to the titles displayed inside blog, post, category, tag, author and search headers.',
+                'help' => 'Couleur appliquée aux titres des en-têtes blog, article, catégorie, tag, auteur et recherche.',
                 'attr' => [
                     'type' => 'color',
                 ],
                 'constraints' => [
                     new Regex([
                         'pattern' => '/^#[0-9a-fA-F]{6}$/',
-                        'message' => 'The color must use hexadecimal format, for example #ffffff.',
+                        'message' => 'La couleur doit être au format hexadécimal, par exemple #ffffff.',
                     ]),
                 ],
             ])
             ->add('wordpress_api_url', TextType::class, [
-                'label' => 'WordPress site URL',
+                'label' => 'URL du site WordPress',
                 'required' => false,
-                'help' => 'Example: https://example.com or https://example.com/wp-json/wp/v2',
+                'help' => 'Exemple : https://example.com ou https://example.com/wp-json/wp/v2',
                 'constraints' => [
                     new Length(['max' => 255]),
                     new Url(),
                 ],
             ])
             ->add('wordpress_api_user', TextType::class, [
-                'label' => 'WordPress REST username',
+                'label' => 'Nom d\'utilisateur REST WordPress',
                 'required' => false,
-                'help' => 'Optional for public post imports. Required for non-public content.',
+                'help' => 'Facultatif pour l\'import d\'articles publics. Obligatoire pour le contenu non public.',
                 'constraints' => [
                     new Length(['max' => 255]),
                 ],
             ])
             ->add('wordpress_api_password', PasswordType::class, [
-                'label' => 'WordPress application password',
+                'label' => 'Mot de passe d\'application WordPress',
                 'required' => false,
                 'always_empty' => false,
-                'help' => 'Use a WordPress application password, not the main account password.',
+                'help' => 'Utilisez un mot de passe d\'application WordPress, pas le mot de passe principal.',
                 'constraints' => [
                     new Length(['max' => 255]),
                 ],
             ])
             ->add('wordpress_import_post_status', ChoiceType::class, [
-                'label' => 'Imported post status',
+                'label' => 'Statut des articles importés',
                 'choices' => [
-                    'Published' => 'published',
-                    'Draft' => 'draft',
+                    'Publié' => 'published',
+                    'Brouillon' => 'draft',
                 ],
             ])
             ->add('wordpress_enable_authors', CheckboxType::class, [
-                'label' => 'Enable imported authors',
+                'label' => 'Activer les auteurs importés',
                 'required' => false,
             ])
             ->add('wordpress_enable_categories', CheckboxType::class, [
-                'label' => 'Enable imported categories',
+                'label' => 'Activer les catégories importées',
                 'required' => false,
             ])
             ->add('wordpress_enable_tags', CheckboxType::class, [
-                'label' => 'Enable imported tags',
+                'label' => 'Activer les tags importés',
                 'required' => false,
             ]);
 
         foreach (\Language::getLanguages(false) as $lang) {
             $idLang = (int) $lang['id_lang'];
             $isoCode = strtoupper((string) ($lang['iso_code'] ?? ''));
-            $suffix = $isoCode ? sprintf(' (%s)', $isoCode) : sprintf(' (language #%d)', $idLang);
+            $suffix = $isoCode ? sprintf(' (%s)', $isoCode) : sprintf(' (langue #%d)', $idLang);
 
             $builder
                 ->add(sprintf('main_title_%d', $idLang), TextType::class, [
-                    'label' => 'Blog main title' . $suffix,
+                    'label' => 'Titre principal du blog' . $suffix,
                     'required' => false,
                     'constraints' => [
                         new Length(['max' => 255]),
                     ],
                 ])
                 ->add(sprintf('hero_subtitle_%d', $idLang), TextType::class, [
-                    'label' => 'Blog hero subtitle' . $suffix,
+                    'label' => 'Sous-titre héro du blog' . $suffix,
                     'required' => false,
                     'constraints' => [
                         new Length(['max' => 255]),
                     ],
                 ])
                 ->add(sprintf('top_text_%d', $idLang), TextareaType::class, [
-                    'label' => 'Blog top text' . $suffix,
+                    'label' => 'Texte au-dessus du blog' . $suffix,
                     'required' => false,
                     'attr' => [
                         'data-ever-richtext' => '1',
@@ -303,7 +303,7 @@ class ConfigurationType extends AbstractType
                     ],
                 ])
                 ->add(sprintf('bottom_text_%d', $idLang), TextareaType::class, [
-                    'label' => 'Blog bottom text' . $suffix,
+                    'label' => 'Texte en-dessous du blog' . $suffix,
                     'required' => false,
                     'attr' => [
                         'data-ever-richtext' => '1',
