@@ -23,7 +23,7 @@ final class PostViewModel
         $excerpt = (string) self::value($post, 'excerpt', self::value($post, 'meta_description', ''));
         $summary = (string) self::value($post, 'summary', '');
         if ('' === trim($summary)) {
-            $summary = '' !== trim($excerpt) ? $excerpt : self::summaryFromContent($content);
+            $summary = '' !== trim($excerpt) ? self::summaryFromContent($excerpt) : self::summaryFromContent($content);
         }
         if (self::isPlaceholderSummary($summary)) {
             $summary = self::summaryFromContent($content);
@@ -86,7 +86,7 @@ final class PostViewModel
 
     private static function summaryFromContent(string $content): string
     {
-        $summary = trim(strip_tags($content));
+        $summary = html_entity_decode(trim(strip_tags($content)), ENT_QUOTES | ENT_HTML5, 'UTF-8');
         if (function_exists('mb_substr')) {
             return mb_substr($summary, 0, 300);
         }
