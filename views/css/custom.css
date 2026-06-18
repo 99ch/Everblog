@@ -24,6 +24,25 @@
 /* BS5 → BS4: border utilities */
 .border-0 { border: 0 !important; }
 
+/* BS5 → BS4: me-3 (missing from initial polyfill) */
+.me-3 { margin-right: 1rem !important; }
+
+/* BS5 → BS4: visually-hidden = sr-only */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0,0,0,0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* BS5 → BS4: float-end = float-right */
+.float-end { float: right !important; }
+
 /* ============================================================
    Fix card-in-card: the theme wraps #content in .card.card-block
    The module adds its own .card elements inside → double borders.
