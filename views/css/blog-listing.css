@@ -1,0 +1,237 @@
+/* ============================================================
+   blog-listing.css — Blog listing page design
+   Dedicated CSS for blog frontend. No theme hacks here.
+   Bootstrap 4 compatible only.
+   ============================================================ */
+
+/* ============================================================
+   Blog Header <section>
+   Background color is customizable via --everpsblog-header-bg
+   ============================================================ */
+.everpsblog-header {
+    background-color: var(--everpsblog-header-bg, #1a2e5a);
+    color: var(--everpsblog-header-color, #fff);
+    text-align: center;
+    padding: 3rem 1rem 2.5rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.everpsblog-header__inner {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.everpsblog-header__title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+    color: inherit;
+    line-height: 1.2;
+}
+
+/* Category pills inside header */
+.everpsblog-header__cats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+}
+
+.everpsblog-cat-pill {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    border-radius: 50rem;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+    line-height: 1.4;
+}
+
+.everpsblog-cat-pill:hover,
+.everpsblog-cat-pill:focus {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: #fff;
+    color: #fff;
+    text-decoration: none;
+}
+
+.everpsblog-cat-pill.active {
+    background: #fff;
+    border-color: #fff;
+    color: #1a2e5a;
+}
+
+/* ============================================================
+   Search toolbar
+   ============================================================ */
+.everpsblog-search-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.everpsblog-search-form {
+    display: flex;
+    align-items: stretch;
+    max-width: 440px;
+    width: 100%;
+}
+
+.everpsblog-search-form .form-control {
+    border-radius: 0.5rem 0 0 0.5rem;
+    border-right: none;
+    font-size: 0.9rem;
+}
+
+.everpsblog-search-form .form-control:focus {
+    box-shadow: none;
+    border-color: #ced4da;
+}
+
+.everpsblog-search-form .input-group-append .btn {
+    border-radius: 0 0.5rem 0.5rem 0;
+    font-size: 0.9rem;
+    padding-left: 1.1rem;
+    padding-right: 1.1rem;
+}
+
+.everpsblog-rss-link {
+    display: inline-flex;
+    align-items: center;
+    color: #f26522;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.everpsblog-rss-link:hover {
+    color: #d45510;
+    text-decoration: none;
+}
+
+/* ============================================================
+   Post card
+   ============================================================ */
+.everpsblog-listing-card {
+    border: 1px solid rgba(0, 0, 0, 0.07) !important;
+    border-radius: 0.6rem !important;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+.everpsblog-listing-card:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12) !important;
+    transform: translateY(-2px);
+}
+
+/* Image column */
+.everpsblog-card-img-wrap {
+    height: 100%;
+    min-height: 200px;
+    overflow: hidden;
+}
+
+.everpsblog-card-img-link {
+    display: block;
+    height: 100%;
+}
+
+.everpsblog-card-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.35s ease;
+}
+
+.everpsblog-listing-card:hover .everpsblog-card-img {
+    transform: scale(1.04);
+}
+
+/* Content column */
+.everpsblog-card-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.5rem;
+}
+
+.everpsblog-card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    line-height: 1.3;
+}
+
+.everpsblog-card-title-link {
+    color: #212529;
+    text-decoration: none;
+}
+
+.everpsblog-card-title-link:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.everpsblog-card-date {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin: 0 0 0.75rem;
+}
+
+.everpsblog-card-excerpt {
+    font-size: 0.9rem;
+    color: #495057;
+    line-height: 1.6;
+    margin: 0 0 1rem;
+    flex-grow: 1;
+}
+
+.everpsblog-card-footer {
+    margin-top: auto;
+    padding-top: 0.5rem;
+}
+
+.everpsblog-card-btn {
+    font-size: 0.875rem;
+    border-radius: 50rem;
+    padding: 0.4rem 1.2rem;
+    font-weight: 600;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 767.98px) {
+    .everpsblog-header {
+        padding: 2rem 1rem 1.75rem;
+    }
+
+    .everpsblog-header__title {
+        font-size: 1.5rem;
+    }
+
+    .everpsblog-card-img-wrap {
+        min-height: 180px;
+        max-height: 220px;
+    }
+
+    .everpsblog-card-body {
+        padding: 1rem;
+    }
+
+    .everpsblog-search-form {
+        max-width: 100%;
+    }
+}
