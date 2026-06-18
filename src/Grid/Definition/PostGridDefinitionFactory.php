@@ -18,24 +18,24 @@ final class PostGridDefinitionFactory
     {
         return new GridDefinition(
             'post',
-            'Posts',
+            'Articles',
             [
                 ['id' => 'id_ever_post', 'name' => '#', 'type' => 'id', 'sortable' => true],
                 ['id' => 'featured_image', 'name' => 'Image', 'type' => 'image'],
-                ['id' => 'title', 'name' => 'Title', 'type' => 'text', 'sortable' => true],
-                ['id' => 'post_status', 'name' => 'Status', 'type' => 'status', 'sortable' => true],
-                ['id' => 'date_add', 'name' => 'Publication date', 'type' => 'date'],
-                ['id' => 'count', 'name' => 'Views', 'type' => 'number', 'sortable' => true],
+                ['id' => 'title', 'name' => 'Titre', 'type' => 'text', 'sortable' => true],
+                ['id' => 'post_status', 'name' => 'Statut', 'type' => 'status', 'sortable' => true],
+                ['id' => 'date_add', 'name' => 'Date de publication', 'type' => 'date'],
+                ['id' => 'count', 'name' => 'Vues', 'type' => 'number', 'sortable' => true],
             ],
             [
-                'q' => 'Search',
-                'title' => 'Title',
-                'post_status' => 'Status',
+                'q' => 'Rechercher',
+                'title' => 'Titre',
+                'post_status' => 'Statut',
             ],
             [
-                ['id' => 'delete', 'name' => 'Delete selected'],
-                ['id' => 'publishall', 'name' => 'Publish selected'],
-                ['id' => 'duplicate', 'name' => 'Duplicate selected'],
+                ['id' => 'delete', 'name' => 'Supprimer la sélection'],
+                ['id' => 'publishall', 'name' => 'Publier la sélection'],
+                ['id' => 'duplicate', 'name' => 'Dupliquer la sélection'],
             ]
         );
     }

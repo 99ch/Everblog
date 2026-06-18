@@ -66,7 +66,7 @@ class CategoryController extends AbstractDomainController
     {
         $isEdit = null !== $categoryId;
         if ($isEdit && $this->blogInstallService->isRootCategoryId((int) $categoryId, $this->getContextShopId())) {
-            $this->addFlash('warning', $this->transAdmin('Root category is managed automatically and cannot be edited from the back office.'));
+            $this->addFlash('warning', $this->transAdmin('La catégorie racine est gérée automatiquement et ne peut pas être modifiée depuis le back-office.'));
 
             return $this->redirectToRoute('everpsblog_admin_category');
         }
@@ -103,7 +103,7 @@ class CategoryController extends AbstractDomainController
                     $this->refreshSitemapsAfterBackOfficeChange($this->blogSitemapService);
                     $submitAction = (string) $request->request->get('_submit_action', 'save');
 
-                    $this->addFlash('success', $isEdit ? $this->transAdmin('Category updated.') : $this->transAdmin('Category created.'));
+                    $this->addFlash('success', $isEdit ? $this->transAdmin('Catégorie mise à jour.') : $this->transAdmin('Catégorie créée.'));
 
                     if ('save_and_stay' === $submitAction) {
                         return $this->redirectToRoute('everpsblog_admin_category_edit', ['categoryId' => $savedCategoryId]);
@@ -111,7 +111,7 @@ class CategoryController extends AbstractDomainController
 
                     return $this->redirectToRoute('everpsblog_admin_category');
                 } catch (\Throwable $exception) {
-                    $message = $this->transAdmin('Unable to save category: %error%', ['%error%' => $this->describeException($exception)]);
+                    $message = $this->transAdmin('Impossible d\'enregistrer la catégorie : %error%', ['%error%' => $this->describeException($exception)]);
                     $form->addError(new FormError($message));
                     $this->addFlash('error', $message);
                     \PrestaShopLogger::addLog(
@@ -135,8 +135,8 @@ class CategoryController extends AbstractDomainController
             'navigationLinks' => $this->getAdminNavigationLinks(),
             'everBlogLanguages' => $this->getEverBlogLanguages(),
             'qcdPageBuilderTargets' => $this->buildQcdPageBuilderTargets('everpsblog_category', $categoryId, [
-                'content' => $this->transAdmin('Edit content with Page Builder'),
-                'bottom_content' => $this->transAdmin('Edit bottom content with Page Builder'),
+                'content' => $this->transAdmin('Modifier le contenu avec le Page Builder'),
+                'bottom_content' => $this->transAdmin('Modifier le contenu bas de page avec le Page Builder'),
             ]),
         ]);
     }
@@ -209,8 +209,8 @@ class CategoryController extends AbstractDomainController
             $categoryId,
             $this->getContextShopId(),
             'category_banner',
-            $this->transAdmin('Current banner image'),
-            $this->transAdmin('Open preview')
+            $this->transAdmin('Image bannière actuelle'),
+            $this->transAdmin('Voir l\'aperçu')
         );
     }
 }

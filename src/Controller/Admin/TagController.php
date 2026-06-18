@@ -91,7 +91,7 @@ class TagController extends AbstractDomainController
                     $this->refreshSitemapsAfterBackOfficeChange($this->blogSitemapService);
                     $submitAction = (string) $request->request->get('_submit_action', 'save');
 
-                    $this->addFlash('success', $isEdit ? $this->transAdmin('Tag updated.') : $this->transAdmin('Tag created.'));
+                    $this->addFlash('success', $isEdit ? $this->transAdmin('Tag mis à jour.') : $this->transAdmin('Tag créé.'));
 
                     if ('save_and_stay' === $submitAction) {
                         return $this->redirectToRoute('everpsblog_admin_tag_edit', ['tagId' => $savedTagId]);
@@ -99,7 +99,7 @@ class TagController extends AbstractDomainController
 
                     return $this->redirectToRoute('everpsblog_admin_tag');
                 } catch (\Throwable $exception) {
-                    $message = $this->transAdmin('Unable to save tag: %error%', ['%error%' => $this->describeException($exception)]);
+                    $message = $this->transAdmin('Impossible d\'enregistrer le tag : %error%', ['%error%' => $this->describeException($exception)]);
                     $form->addError(new FormError($message));
                     $this->addFlash('error', $message);
                     \PrestaShopLogger::addLog(
@@ -123,8 +123,8 @@ class TagController extends AbstractDomainController
             'navigationLinks' => $this->getAdminNavigationLinks(),
             'everBlogLanguages' => $this->getEverBlogLanguages(),
             'qcdPageBuilderTargets' => $this->buildQcdPageBuilderTargets('everpsblog_tag', $tagId, [
-                'content' => $this->transAdmin('Edit content with Page Builder'),
-                'bottom_content' => $this->transAdmin('Edit bottom content with Page Builder'),
+                'content' => $this->transAdmin('Modifier le contenu avec le Page Builder'),
+                'bottom_content' => $this->transAdmin('Modifier le contenu bas de page avec le Page Builder'),
             ]),
         ]);
     }
@@ -190,8 +190,8 @@ class TagController extends AbstractDomainController
             $tagId,
             $this->getContextShopId(),
             'tag_banner',
-            $this->transAdmin('Current banner image'),
-            $this->transAdmin('Open preview')
+            $this->transAdmin('Image bannière actuelle'),
+            $this->transAdmin('Voir l\'aperçu')
         );
     }
 }

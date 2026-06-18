@@ -21,17 +21,17 @@ final class TagGridDefinitionFactory
             'Tags',
             [
                 ['id' => 'id_ever_tag', 'name' => '#', 'type' => 'id'],
-                ['id' => 'title', 'name' => 'Title', 'type' => 'text'],
+                ['id' => 'title', 'name' => 'Titre', 'type' => 'text'],
                 ['id' => 'link_rewrite', 'name' => 'Slug', 'type' => 'text'],
-                ['id' => 'count', 'name' => 'Views', 'type' => 'number'],
-                ['id' => 'active', 'name' => 'Active', 'type' => 'status'],
+                ['id' => 'count', 'name' => 'Vues', 'type' => 'number'],
+                ['id' => 'active', 'name' => 'Actif', 'type' => 'status'],
             ],
             [
-                'q' => 'Search',
-                'title' => 'Title',
+                'q' => 'Rechercher',
+                'title' => 'Titre',
             ],
             [
-                ['id' => 'delete', 'name' => 'Delete selected'],
+                ['id' => 'delete', 'name' => 'Supprimer la sélection'],
             ]
         );
     }

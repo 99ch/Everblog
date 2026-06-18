@@ -18,19 +18,19 @@ final class CommentGridDefinitionFactory
     {
         return new GridDefinition(
             'comment',
-            'Comments',
+            'Commentaires',
             [
                 ['id' => 'id_ever_comment', 'name' => 'ID'],
-                ['id' => 'id_ever_post', 'name' => 'Post ID'],
-                ['id' => 'active', 'name' => 'Active'],
+                ['id' => 'id_ever_post', 'name' => 'ID article'],
+                ['id' => 'active', 'name' => 'Actif'],
             ],
             [
-                'q' => 'Search',
-                'id_ever_post' => 'Post ID',
+                'q' => 'Rechercher',
+                'id_ever_post' => 'ID article',
             ],
             [
-                ['id' => 'delete', 'name' => 'Delete selected'],
-                ['id' => 'approveall', 'name' => 'Approve selected'],
+                ['id' => 'delete', 'name' => 'Supprimer la sélection'],
+                ['id' => 'approveall', 'name' => 'Approuver la sélection'],
             ]
         );
     }

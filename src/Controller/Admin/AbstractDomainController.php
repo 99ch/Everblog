@@ -71,11 +71,11 @@ abstract class AbstractDomainController extends FrameworkBundleAdminController
     protected function getAdminNavigationLinks(): array
     {
         return [
-            ['key' => 'post', 'label' => 'Posts', 'url' => $this->generateUrl('everpsblog_admin_post')],
-            ['key' => 'category', 'label' => 'Categories', 'url' => $this->generateUrl('everpsblog_admin_category')],
+            ['key' => 'post', 'label' => 'Articles', 'url' => $this->generateUrl('everpsblog_admin_post')],
+            ['key' => 'category', 'label' => 'Catégories', 'url' => $this->generateUrl('everpsblog_admin_category')],
             ['key' => 'tag', 'label' => 'Tags', 'url' => $this->generateUrl('everpsblog_admin_tag')],
-            ['key' => 'author', 'label' => 'Authors', 'url' => $this->generateUrl('everpsblog_admin_author')],
-            ['key' => 'comment', 'label' => 'Comments', 'url' => $this->generateUrl('everpsblog_admin_comment')],
+            ['key' => 'author', 'label' => 'Auteurs', 'url' => $this->generateUrl('everpsblog_admin_author')],
+            ['key' => 'comment', 'label' => 'Commentaires', 'url' => $this->generateUrl('everpsblog_admin_comment')],
             ['key' => 'configuration', 'label' => 'Configuration', 'url' => $this->generateUrl('everpsblog_admin_dashboard')],
         ];
     }

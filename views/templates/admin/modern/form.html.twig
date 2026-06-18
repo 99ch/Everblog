@@ -389,9 +389,9 @@
 {% endblock %}
 
 {% block ever_blog_form_tabs_nav %}
-  <aside class="everblog-bo-tabs" aria-label="{{ 'Content sections'|trans({}, 'Modules.Everpsblog.Admin') }}">
+  <aside class="everblog-bo-tabs" aria-label="{{ 'Sections de contenu'|trans({}, 'Modules.Everpsblog.Admin') }}">
     <ul class="nav nav-tabs" role="tablist">
-      <li class="nav-item"><a class="nav-link active" id="ever-tab-content" data-toggle="tab" href="#ever-pane-content" role="tab"><i class="material-icons">edit_note</i><span>{{ 'Content'|trans({}, 'Modules.Everpsblog.Admin') }}</span></a></li>
+      <li class="nav-item"><a class="nav-link active" id="ever-tab-content" data-toggle="tab" href="#ever-pane-content" role="tab"><i class="material-icons">edit_note</i><span>{{ 'Contenu'|trans({}, 'Modules.Everpsblog.Admin') }}</span></a></li>
       <li class="nav-item"><a class="nav-link" id="ever-tab-seo" data-toggle="tab" href="#ever-pane-seo" role="tab"><i class="material-icons">manage_search</i><span>{{ 'SEO'|trans({}, 'Modules.Everpsblog.Admin') }}</span></a></li>
       <li class="nav-item"><a class="nav-link" id="ever-tab-publication" data-toggle="tab" href="#ever-pane-publication" role="tab"><i class="material-icons">event</i><span>{{ 'Publication'|trans({}, 'Modules.Everpsblog.Admin') }}</span></a></li>
       <li class="nav-item"><a class="nav-link" id="ever-tab-relations" data-toggle="tab" href="#ever-pane-relations" role="tab"><i class="material-icons">hub</i><span>{{ 'Relations'|trans({}, 'Modules.Everpsblog.Admin') }}</span></a></li>
@@ -402,8 +402,8 @@
 {% block ever_blog_language_switch %}
   {% if everBlogLanguages is not empty %}
     <div class="everblog-bo-lang-box d-flex flex-wrap align-items-center justify-content-start">
-      <div class="small text-muted mr-2">{{ 'Editing language:'|trans({}, 'Modules.Everpsblog.Admin') }}</div>
-      <div class="btn-group btn-group-sm" role="group" aria-label="{{ 'Language selector'|trans({}, 'Modules.Everpsblog.Admin') }}">
+      <div class="small text-muted mr-2">{{ 'Langue d\'édition :'|trans({}, 'Modules.Everpsblog.Admin') }}</div>
+      <div class="btn-group btn-group-sm" role="group" aria-label="{{ 'Sélecteur de langue'|trans({}, 'Modules.Everpsblog.Admin') }}">
         {% for lang in everBlogLanguages %}
           <button type="button" class="btn btn-outline-secondary ever-lang-switch everblog-bo-lang-switch {{ loop.first ? 'active' : '' }}" data-lang-id="{{ lang.id }}" title="{{ lang.name|default(lang.label) }}">{{ lang.label }}</button>
         {% endfor %}
@@ -440,8 +440,8 @@
           <i class="material-icons">edit_note</i>
         </div>
         <div>
-          <h3>{{ 'Edition'|trans({}, 'Modules.Everpsblog.Admin') }}</h3>
-          <p>{{ 'Content, SEO, publication and relations are grouped by workflow.'|trans({}, 'Modules.Everpsblog.Admin') }}</p>
+          <h3>{{ 'Édition'|trans({}, 'Modules.Everpsblog.Admin') }}</h3>
+          <p>{{ 'Le contenu, le SEO, la publication et les relations sont regroupés par onglets.'|trans({}, 'Modules.Everpsblog.Admin') }}</p>
         </div>
       </div>
 
@@ -467,17 +467,17 @@
                 {{ form_row(field) }}
                 {% if fieldName starts with 'meta_title_' %}
                   <small class="form-text text-muted">
-                    <span data-counter-for="{{ field.vars.id }}">0</span>/70 {{ 'characters'|trans({}, 'Modules.Everpsblog.Admin') }}
+                    <span data-counter-for="{{ field.vars.id }}">0</span>/70 {{ 'caractères'|trans({}, 'Modules.Everpsblog.Admin') }}
                   </small>
                 {% elseif fieldName starts with 'meta_description_' %}
                   <small class="form-text text-muted">
-                    <span data-counter-for="{{ field.vars.id }}">0</span>/160 {{ 'characters'|trans({}, 'Modules.Everpsblog.Admin') }}
+                    <span data-counter-for="{{ field.vars.id }}">0</span>/160 {{ 'caractères'|trans({}, 'Modules.Everpsblog.Admin') }}
                   </small>
                 {% elseif fieldName starts with 'link_rewrite_' %}
                   <div class="d-flex justify-content-end mb-2">
                     <button type="button" class="btn btn-sm btn-outline-secondary ever-generate-slug" data-target="{{ field.vars.id }}" data-lang-id="{{ field.vars.id|split('_')|last }}">
                       <i class="material-icons">auto_fix_high</i>
-                      {{ 'Auto-generate slug'|trans({}, 'Modules.Everpsblog.Admin') }}
+                      {{ 'Générer le slug automatiquement'|trans({}, 'Modules.Everpsblog.Admin') }}
                     </button>
                   </div>
                 {% endif %}
@@ -490,7 +490,7 @@
           {% if everBlogSections.publication is empty %}
             <div class="everblog-bo-empty">
               <i class="material-icons">info</i>
-              <span>{{ 'No publication setting is available for this resource.'|trans({}, 'Modules.Everpsblog.Admin') }}</span>
+              <span>{{ 'Aucun paramètre de publication disponible.'|trans({}, 'Modules.Everpsblog.Admin') }}</span>
             </div>
           {% else %}
             <div class="everblog-bo-field-grid">
@@ -505,7 +505,7 @@
           {% if everBlogSections.relations is empty %}
             <div class="everblog-bo-empty">
               <i class="material-icons">info</i>
-              <span>{{ 'No configurable relation is available for this resource.'|trans({}, 'Modules.Everpsblog.Admin') }}</span>
+              <span>{{ 'Aucune relation configurable disponible.'|trans({}, 'Modules.Everpsblog.Admin') }}</span>
             </div>
           {% else %}
             <div class="everblog-bo-field-grid">
@@ -525,20 +525,20 @@
     <div class="everblog-bo-actionbar__buttons">
       <a class="btn btn-outline-secondary" href="{{ cancelUrl }}">
         <i class="material-icons">close</i>
-        {{ 'Cancel'|trans({}, 'Modules.Everpsblog.Admin') }}
+        {{ 'Annuler'|trans({}, 'Modules.Everpsblog.Admin') }}
       </a>
       <button type="submit" class="btn btn-outline-secondary" name="_submit_action" value="save">
         <i class="material-icons">save</i>
-        {{ 'Save'|trans({}, 'Modules.Everpsblog.Admin') }}
+        {{ 'Enregistrer'|trans({}, 'Modules.Everpsblog.Admin') }}
       </button>
       <button type="submit" class="btn btn-primary" name="_submit_action" value="save_and_stay">
         <i class="material-icons">save_as</i>
-        {{ 'Save and stay'|trans({}, 'Modules.Everpsblog.Admin') }}
+        {{ 'Enregistrer et rester'|trans({}, 'Modules.Everpsblog.Admin') }}
       </button>
       {% if previewUrl is defined and previewUrl %}
         <a class="btn btn-outline-secondary" href="{{ previewUrl }}" target="_blank" rel="noopener noreferrer">
           <i class="material-icons">visibility</i>
-          {{ 'Preview'|trans({}, 'Modules.Everpsblog.Admin') }}
+          {{ 'Aperçu'|trans({}, 'Modules.Everpsblog.Admin') }}
         </a>
       {% endif %}
     </div>
@@ -651,11 +651,11 @@
     relations: relationFields
   } %}
   {% set resourceLabels = {
-    'post': 'Post',
-    'category': 'Category',
+    'post': 'Article',
+    'category': 'Catégorie',
     'tag': 'Tag',
-    'author': 'Author',
-    'comment': 'Comment'
+    'author': 'Auteur',
+    'comment': 'Commentaire'
   } %}
 
   <div class="everblog-bo everblog-bo-form">
@@ -664,23 +664,23 @@
     <div class="everblog-bo-form-head">
       <div>
         <p class="everblog-bo-kicker">{{ resourceLabels[resource]|default(resource|capitalize)|trans({}, 'Modules.Everpsblog.Admin') }}</p>
-        <h2 class="everblog-bo-title">{{ entityId ? 'Edit #%id%'|trans({'%id%': entityId}, 'Modules.Everpsblog.Admin') : 'Create'|trans({}, 'Modules.Everpsblog.Admin') }}</h2>
+        <h2 class="everblog-bo-title">{{ entityId ? 'Modifier #%id%'|trans({'%id%': entityId}, 'Modules.Everpsblog.Admin') : 'Créer'|trans({}, 'Modules.Everpsblog.Admin') }}</h2>
       </div>
       <div class="everblog-bo-form-head__actions">
         <a class="btn btn-outline-secondary" href="{{ cancelUrl }}">
           <i class="material-icons">arrow_back</i>
-          {{ 'Back to list'|trans({}, 'Modules.Everpsblog.Admin') }}
+          {{ 'Retour à la liste'|trans({}, 'Modules.Everpsblog.Admin') }}
         </a>
         {% if previewUrl is defined and previewUrl %}
           <a class="btn btn-outline-secondary" href="{{ previewUrl }}" target="_blank" rel="noopener noreferrer">
             <i class="material-icons">visibility</i>
-            {{ 'Preview'|trans({}, 'Modules.Everpsblog.Admin') }}
+            {{ 'Aperçu'|trans({}, 'Modules.Everpsblog.Admin') }}
           </a>
         {% endif %}
         {% if createUrl is defined and createUrl %}
           <a class="btn btn-primary" href="{{ createUrl }}">
             <i class="material-icons">add</i>
-            {{ 'Add item'|trans({}, 'Modules.Everpsblog.Admin') }}
+            {{ 'Ajouter un élément'|trans({}, 'Modules.Everpsblog.Admin') }}
           </a>
         {% endif %}
       </div>

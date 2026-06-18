@@ -22,7 +22,7 @@ class TagRequestValidator extends AbstractRequestValidator
         $tagProducts = $this->normalizeIntCollection($requestData['tag_products'] ?? []);
         foreach ($tagProducts as $productId) {
             if (!$this->existsInCurrentShopPrestashopTable('product', 'id_product', $productId, 'product_shop')) {
-                $this->addFieldError('tag_products', $this->transAdmin('Product not found (id: %id%).', ['%id%' => $productId]));
+                $this->addFieldError('tag_products', $this->transAdmin('Produit introuvable (id : %id%).', ['%id%' => $productId]));
             }
         }
         $requestData['tag_products'] = $tagProducts;

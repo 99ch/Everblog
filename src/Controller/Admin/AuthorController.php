@@ -124,7 +124,7 @@ class AuthorController extends AbstractDomainController
                     $this->refreshSitemapsAfterBackOfficeChange($this->blogSitemapService);
                     $submitAction = (string) $request->request->get('_submit_action', 'save');
 
-                    $this->addFlash('success', $isEdit ? $this->transAdmin('Author updated.') : $this->transAdmin('Author created.'));
+                    $this->addFlash('success', $isEdit ? $this->transAdmin('Auteur mis à jour.') : $this->transAdmin('Auteur créé.'));
 
                     if ('save_and_stay' === $submitAction) {
                         return $this->redirectToRoute('everpsblog_admin_author_edit', ['authorId' => $savedAuthorId]);
@@ -132,7 +132,7 @@ class AuthorController extends AbstractDomainController
 
                     return $this->redirectToRoute('everpsblog_admin_author');
                 } catch (\Throwable $exception) {
-                    $message = $this->transAdmin('Unable to save author: %error%', ['%error%' => $this->describeException($exception)]);
+                    $message = $this->transAdmin('Impossible d\'enregistrer l\'auteur : %error%', ['%error%' => $this->describeException($exception)]);
                     $form->addError(new FormError($message));
                     $this->addFlash('error', $message);
                     \PrestaShopLogger::addLog(
@@ -156,8 +156,8 @@ class AuthorController extends AbstractDomainController
             'navigationLinks' => $this->getAdminNavigationLinks(),
             'everBlogLanguages' => $this->getEverBlogLanguages(),
             'qcdPageBuilderTargets' => $this->buildQcdPageBuilderTargets('everpsblog_author', $authorId, [
-                'content' => $this->transAdmin('Edit biography with Page Builder'),
-                'bottom_content' => $this->transAdmin('Edit bottom content with Page Builder'),
+                'content' => $this->transAdmin('Modifier la biographie avec le Page Builder'),
+                'bottom_content' => $this->transAdmin('Modifier le contenu bas de page avec le Page Builder'),
             ]),
         ]);
     }
@@ -239,12 +239,12 @@ class AuthorController extends AbstractDomainController
             $extension = 'jpg';
         }
         if (!in_array($extension, ['jpg', 'png', 'gif', 'webp'], true)) {
-            throw new \RuntimeException($this->transAdmin('Unsupported image format.'));
+            throw new \RuntimeException($this->transAdmin('Format d\'image non supporté.'));
         }
 
         $targetDirectory = rtrim(_PS_IMG_DIR_, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . 'author';
         if (!is_dir($targetDirectory) && !@mkdir($targetDirectory, 0755, true) && !is_dir($targetDirectory)) {
-            throw new \RuntimeException($this->transAdmin('Unable to create the author image destination directory.'));
+            throw new \RuntimeException($this->transAdmin('Impossible de créer le répertoire de l\'image auteur.'));
         }
 
         $this->deleteAuthorImageFiles($authorId);
@@ -263,7 +263,7 @@ class AuthorController extends AbstractDomainController
         $image->image_type = 'author';
         $image->image_link = 'img/author/' . $storedFileName;
         if (!(bool) $image->save()) {
-            throw new \RuntimeException($this->transAdmin('Unable to save the author image reference.'));
+            throw new \RuntimeException($this->transAdmin('Impossible d\'enregistrer la référence image auteur.'));
         }
 
         $this->blogImageService->clearCache();
@@ -372,9 +372,9 @@ class AuthorController extends AbstractDomainController
         return sprintf(
             '<span class="ever-featured-image-preview"><img src="%1$s" data-ever-preview-src="%1$s" alt="%2$s" loading="lazy"><span>%3$s: <button type="button" class="btn btn-link p-0 ever-image-preview-trigger" data-ever-preview-src="%1$s" data-ever-preview-alt="%2$s">%4$s</button></span></span>',
             $escapedUrl,
-            htmlspecialchars($this->transAdmin('Current author image'), ENT_QUOTES, 'UTF-8'),
-            htmlspecialchars($this->transAdmin('Current image'), ENT_QUOTES, 'UTF-8'),
-            htmlspecialchars($this->transAdmin('Open preview'), ENT_QUOTES, 'UTF-8')
+            htmlspecialchars($this->transAdmin('Image auteur actuelle'), ENT_QUOTES, 'UTF-8'),
+            htmlspecialchars($this->transAdmin('Image actuelle'), ENT_QUOTES, 'UTF-8'),
+            htmlspecialchars($this->transAdmin('Voir l\'aperçu'), ENT_QUOTES, 'UTF-8')
         );
     }
 
@@ -389,8 +389,8 @@ class AuthorController extends AbstractDomainController
             $authorId,
             $this->getContextShopId(),
             'author_banner',
-            $this->transAdmin('Current banner image'),
-            $this->transAdmin('Open preview')
+            $this->transAdmin('Image bannière actuelle'),
+            $this->transAdmin('Voir l\'aperçu')
         );
     }
 

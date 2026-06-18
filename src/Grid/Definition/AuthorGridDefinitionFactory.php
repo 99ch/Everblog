@@ -18,19 +18,19 @@ final class AuthorGridDefinitionFactory
     {
         return new GridDefinition(
             'author',
-            'Authors',
+            'Auteurs',
             [
                 ['id' => 'id_ever_author', 'name' => 'ID'],
                 ['id' => 'featured_image', 'name' => 'Image', 'type' => 'image'],
-                ['id' => 'nickhandle', 'name' => 'Nickname'],
-                ['id' => 'active', 'name' => 'Active'],
+                ['id' => 'nickhandle', 'name' => 'Pseudo'],
+                ['id' => 'active', 'name' => 'Actif'],
             ],
             [
-                'q' => 'Search',
-                'nickhandle' => 'Nickname',
+                'q' => 'Rechercher',
+                'nickhandle' => 'Pseudo',
             ],
             [
-                ['id' => 'delete', 'name' => 'Delete selected'],
+                ['id' => 'delete', 'name' => 'Supprimer la sélection'],
             ]
         );
     }

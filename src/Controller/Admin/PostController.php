@@ -130,7 +130,7 @@ class PostController extends AbstractDomainController
                     $this->refreshSitemapsAfterBackOfficeChange($this->blogSitemapService);
                     $submitAction = (string) $request->request->get('_submit_action', 'save');
 
-                    $this->addFlash('success', $isEdit ? $this->transAdmin('Post updated.') : $this->transAdmin('Post created.'));
+                    $this->addFlash('success', $isEdit ? $this->transAdmin('Article mis à jour.') : $this->transAdmin('Article créé.'));
 
                     if ('save_and_stay' === $submitAction) {
                         return $this->redirectToRoute('everpsblog_admin_post_edit', ['postId' => $savedPostId]);
@@ -139,7 +139,7 @@ class PostController extends AbstractDomainController
                     return $this->redirectToRoute('everpsblog_admin_post');
                 } catch (\Throwable $exception) {
                     $debug = (string) $this->describeException($exception);
-                    $message = $this->transAdmin('Unable to save post: %error%', ['%error%' => $debug]);
+                    $message = $this->transAdmin('Impossible d\'enregistrer l\'article : %error%', ['%error%' => $debug]);
                     $form->addError(new FormError($message));
                     $this->addFlash('error', $message);
                     \PrestaShopLogger::addLog(
@@ -163,7 +163,7 @@ class PostController extends AbstractDomainController
             'navigationLinks' => $this->getAdminNavigationLinks(),
             'everBlogLanguages' => $this->getEverBlogLanguages(),
             'qcdPageBuilderTargets' => $this->buildQcdPageBuilderTargets('everpsblog_post', $postId, [
-                'content' => $this->transAdmin('Edit content with Page Builder'),
+                'content' => $this->transAdmin('Modifier le contenu avec le Page Builder'),
             ]),
         ]);
     }
@@ -262,7 +262,7 @@ class PostController extends AbstractDomainController
         $ids = array_values(array_unique($ids));
 
         if (empty($ids)) {
-            $this->addFlash('warning', $this->transAdmin('Please select at least one post.'));
+            $this->addFlash('warning', $this->transAdmin('Veuillez sélectionner au moins un article.'));
 
             return $this->redirectToRoute('everpsblog_admin_post');
         }
@@ -275,7 +275,7 @@ class PostController extends AbstractDomainController
             case 'publishall':
                 return $this->handleBulkPublish($ids);
             default:
-                $this->addFlash('error', $this->transAdmin('Unknown bulk action.'));
+                $this->addFlash('error', $this->transAdmin('Action groupée inconnue.'));
 
                 return $this->redirectToRoute('everpsblog_admin_post');
         }
@@ -308,10 +308,10 @@ class PostController extends AbstractDomainController
 
         if ($success > 0) {
             $this->refreshSitemapsAfterBackOfficeChange($this->blogSitemapService);
-            $this->addFlash('success', $this->transAdmin('%count% post(s) duplicated.', ['%count%' => $success]));
+            $this->addFlash('success', $this->transAdmin('%count% article(s) dupliqué(s).', ['%count%' => $success]));
         }
         if (!empty($failures)) {
-            $this->addFlash('error', $this->transAdmin('Duplication failed for: #%ids%.', ['%ids%' => implode(', #', $failures)]));
+            $this->addFlash('error', $this->transAdmin('Échec de la duplication pour : #%ids%.', ['%ids%' => implode(', #', $failures)]));
         }
 
         return $this->redirectToRoute('everpsblog_admin_post');
@@ -341,10 +341,10 @@ class PostController extends AbstractDomainController
 
         if ($success > 0) {
             $this->refreshSitemapsAfterBackOfficeChange($this->blogSitemapService);
-            $this->addFlash('success', $this->transAdmin('%count% post(s) deleted.', ['%count%' => $success]));
+            $this->addFlash('success', $this->transAdmin('%count% article(s) supprimé(s).', ['%count%' => $success]));
         }
         if (!empty($failures)) {
-            $this->addFlash('error', $this->transAdmin('Deletion failed for: #%ids%.', ['%ids%' => implode(', #', $failures)]));
+            $this->addFlash('error', $this->transAdmin('Échec de la suppression pour : #%ids%.', ['%ids%' => implode(', #', $failures)]));
         }
 
         return $this->redirectToRoute('everpsblog_admin_post');
@@ -386,9 +386,9 @@ class PostController extends AbstractDomainController
 
         if ($success > 0) {
             $this->refreshSitemapsAfterBackOfficeChange($this->blogSitemapService);
-            $this->addFlash('success', $this->transAdmin('%count% post(s) published.', ['%count%' => $success]));
+            $this->addFlash('success', $this->transAdmin('%count% article(s) publié(s).', ['%count%' => $success]));
         } else {
-            $this->addFlash('error', $this->transAdmin('No post was published.'));
+            $this->addFlash('error', $this->transAdmin('Aucun article publié.'));
         }
 
         return $this->redirectToRoute('everpsblog_admin_post');
@@ -426,7 +426,7 @@ class PostController extends AbstractDomainController
         $shopId = $this->getContextShopId();
         $extension = strtolower((string) ($uploadedImage->guessExtension() ?: $uploadedImage->getClientOriginalExtension() ?: 'jpg'));
         if (!in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp'], true)) {
-            throw new \RuntimeException($this->transAdmin('Unsupported image format.'));
+            throw new \RuntimeException($this->transAdmin('Format d\'image non supporté.'));
         }
         if ('jpeg' === $extension) {
             $extension = 'jpg';
@@ -434,7 +434,7 @@ class PostController extends AbstractDomainController
 
         $targetDirectory = rtrim(_PS_IMG_DIR_, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $imageType;
         if (!is_dir($targetDirectory) && !@mkdir($targetDirectory, 0755, true) && !is_dir($targetDirectory)) {
-            throw new \RuntimeException($this->transAdmin('Unable to create the image destination directory.'));
+            throw new \RuntimeException($this->transAdmin('Impossible de créer le répertoire de destination.'));
         }
 
         $this->deleteBlogImageFiles($postId, $imageType);
@@ -453,7 +453,7 @@ class PostController extends AbstractDomainController
         $image->image_type = $imageType;
         $image->image_link = 'img/' . $imageType . '/' . $storedFileName;
         if (!(bool) $image->save()) {
-            throw new \RuntimeException($this->transAdmin('Unable to save the image reference.'));
+            throw new \RuntimeException($this->transAdmin('Impossible d\'enregistrer la référence image.'));
         }
 
         $this->blogImageService->clearCache();
@@ -553,12 +553,12 @@ class PostController extends AbstractDomainController
 
     private function buildFeaturedImageHelp(int $postId): string
     {
-        return $this->buildImageHelp($postId, 'post', $this->transAdmin('Current image'));
+        return $this->buildImageHelp($postId, 'post', $this->transAdmin('Image actuelle'));
     }
 
     private function buildBannerImageHelp(int $postId): string
     {
-        return $this->buildImageHelp($postId, 'post_banner', $this->transAdmin('Current banner image'));
+        return $this->buildImageHelp($postId, 'post_banner', $this->transAdmin('Image bannière actuelle'));
     }
 
     private function buildImageHelp(int $postId, string $imageType, string $label): string
@@ -578,7 +578,7 @@ class PostController extends AbstractDomainController
             '<span class="ever-featured-image-preview"><img src="%1$s" data-ever-preview-src="%1$s" alt="%2$s" loading="lazy"><span>%2$s: <button type="button" class="btn btn-link p-0 ever-image-preview-trigger" data-ever-preview-src="%1$s" data-ever-preview-alt="%2$s">%3$s</button></span></span>',
             htmlspecialchars($previewUrl, ENT_QUOTES, 'UTF-8'),
             htmlspecialchars($label, ENT_QUOTES, 'UTF-8'),
-            htmlspecialchars($this->transAdmin('Open preview'), ENT_QUOTES, 'UTF-8')
+            htmlspecialchars($this->transAdmin('Voir l\'aperçu'), ENT_QUOTES, 'UTF-8')
         );
     }
 

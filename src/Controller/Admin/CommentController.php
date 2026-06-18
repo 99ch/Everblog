@@ -80,7 +80,7 @@ class CommentController extends AbstractDomainController
                     $this->refreshSitemapsAfterBackOfficeChange($this->blogSitemapService);
                     $submitAction = (string) $request->request->get('_submit_action', 'save');
 
-                    $this->addFlash('success', $isEdit ? $this->transAdmin('Comment updated.') : $this->transAdmin('Comment created.'));
+                    $this->addFlash('success', $isEdit ? $this->transAdmin('Commentaire mis à jour.') : $this->transAdmin('Commentaire créé.'));
 
                     if ('save_and_stay' === $submitAction) {
                         return $this->redirectToRoute('everpsblog_admin_comment_edit', ['commentId' => $savedCommentId]);
@@ -88,7 +88,7 @@ class CommentController extends AbstractDomainController
 
                     return $this->redirectToRoute('everpsblog_admin_comment');
                 } catch (\Throwable $exception) {
-                    $message = $this->transAdmin('Unable to save comment: %error%', ['%error%' => $this->describeException($exception)]);
+                    $message = $this->transAdmin('Impossible d\'enregistrer le commentaire : %error%', ['%error%' => $this->describeException($exception)]);
                     $form->addError(new FormError($message));
                     $this->addFlash('error', $message);
                     \PrestaShopLogger::addLog(

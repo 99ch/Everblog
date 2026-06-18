@@ -23,12 +23,12 @@ final class CommentType extends AbstractType
         $builder
             ->add('id_ever_post', ChoiceType::class, [
                 'required' => true,
-                'label' => 'Post',
+                'label' => 'Article',
                 'choices' => $this->getPostChoices(),
-                'placeholder' => '— Select a post —',
+                'placeholder' => '— Sélectionner un article —',
             ])
-            ->add('nickname', TextType::class, ['required' => false, 'label' => 'Author'])
-            ->add('content', TextType::class, ['required' => false, 'label' => 'Comment'])
+            ->add('nickname', TextType::class, ['required' => false, 'label' => 'Auteur'])
+            ->add('content', TextType::class, ['required' => false, 'label' => 'Commentaire'])
         ;
     }
 
