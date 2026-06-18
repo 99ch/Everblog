@@ -96,8 +96,17 @@
     width: 100%;
 }
 
+.everpsblog-search-form .input-group {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch;
+    width: 100%;
+}
+
 .everpsblog-search-form .form-control {
-    border-radius: 0.5rem 0 0 0.5rem;
+    flex: 1 1 auto;
+    min-width: 0;
+    border-radius: 0.5rem 0 0 0.5rem !important;
     border-right: none;
     font-size: 0.9rem;
     border-color: #ced4da;
@@ -108,11 +117,18 @@
     border-color: #adb5bd;
 }
 
+.everpsblog-search-form .input-group-append {
+    display: flex !important;
+    align-items: stretch;
+    flex-shrink: 0;
+}
+
 .everpsblog-search-form .input-group-append .btn {
-    border-radius: 0 0.5rem 0.5rem 0;
+    border-radius: 0 0.5rem 0.5rem 0 !important;
     font-size: 0.9rem;
     padding-left: 1.1rem;
     padding-right: 1.1rem;
+    white-space: nowrap;
 }
 
 .everpsblog-rss-link {

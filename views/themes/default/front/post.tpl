@@ -125,7 +125,7 @@
 
         {* Chapô *}
         {if isset($post->excerpt) && $post->excerpt}
-        <p class="everpsblog-post-excerpt-intro">{$post->excerpt|strip_tags|escape:'htmlall':'UTF-8'}</p>
+        <p class="everpsblog-post-excerpt-intro">{$post->excerpt|strip_tags|escape:'html':'UTF-8'}</p>
         {/if}
 
         <hr class="everpsblog-post-divider">

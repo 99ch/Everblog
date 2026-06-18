@@ -5,7 +5,7 @@
                 <div class="input-group-prepend d-none d-md-flex">
                     <label class="input-group-text" for="everpsblog-search-input">{l s='Search the blog' d='Modules.Everpsblog.Shop'}</label>
                 </div>
-                <input id="everpsblog-search-input" class="form-control" type="search" name="keyword" data-doofinder-ignore="true" placeholder="{l s='Search by keywords' d='Modules.Everpsblog.Shop'}" required />
+                <input id="everpsblog-search-input" class="form-control" type="search" name="keyword" data-doofinder-ignore="true" placeholder="{l s='Search by keywords' d='Modules.Everpsblog.Shop'}" value="{if isset($query)}{$query|escape:'htmlall':'UTF-8'}{/if}" required />
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">{l s='Search' d='Modules.Everpsblog.Shop'}</button>
                 </div>
