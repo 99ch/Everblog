@@ -304,3 +304,31 @@
     background-position: center;
     background-repeat: no-repeat;
 }
+
+/* ============================================================
+   Fix listing card layout: theme may override flex-direction on
+   .card-body, causing date and excerpt to appear on the same line.
+   ============================================================ */
+#module-everpsblog-blog .everpsblog-listing-card .card-body,
+#module-everpsblog-category .everpsblog-listing-card .card-body,
+#module-everpsblog-tag .everpsblog-listing-card .card-body,
+#module-everpsblog-author .everpsblog-listing-card .card-body,
+#module-everpsblog-search .everpsblog-listing-card .card-body {
+    display: flex !important;
+    flex-direction: column !important;
+}
+#module-everpsblog-blog .everpsblog-listing-card .card-body > p,
+#module-everpsblog-category .everpsblog-listing-card .card-body > p,
+#module-everpsblog-tag .everpsblog-listing-card .card-body > p,
+#module-everpsblog-author .everpsblog-listing-card .card-body > p,
+#module-everpsblog-search .everpsblog-listing-card .card-body > p {
+    display: block !important;
+    margin-bottom: 0.75rem !important;
+}
+
+/* ============================================================
+   Fix listing card image column: ensure aspect-ratio works on BS4
+   ============================================================ */
+.everpsblog-listing-card .everpsblog-image-wrapper {
+    min-height: 180px;
+}
