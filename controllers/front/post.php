@@ -835,13 +835,11 @@ class EverPsBlogpostModuleFrontController extends AbstractFrontController
 
     private function getLatestCommentByEmail($email, $idLang): stdClass
     {
-        $sql = new DbQuery();
-        $sql->select('*');
-        $sql->from('ever_blog_comments');
-        $sql->where('user_email = "' . pSQL((string) $email) . '"');
-        $sql->where('id_lang = ' . (int) $idLang);
-        $sql->orderBy('`date_add` DESC');
-        $sql->limit(1);
+        $sql = 'SELECT * FROM `' . _DB_PREFIX_ . 'ever_blog_comments`
+                WHERE `user_email` = "' . pSQL((string) $email) . '"
+                AND `id_lang` = ' . (int) $idLang . '
+                ORDER BY `date_add` DESC
+                LIMIT 1';
 
         return $this->arrayToObject(Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow($sql));
     }
