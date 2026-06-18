@@ -1,16 +1,23 @@
 /* ============================================================
-   blog-listing.css — Blog listing page design
-   Dedicated CSS for blog frontend. No theme hacks here.
-   Bootstrap 4 compatible only.
+   blog-listing.css — Design Option B : liste éditoriale verticale
+   Bootstrap 4 uniquement. Pas de dépendance BS5.
    ============================================================ */
+
+/* ── Accent color ─────────────────────────────────────────── */
+:root {
+    --everpsblog-header-bg:    #1a2e5a;
+    --everpsblog-header-color: #ffffff;
+    --everpsblog-accent:       #3c7a2a;   /* vert Koutonou — ajuste si besoin */
+    --everpsblog-divider:      #e9ecef;
+    --everpsblog-text-muted:   #6c757d;
+}
 
 /* ============================================================
    Blog Header <section>
-   Background color is customizable via --everpsblog-header-bg
    ============================================================ */
 .everpsblog-header {
-    background-color: var(--everpsblog-header-bg, #1a2e5a);
-    color: var(--everpsblog-header-color, #fff);
+    background-color: var(--everpsblog-header-bg);
+    color: var(--everpsblog-header-color);
     text-align: center;
     padding: 3rem 1rem 2.5rem;
     margin-bottom: 2rem;
@@ -30,7 +37,7 @@
     line-height: 1.2;
 }
 
-/* Category pills inside header */
+/* Catégories pills dans le header */
 .everpsblog-header__cats {
     display: flex;
     flex-wrap: wrap;
@@ -63,11 +70,11 @@
 .everpsblog-cat-pill.active {
     background: #fff;
     border-color: #fff;
-    color: #1a2e5a;
+    color: var(--everpsblog-header-bg);
 }
 
 /* ============================================================
-   Search toolbar
+   Barre de recherche
    ============================================================ */
 .everpsblog-search-toolbar {
     display: flex;
@@ -89,11 +96,12 @@
     border-radius: 0.5rem 0 0 0.5rem;
     border-right: none;
     font-size: 0.9rem;
+    border-color: #ced4da;
 }
 
 .everpsblog-search-form .form-control:focus {
     box-shadow: none;
-    border-color: #ced4da;
+    border-color: #adb5bd;
 }
 
 .everpsblog-search-form .input-group-append .btn {
@@ -106,48 +114,47 @@
 .everpsblog-rss-link {
     display: inline-flex;
     align-items: center;
-    color: #f26522;
+    color: #e55c00;
     text-decoration: none;
     font-size: 0.875rem;
-    font-weight: 600;
+    font-weight: 700;
     flex-shrink: 0;
+    letter-spacing: 0.03em;
 }
 
-.everpsblog-rss-link:hover {
-    color: #d45510;
-    text-decoration: none;
-}
+.everpsblog-rss-link:hover { color: #bf4e00; text-decoration: none; }
 
 /* ============================================================
-   Post card
+   Option B — Article liste éditoriale
    ============================================================ */
-.everpsblog-listing-card {
-    border: 1px solid rgba(0, 0, 0, 0.07) !important;
-    border-radius: 0.6rem !important;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    transition: box-shadow 0.25s ease, transform 0.2s ease;
+#everpsblog-posts {
+    border-top: 2px solid var(--everpsblog-divider);
 }
 
-.everpsblog-listing-card:hover {
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12) !important;
-    transform: translateY(-2px);
+.everpsblog-post-item {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--everpsblog-divider);
 }
 
-/* Image column */
-.everpsblog-card-img-wrap {
-    height: 100%;
-    min-height: 200px;
-    overflow: hidden;
+/* ── Colonne image ──────────────────────────────────────────── */
+.everpsblog-post-item__img-col {
+    padding-right: 1.5rem;
 }
 
-.everpsblog-card-img-link {
+.everpsblog-post-item__img-wrap {
     display: block;
-    height: 100%;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    /* ratio 16/9 — fallback sans aspect-ratio CSS */
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
 }
 
-.everpsblog-card-img {
-    display: block;
+.everpsblog-post-item__img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -155,83 +162,94 @@
     transition: transform 0.35s ease;
 }
 
-.everpsblog-listing-card:hover .everpsblog-card-img {
-    transform: scale(1.04);
+.everpsblog-post-item:hover .everpsblog-post-item__img {
+    transform: scale(1.05);
 }
 
-/* Content column */
-.everpsblog-card-body {
+/* ── Colonne contenu ────────────────────────────────────────── */
+.everpsblog-post-item__content {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    padding: 1.5rem;
+    justify-content: center;
 }
 
-.everpsblog-card-title {
-    font-size: 1.15rem;
+.everpsblog-post-item__content--with-img {
+    padding-left: 0.5rem;
+}
+
+.everpsblog-post-item__date {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--everpsblog-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+}
+
+.everpsblog-post-item__title {
+    font-size: 1.2rem;
     font-weight: 700;
-    margin: 0 0 0.5rem;
+    margin: 0 0 0.6rem;
     line-height: 1.3;
 }
 
-.everpsblog-card-title-link {
+.everpsblog-post-item__title-link {
     color: #212529;
     text-decoration: none;
+    transition: color 0.15s;
 }
 
-.everpsblog-card-title-link:hover {
-    color: #0056b3;
+.everpsblog-post-item__title-link:hover {
+    color: var(--everpsblog-accent);
     text-decoration: none;
 }
 
-.everpsblog-card-date {
-    font-size: 0.8rem;
-    color: #6c757d;
-    margin: 0 0 0.75rem;
-}
-
-.everpsblog-card-excerpt {
+.everpsblog-post-item__excerpt {
     font-size: 0.9rem;
-    color: #495057;
-    line-height: 1.6;
+    color: var(--everpsblog-text-muted);
+    line-height: 1.65;
     margin: 0 0 1rem;
-    flex-grow: 1;
+    /* Limite à 2 lignes */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-.everpsblog-card-footer {
-    margin-top: auto;
-    padding-top: 0.5rem;
-}
-
-.everpsblog-card-btn {
+.everpsblog-post-item__readmore {
+    display: inline-flex;
+    align-items: center;
     font-size: 0.875rem;
-    border-radius: 50rem;
-    padding: 0.4rem 1.2rem;
-    font-weight: 600;
+    font-weight: 700;
+    color: var(--everpsblog-accent);
+    text-decoration: none;
+    transition: gap 0.2s, opacity 0.15s;
+    gap: 0.25rem;
+    align-self: flex-start;
+}
+
+.everpsblog-post-item__readmore:hover {
+    color: var(--everpsblog-accent);
+    text-decoration: none;
+    gap: 0.5rem;
+    opacity: 0.8;
 }
 
 /* ============================================================
    Responsive
    ============================================================ */
 @media (max-width: 767.98px) {
-    .everpsblog-header {
-        padding: 2rem 1rem 1.75rem;
-    }
+    .everpsblog-header { padding: 1.75rem 1rem 1.5rem; }
+    .everpsblog-header__title { font-size: 1.5rem; }
 
-    .everpsblog-header__title {
-        font-size: 1.5rem;
-    }
+    .everpsblog-post-item { padding: 1.25rem 0; }
+    .everpsblog-post-item__img-col { padding-right: 0; margin-bottom: 0.75rem; }
 
-    .everpsblog-card-img-wrap {
-        min-height: 180px;
-        max-height: 220px;
-    }
+    /* Image en haut sur mobile, texte dessous */
+    .everpsblog-post-item__content--with-img { padding-left: 0; padding-top: 0.5rem; }
 
-    .everpsblog-card-body {
-        padding: 1rem;
-    }
+    .everpsblog-post-item__title { font-size: 1rem; }
 
-    .everpsblog-search-form {
-        max-width: 100%;
-    }
+    .everpsblog-search-form { max-width: 100%; }
 }
