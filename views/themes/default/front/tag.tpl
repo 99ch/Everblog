@@ -64,7 +64,7 @@
     {/if}
 
     {if isset($post_number) && $post_number > 0}
-    <div class="row mt-2">
+    <div id="everpsblog-posts" class="mt-2">
         {hook h="displayBeforeEverLoop"}
         {foreach from=$posts item=item}
             {include file="{$everpsblog_theme_front_template_base}/loop/post_array.tpl"}
