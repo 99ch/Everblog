@@ -103,7 +103,7 @@
 {/if}
 
 {* ── En-tête article ────────────────────────────────────── *}
-<div class="container everpsblog-post-col">
+<div class="everpsblog-post-col">
     <header class="everpsblog-post-header">
 
         {* Méta : catégorie · date · auteur *}
@@ -124,8 +124,8 @@
         <h1 class="everpsblog-post-title">{$post->title|escape:'htmlall':'UTF-8'}</h1>
 
         {* Chapô *}
-        {if isset($post->excerpt) && $post->excerpt}
-        <p class="everpsblog-post-excerpt-intro">{$post->excerpt|strip_tags|escape:'html':'UTF-8'}</p>
+        {if isset($post_intro_excerpt_display) && $post_intro_excerpt_display}
+        <p class="everpsblog-post-excerpt-intro">{$post_intro_excerpt_display|escape:'html':'UTF-8'}</p>
         {/if}
 
         <hr class="everpsblog-post-divider">

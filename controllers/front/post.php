@@ -531,14 +531,8 @@ class EverPsBlogpostModuleFrontController extends AbstractFrontController
             if (false === $showAiSummaryBanner) {
                 $showAiSummaryBanner = true;
             }
-            if (!empty($this->post->excerpt)) {
-                $this->post->excerpt = html_entity_decode(
-                    (string) $this->post->excerpt,
-                    ENT_QUOTES | ENT_HTML5,
-                    'UTF-8'
-                );
-            }
             $postIntroExcerpt = (string) ($this->post->excerpt ?? '');
+            $postIntroExcerptDisplay = trim(strip_tags(html_entity_decode($postIntroExcerpt, ENT_QUOTES | ENT_HTML5, 'UTF-8')));
             $normalizedPostIntroExcerpt = $this->normalizeIntroExcerpt($postIntroExcerpt);
             $showPostIntroExcerpt = $normalizedPostIntroExcerpt !== ''
                 && !in_array($normalizedPostIntroExcerpt, ['resume', 'resume-de-l-article'], true)
@@ -563,6 +557,7 @@ class EverPsBlogpostModuleFrontController extends AbstractFrontController
                 'post' => $this->post,
                 'post_view' => $postViewModel,
                 'post_intro_excerpt' => $postIntroExcerpt,
+                'post_intro_excerpt_display' => $postIntroExcerptDisplay,
                 'show_post_intro_excerpt' => $showPostIntroExcerpt,
                 'tags' => $tags,
                 'ps_products' => $ps_products,
