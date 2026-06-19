@@ -1,6 +1,6 @@
 {*
- * card-post.tpl — Option C : style magazine
- * Premier article en vedette (hero pleine largeur) · Suivants en grille 3 colonnes
+ * card-post.tpl — Option A : liste verticale
+ * Image à gauche · Texte à droite · Pleine largeur
  *
  * Variables attendues (extraites par post_array.tpl) :
  *   $post_id, $post_title, $post_link, $post_summary, $item, $show_featured_post, $animated
@@ -43,7 +43,7 @@
         {* Extrait *}
         {if $post_summary}
         <p class="everpsblog-post-item__excerpt">
-            {$post_summary|strip_tags|truncate:180:'...'|escape:'html':'UTF-8'}
+            {$post_summary|strip_tags|truncate:220:'...'|escape:'html':'UTF-8'}
         </p>
         {/if}
 
