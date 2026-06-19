@@ -81,9 +81,10 @@
     font-size: 1.05rem;
     color: var(--everpsblog-muted);
     line-height: 1.7;
-    margin: 0 0 1.5rem;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
+    max-width: var(--everpsblog-post-max-width);
+    margin: 0 auto 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     font-style: italic;
 }
 
