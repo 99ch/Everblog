@@ -24,6 +24,8 @@ final class PostViewModel
         $summary = (string) self::value($post, 'summary', '');
         if ('' === trim($summary)) {
             $summary = '' !== trim($excerpt) ? self::summaryFromContent($excerpt) : self::summaryFromContent($content);
+        } else {
+            $summary = self::summaryFromContent($summary);
         }
         if (self::isPlaceholderSummary($summary)) {
             $summary = self::summaryFromContent($content);
