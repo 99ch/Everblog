@@ -16,6 +16,8 @@
             src="{$item.featured_thumb|escape:'htmlall':'UTF-8'}"
             alt="{$post_title|escape:'htmlall':'UTF-8'}"
             class="everpsblog-post-item__img{if isset($animated) && $animated} animated{/if}"
+            width="320"
+            height="180"
             loading="lazy">
     </a>
     {/if}
