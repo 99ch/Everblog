@@ -85,8 +85,16 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    margin-top: 2rem;
     margin-bottom: 2rem;
     flex-wrap: wrap;
+}
+
+#module-everpsblog-category .everpsblog-search-toolbar,
+#module-everpsblog-tag .everpsblog-search-toolbar,
+#module-everpsblog-author .everpsblog-search-toolbar,
+#module-everpsblog-search .everpsblog-search-toolbar {
+    margin-top: 2.5rem;
 }
 
 .everpsblog-search {
