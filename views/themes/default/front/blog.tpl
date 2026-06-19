@@ -83,35 +83,7 @@
 <div class="container">
 
     {* Search bar *}
-    <div class="everpsblog-search-toolbar">
-        <form method="get"
-              action="{$link->getModuleLink('everpsblog','search')|escape:'htmlall':'UTF-8'}"
-              class="everpsblog-search-form"
-              data-doofinder-ignore="true">
-            <div class="input-group">
-                <input id="everpsblog-search-input"
-                       class="form-control"
-                       type="search"
-                       name="keyword"
-                       placeholder="{l s='Search by keywords' d='Modules.Everpsblog.Shop'}"
-                       aria-label="{l s='Search the blog' d='Modules.Everpsblog.Shop'}"
-                       data-doofinder-ignore="true">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit">
-                        {l s='Search' d='Modules.Everpsblog.Shop'}
-                    </button>
-                </div>
-            </div>
-        </form>
-        {if isset($allow_feed) && $allow_feed && isset($feed_url) && $feed_url}
-        <a class="everpsblog-rss-link"
-           href="{$feed_url|escape:'htmlall':'UTF-8'}"
-           target="_blank"
-           rel="noopener noreferrer">
-            RSS
-        </a>
-        {/if}
-    </div>
+    {include file="{$everpsblog_theme_front_template_base}/loop/search_form.tpl"}
 
     {if isset($facet_url)}
     <script>var facetUrl = '{$facet_url|escape:'javascript'}';</script>
