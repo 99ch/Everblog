@@ -28,6 +28,36 @@
     width: 100%;
 }
 
+/* Category / Tag / Author / Search header — match blog header size (3rem 1rem 2.5rem total) */
+#module-everpsblog-category .everpsblog-category-hero-overlay {
+    min-height: 0 !important;
+    padding: 3rem 1rem 2.5rem !important;
+    gap: 1rem !important;
+}
+
+/* Tag / Author / Search : padding goes on __inner directly (overlay has no padding) */
+#module-everpsblog-tag .everpsblog-blog-header > .everpsblog-blog-header__inner,
+#module-everpsblog-author .everpsblog-blog-header > .everpsblog-blog-header__inner,
+#module-everpsblog-search .everpsblog-blog-header > .everpsblog-blog-header__inner {
+    min-height: 0 !important;
+    padding: 3rem 1rem 2.5rem !important;
+    gap: 1rem !important;
+}
+
+/* Category : cancel Bootstrap py-5 on __inner so only the overlay drives the height */
+#module-everpsblog-category .everpsblog-category-header.container-fluid > .everpsblog-blog-header__inner {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Restore taller hero when category actually has a banner image */
+#module-everpsblog-category .everpsblog-blog-header--has-banner .everpsblog-category-hero-overlay,
+#module-everpsblog-tag .everpsblog-blog-header--has-banner .everpsblog-blog-header__inner,
+#module-everpsblog-author .everpsblog-blog-header--has-banner .everpsblog-blog-header__inner {
+    min-height: clamp(220px, 26vw, 340px) !important;
+    padding: 3rem 1rem !important;
+}
+
 .everpsblog-header__inner {
     max-width: 720px;
     margin: 0 auto;
