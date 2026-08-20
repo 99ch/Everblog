@@ -55,8 +55,65 @@ class TagController extends AbstractDomainController
             'resource' => 'tag',
             'currentResource' => 'tag',
             'createUrl' => $this->generateUrl('everpsblog_admin_tag_form'),
+            'bulkActionUrl' => $this->generateUrl('everpsblog_admin_tag_bulk'),
+            'bulkCsrfTokenId' => 'everpsblog_tag_bulk',
             'navigationLinks' => $this->getAdminNavigationLinks(),
         ]);
+    }
+
+    public function bulkAction(Request $request): Response
+    {
+        $this->validateCsrfToken($request, 'everpsblog_tag_bulk');
+
+        $action = (string) $request->request->get('bulk_action', '');
+        $rawIds = (array) $request->request->get('bulk_ids', []);
+        $ids = [];
+        foreach ($rawIds as $rawId) {
+            $id = (int) $rawId;
+            if ($id > 0) {
+                $ids[] = $id;
+            }
+        }
+        $ids = array_values(array_unique($ids));
+
+        if (empty($ids)) {
+            $this->addFlash('warning', $this->transAdmin('Veuillez sélectionner au moins un tag.'));
+
+            return $this->redirectToRoute('everpsblog_admin_tag');
+        }
+
+        if ('delete' !== $action) {
+            $this->addFlash('error', $this->transAdmin('Action groupée inconnue.'));
+
+            return $this->redirectToRoute('everpsblog_admin_tag');
+        }
+
+        $success = 0;
+        $failures = [];
+
+        foreach ($ids as $tagId) {
+            try {
+                $this->commandBus->handle(new DeleteTagCommand($tagId));
+                $this->deleteBannerImage($tagId);
+                ++$success;
+            } catch (\Throwable $exception) {
+                $failures[] = $tagId;
+                \PrestaShopLogger::addLog(
+                    '[everpsblog][TagController::bulkDelete] #' . $tagId . ' ' . $exception->getMessage(),
+                    3
+                );
+            }
+        }
+
+        if ($success > 0) {
+            $this->refreshSitemapsAfterBackOfficeChange($this->blogSitemapService, false);
+            $this->addFlash('success', $this->transAdmin('%count% tag(s) supprimé(s).', ['%count%' => $success]));
+        }
+        if (!empty($failures)) {
+            $this->addFlash('error', $this->transAdmin('Échec de la suppression pour : #%ids%.', ['%ids%' => implode(', #', $failures)]));
+        }
+
+        return $this->redirectToRoute('everpsblog_admin_tag');
     }
 
     public function formAction(Request $request, ?int $tagId = null): Response

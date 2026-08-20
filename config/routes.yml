@@ -272,6 +272,13 @@ everpsblog_admin_tag_delete:
   requirements:
     tagId: '\d+'
 
+everpsblog_admin_tag_bulk:
+  path: /everpsblog/tag/bulk
+  methods: [POST]
+  defaults:
+    _controller: 'PrestaShop\Module\Everpsblog\Controller\Admin\TagController::bulkAction'
+    _legacy_controller: AdminEverPsBlogTag
+
 
 
 everpsblog_admin_author_create:
