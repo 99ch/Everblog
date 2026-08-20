@@ -308,6 +308,13 @@ everpsblog_admin_author_delete_preflight:
   requirements:
     authorId: '\d+'
 
+everpsblog_admin_author_bulk:
+  path: /everpsblog/author/bulk
+  methods: [POST]
+  defaults:
+    _controller: 'PrestaShop\Module\Everpsblog\Controller\Admin\AuthorController::bulkAction'
+    _legacy_controller: AdminEverPsBlogAuthor
+
 
 
 everpsblog_admin_comment_bulk:

@@ -80,8 +80,76 @@ class AuthorController extends AbstractDomainController
             'resource' => 'author',
             'currentResource' => 'author',
             'createUrl' => $this->generateUrl('everpsblog_admin_author_form'),
+            'bulkActionUrl' => $this->generateUrl('everpsblog_admin_author_bulk'),
+            'bulkCsrfTokenId' => 'everpsblog_author_bulk',
             'navigationLinks' => $this->getAdminNavigationLinks(),
         ]);
+    }
+
+    public function bulkAction(Request $request): Response
+    {
+        $this->validateCsrfToken($request, 'everpsblog_author_bulk');
+
+        $action = (string) $request->request->get('bulk_action', '');
+        $rawIds = (array) $request->request->get('bulk_ids', []);
+        $ids = [];
+        foreach ($rawIds as $rawId) {
+            $id = (int) $rawId;
+            if ($id > 0) {
+                $ids[] = $id;
+            }
+        }
+        $ids = array_values(array_unique($ids));
+
+        if (empty($ids)) {
+            $this->addFlash('warning', $this->transAdmin('Veuillez sélectionner au moins un auteur.'));
+
+            return $this->redirectToRoute('everpsblog_admin_author');
+        }
+
+        if ('delete' !== $action) {
+            $this->addFlash('error', $this->transAdmin('Action groupée inconnue.'));
+
+            return $this->redirectToRoute('everpsblog_admin_author');
+        }
+
+        $success = 0;
+        $blocked = [];
+        $failures = [];
+
+        foreach ($ids as $authorId) {
+            try {
+                $this->commandBus->handle(new DeleteAuthorCommand($authorId, null));
+                $this->deleteAuthorImage($authorId);
+                $this->deleteBannerImage($authorId);
+                ++$success;
+            } catch (\RuntimeException $exception) {
+                $blocked[] = $authorId;
+                \PrestaShopLogger::addLog(
+                    '[everpsblog][AuthorController::bulkDelete] #' . $authorId . ' ' . $exception->getMessage(),
+                    2
+                );
+            } catch (\Throwable $exception) {
+                $failures[] = $authorId;
+                \PrestaShopLogger::addLog(
+                    '[everpsblog][AuthorController::bulkDelete] #' . $authorId . ' ' . $exception->getMessage(),
+                    3
+                );
+            }
+        }
+
+        if ($success > 0) {
+            $this->refreshSitemapsAfterBackOfficeChange($this->blogSitemapService, false);
+            $this->addFlash('success', $this->transAdmin('%count% auteur(s) supprimé(s).', ['%count%' => $success]));
+        }
+        if (!empty($blocked)) {
+            $this->addFlash('warning', $this->transAdmin('Suppression bloquée pour : #%ids%. Des articles y sont rattachés — réassignez-les d\'abord depuis la fiche auteur.', ['%ids%' => implode(', #', $blocked)]));
+        }
+        if (!empty($failures)) {
+            $this->addFlash('error', $this->transAdmin('Échec de la suppression pour : #%ids%.', ['%ids%' => implode(', #', $failures)]));
+        }
+
+        return $this->redirectToRoute('everpsblog_admin_author');
     }
 
     public function formAction(Request $request, ?int $authorId = null): Response
