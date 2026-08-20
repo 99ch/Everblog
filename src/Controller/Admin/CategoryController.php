@@ -58,8 +58,84 @@ class CategoryController extends AbstractDomainController
             'resource' => 'category',
             'currentResource' => 'category',
             'createUrl' => $this->generateUrl('everpsblog_admin_category_form'),
+            'bulkActionUrl' => $this->generateUrl('everpsblog_admin_category_bulk'),
+            'bulkCsrfTokenId' => 'everpsblog_category_bulk',
             'navigationLinks' => $this->getAdminNavigationLinks(),
         ]);
+    }
+
+    public function bulkAction(Request $request): Response
+    {
+        $this->validateCsrfToken($request, 'everpsblog_category_bulk');
+
+        $action = (string) $request->request->get('bulk_action', '');
+        $rawIds = (array) $request->request->get('bulk_ids', []);
+        $ids = [];
+        foreach ($rawIds as $rawId) {
+            $id = (int) $rawId;
+            if ($id > 0) {
+                $ids[] = $id;
+            }
+        }
+        $ids = array_values(array_unique($ids));
+
+        if (empty($ids)) {
+            $this->addFlash('warning', $this->transAdmin('Veuillez sélectionner au moins une catégorie.'));
+
+            return $this->redirectToRoute('everpsblog_admin_category');
+        }
+
+        if ('delete' !== $action) {
+            $this->addFlash('error', $this->transAdmin('Action groupée inconnue.'));
+
+            return $this->redirectToRoute('everpsblog_admin_category');
+        }
+
+        $shopId = $this->getContextShopId();
+        $success = 0;
+        $protected = [];
+        $blocked = [];
+        $failures = [];
+
+        foreach ($ids as $categoryId) {
+            if ($this->blogInstallService->isProtectedCategoryId($categoryId, $shopId)) {
+                $protected[] = $categoryId;
+                continue;
+            }
+            try {
+                $this->commandBus->handle(new DeleteCategoryCommand($categoryId));
+                $this->deleteBannerImage($categoryId);
+                ++$success;
+            } catch (\RuntimeException $exception) {
+                $blocked[] = $categoryId;
+                \PrestaShopLogger::addLog(
+                    '[everpsblog][CategoryController::bulkDelete] #' . $categoryId . ' ' . $exception->getMessage(),
+                    2
+                );
+            } catch (\Throwable $exception) {
+                $failures[] = $categoryId;
+                \PrestaShopLogger::addLog(
+                    '[everpsblog][CategoryController::bulkDelete] #' . $categoryId . ' ' . $exception->getMessage(),
+                    3
+                );
+            }
+        }
+
+        if ($success > 0) {
+            $this->refreshSitemapsAfterBackOfficeChange($this->blogSitemapService, false);
+            $this->addFlash('success', $this->transAdmin('%count% catégorie(s) supprimée(s).', ['%count%' => $success]));
+        }
+        if (!empty($protected)) {
+            $this->addFlash('warning', $this->transAdmin('Ignorées (catégories système) : #%ids%.', ['%ids%' => implode(', #', $protected)]));
+        }
+        if (!empty($blocked)) {
+            $this->addFlash('warning', $this->transAdmin('Suppression bloquée pour : #%ids%.', ['%ids%' => implode(', #', $blocked)]));
+        }
+        if (!empty($failures)) {
+            $this->addFlash('error', $this->transAdmin('Échec de la suppression pour : #%ids%.', ['%ids%' => implode(', #', $failures)]));
+        }
+
+        return $this->redirectToRoute('everpsblog_admin_category');
     }
 
     public function formAction(Request $request, ?int $categoryId = null): Response

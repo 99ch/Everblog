@@ -245,6 +245,13 @@ everpsblog_admin_category_delete:
   requirements:
     categoryId: '\d+'
 
+everpsblog_admin_category_bulk:
+  path: /everpsblog/category/bulk
+  methods: [POST]
+  defaults:
+    _controller: 'PrestaShop\Module\Everpsblog\Controller\Admin\CategoryController::bulkAction'
+    _legacy_controller: AdminEverPsBlogCategory
+
 
 
 everpsblog_admin_tag_create:
